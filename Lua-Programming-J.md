@@ -20,6 +20,12 @@ Lua was designed and is being maintained at the Pontifical Catholic University o
 >
 > —Lua authors, [About Lua](http://www.lua.org/about.html)
 
+Luaは、TeCGraf（リオデジャネイロのポンティフィカルカトリック大学の研究所）によって設計された2つの言語、DELとSolに由来します。 DELは「データ入力言語」を意味し、Solは「単純なオブジェクト言語」を意味し、ポルトガル語で太陽も意味します。そのため、ポルトガル語で「月」を意味するため、Luaという名前が選ばれました。ブラジルの石油会社であるPetrobrasのために作成されましたが、TeCGrafの他の多くのプロジェクトでも使用され、現在では世界中の多数のプロジェクトで使用されています。 Luaは、組み込みゲーム開発の分野における主要な言語の1つです。
+
+Luaの主な利点の1つは、そのシンプルさです。一部の企業は、その利点のためだけにそれを使用しています。プログラミング言語を使用して特定のタスクを実行できれば、従業員はよりよく働くことができると考えていますが、複雑なプログラミング言語のフルコースを従業員に提供する余裕はありません。ここでのBashやBatchのようないくつかの非常に単純な言語は、これらのタスクを実行するのに十分強力ではありませんが、Luaは強力で単純です。 Luaのもう1つの重要な利点は、組み込み機能です。これは、開発全体を通じて最も重要な特性の1つでした。 World of WarcraftやROBLOXのようなゲームは、ユーザーが使用できるように、アプリケーションにLuaを埋め込むことができる必要があります。
+
+プログラミングは、組み込みアプリケーション内で実行されるプログラムの場合はスクリプトとも呼ばれ、コンピュータープログラムを作成するプロセスです。プログラミング言語は、コンピュータープログラムに含まれているコンピューターコードを介してコンピューターに指示を与えるために使用される言語です。プログラミング言語は、英語の文法に似た構文と、言語で提供される基本関数であるライブラリの2つで構成されています。これらのライブラリは、英語の語彙と比較できます。
+
 Lua comes from two languages that were designed by TeCGraf (a laboratory at the Pontifical Catholic University of Rio de Janeiro): DEL and Sol. DEL means "data entry language", while Sol means "simple object language" and also means sun in Portuguese, which is why the name Lua was chosen, since it means "moon" in Portuguese. It was created for Petrobras, a Brazilian oil company, but was also used in many other projects in TeCGraf, and is now used in a multitude of projects world-wide. Lua is one of the leading languages in the field of embedded game development.
 
 One of the main advantages of Lua is its simplicity. Some companies use it exclusively because of that advantage: they think their employees would be able to work better if they could use a programming language to perform certain tasks, but they cannot afford to give to their employees a full course on a complicated programming language. Some very simple languages like Bash or Batch here would not be powerful enough to perform these tasks, but Lua is both powerful and simple. Another of the important advantages of Lua is its capability to be embedded, which was one of the most important characteristics of it throughout all of its development. Games like or World of Warcraft or ROBLOX need to be able to embed Lua in their application so users of the application can use it.
@@ -27,6 +33,12 @@ One of the main advantages of Lua is its simplicity. Some companies use it exclu
 Programming, which is also sometimes called scripting in the case of programs that run inside embedded applications, is the process of writing computer programs. A programming language is a language used to give instructions to a computer through computer code that is contained in a computer program. A programming language consists of two things: a syntax, which is like grammar in English, and libraries, basic functions provided with the language. These libraries could be compared with vocabulary in English.
 
 ## Hello, world
+
+Luaは、アプリケーションに埋め込まれて使用することも、単独で使用することもできます。この本では、Luaをコンピューターにインストールするプロセスについては説明していませんが、[codepad](http://codepad.org/)または[the Lua demo](http://www.lua.org/demo.html)を使用してコードを実行できます。この本のLuaコードの最初の例は、基本的で伝統的なhelloworldプログラムです。
+
+> **「Hello World」のプログラムは、**表示装置に出力「こんにちは、世界」そのコンピュータプログラムです。これは通常、ほとんどのプログラミング言語で可能な最も単純なプログラムの1つであるため、プログラミング言語の最も基本的な構文を初心者に説明したり、言語またはシステムが正しく動作していることを確認したりするためによく使用されます。
+>
+> —ウィキペディア、[Hello world program](https://en.wikipedia.org/wiki/Hello_world_program)
 
 Lua can either be used embedded in an application or by itself. This book will not describe the process to install Lua on your computer, but you can execute code using [codepad](http://codepad.org/) or [the Lua demo](http://www.lua.org/demo.html). The first example of Lua code in this book will be the basic and traditional hello world program.
 
@@ -37,6 +49,10 @@ Lua can either be used embedded in an application or by itself. This book will n
 ```lua
 print("Hello, world!")
 ```
+
+上記のコードは、Hello, world! というテキストを出力します。紙に何かを印刷するのではなく、出力にテキストを表示することを参照して印刷します。これは、`print`という関数を呼び出すことによって引数として文字列"Hello, world!"を使用して行われます。これについては、関数に関する章で説明します。
+
+Luaはほとんどの場合、低レベルのアプリケーションに[埋め込まれ](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Embedded_system&usg=ALkJrhjO7IDN0JceQxPpd_cx_j0Qs56Ktg)ていることに注意してください。つまり、`print`関数は、ユーザーに表示される領域にテキストを常に表示するとは限りません。これらのアプリケーションのプログラミングインターフェイスのドキュメントでは、一般に、テキストをユーザーに表示する方法について説明します。
 
 The code above prints the text Hello, world! to the output, printing referring to displaying text in the output, not to printing something on paper. It does so by calling the `print` function with the string "Hello, world!" as an argument. This will be explained in the chapter about functions.
 
