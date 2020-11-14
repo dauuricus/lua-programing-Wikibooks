@@ -325,29 +325,29 @@ If the bits in a given position in the binary representation of both 5 and 3 are
 
 The bitwise OR operation (with operator `|`) works in the same way as the bitwise AND, performing logical disjunction instead where it performs logical conjunction. Thus, `5 | 3` will evaluate to 7:
 
-{\displaystyle (5)_{10}=(0101)_{2}}![(5)_{{10}}=(0101)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
+![(5)_{{10}}=(0101)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
 
-{\displaystyle (3)_{10}=(0011)_{2}}![(3)_{{10}}=(0011)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
+![(3)_{{10}}=(0011)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
 
-{\displaystyle (7)_{10}=(0111)_{2}}![(7)_{{10}}=(0111)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/e3e15c3c8aa9d76b66bb3a556f837dd3b85905a2)
+![(7)_{{10}}=(0111)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/e3e15c3c8aa9d76b66bb3a556f837dd3b85905a2)
 
 Here, we can see that the bit in each position in the final result was 0 only when the binary representations of the two operands had a 0-bit at that position.
 
 The bitwise XOR operation (with operator `~`) works like two others, but at a given position, the final bit is only 1 if one, and not both, of the bits in the operands are 1.
 
-{\displaystyle (5)_{10}=(0101)_{2}}![(5)_{{10}}=(0101)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
+![(5)_{{10}}=(0101)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
 
-{\displaystyle (3)_{10}=(0011)_{2}}![(3)_{{10}}=(0011)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
+![(3)_{{10}}=(0011)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
 
-{\displaystyle (6)_{10}=(0110)_{2}}![(6)_{{10}}=(0110)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/fc5e1e2283de38017ad922d2605016d653b6d436)
+![(6)_{{10}}=(0110)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/fc5e1e2283de38017ad922d2605016d653b6d436)
 
 This is the same as the previous example, but we can see that the last bit in the result is 0 instead of 1, since the last bit of both operands was 1.
 
 The bitwise NOT operation (with operator `~`) performs logical negation on each bit of its unique operand, which means that each 0 becomes 1 and that each 1 becomes 0. Thusly, `~7` will evaluate to -8:
 
-{\displaystyle (7)_{10}=(0111)_{2}}![(7)_{{10}}=(0111)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/e3e15c3c8aa9d76b66bb3a556f837dd3b85905a2)
+![(7)_{{10}}=(0111)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/e3e15c3c8aa9d76b66bb3a556f837dd3b85905a2)
 
-{\displaystyle (8)_{10}=(1000)_{2}}![(8)_{{10}}=(1000)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/c146e6bd4e3cba0908fea6a819b278a46c3bffc7)
+![(8)_{{10}}=(1000)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/c146e6bd4e3cba0908fea6a819b278a46c3bffc7)
 
 Here, the first bit became 1 in the result because it was 0 in the operand, and the other bits became 0 because they were all 1.
 
