@@ -12,6 +12,10 @@ This book aims to teach usage of the latest version of Lua. This means it will b
 
 Lua was designed and is being maintained at the Pontifical Catholic University of Rio de Janeiro, which is located in Brazil. Its creators are Roberto Ierusalimschy, Waldemar Celes and Luiz Henrique de Figueiredo.
 
+> 「ルア」（LOO-ahと発音）はポルトガル語で「月」を意味します。そのため、頭字語でも略語でもありませんが、名詞です。より具体的には、「ルア」は名前、地球の月の名前、そして言語の名前です。ほとんどの名前と同様に、小文字で最初の大文字、つまり「Lua」を使用して記述する必要があります。醜くて紛らわしい「LUA」とは書かないでください。人によって意味が異なる頭字語になります。だから、「Lua」と書いてください！
+>
+> —Luaの作者、[Luaについて](http://www.lua.org/about.html)
+
 > "Lua" (pronounced LOO-ah) means "Moon" in Portuguese. As such, it is neither an acronym nor an abbreviation, but a noun. More specifically, "Lua" is a name, the name of the Earth's moon and the name of the language. Like most names, it should be written in lower case with an initial capital, that is, "Lua". Please do not write it as "LUA", which is both ugly and confusing, because then it becomes an acronym with different meanings for different people. So, please, write "Lua" right!
 >
 > —Lua authors, [About Lua](http://www.lua.org/about.html)
