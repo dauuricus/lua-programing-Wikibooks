@@ -97,7 +97,7 @@ In the example above, the closing long bracket of level 0 (`]]`) does not close 
 
 ## Syntax
 
-プログラミング言語の構文は、文法が文や単語の書き方を定義するのと同じように、ステートメントや式をそのプログラミング言語で書く方法を定義します。文と表現はそれぞれ文と単語と比較することができます。式は、値を持ち、評価できるコードの断片です。一方、ステートメントは、実行可能で、命令とその命令を使用する1つまたは複数の式を含むコードの断片です。たとえば、`3 + 5`は式で`variable = 3 + 5`あり、変数の値をその式に設定するステートメントです。
+プログラミング言語の構文は、文法が文や単語の書き方を定義するのと同じように、ステートメントや式をそのプログラミング言語で書く方法を定義します。文と表現はそれぞれ文と単語と比較することができます。式は、値を持ち、評価できるコードの断片です。一方、ステートメントは、実行可能で、命令とその命令を使用する1つまたは複数の式を含むコードの断片です。たとえば、`3 + 5`は式であり、`variable = 3 + 5` はその式の値を変数に設定するステートメントです。
 
 Luaの構文全体は、[Lua Webサイト](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=http://www.lua.org/manual/5.1/manual.html&usg=ALkJrhj_HxYENqimSypV-FZTjPomzfmbbA#8)の拡張バッカスナウア記法で見つけることができますが、それを読んでも何も理解できません。[拡張バッカスナウア記法](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form&usg=ALkJrhhZ5MEl-WEm6LiP6u5gH88OH4qsCg)はメタ言語であり、メタウェブサイトがウェブサイトに関するウェブサイトであるように、別の言語を説明するために使用される言語であり、Luaではメタテーブルが他のテーブルの動作を定義するテーブルです（この本の後半のメタテーブルとテーブルについてで学習します））。ただし、この本では、拡張バッカスナウア記法を学ぶ必要はありません。Luaのような言語はメタ言語を使用して説明できますが、単語や文を使用して英語で説明することもできます。これはまさに、この本がしていることです。
 
