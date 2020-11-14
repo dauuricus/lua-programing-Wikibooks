@@ -315,11 +315,11 @@ The bitwise operators in Lua always operate on integers, converting their operan
 
 The bitwise AND operation (with operator `&`) performs logical conjunction on each pair of bits of two binary representations of equal length. For example, `5 & 3` evaluates to 1. We can explain this by looking at the binary representation of these numbers (the subscripts are used to denote the base):
 
-{\displaystyle (5)_{10}=(0101)_{2}}![(5)_{{10}}=(0101)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
+![(5)_{{10}}=(0101)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
 
-{\displaystyle (3)_{10}=(0011)_{2}}![(3)_{{10}}=(0011)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
+![(3)_{{10}}=(0011)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
 
-{\displaystyle (1)_{10}=(0001)_{2}}![(1)_{{10}}=(0001)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7a6a4e17ea375c6c55f3bc5053bb8a17070c19f5)
+![(1)_{{10}}=(0001)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7a6a4e17ea375c6c55f3bc5053bb8a17070c19f5)
 
 If the bits in a given position in the binary representation of both 5 and 3 are 1 (as is the case for the last bit), then the bit at that position will be 1 in the result; in all other cases, it will be 0.
 
