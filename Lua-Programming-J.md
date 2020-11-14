@@ -115,21 +115,25 @@ English is capable of doing everything: describing languages, giving instruction
 
 ## Obtaining Lua
 
+Luaは、Luaの公式Webサイトの[ダウンロードページ](http://www.lua.org/download.html)から入手できます。手順もそこにあります。ダウンロードボタンはソースコード用ですが、おそらくあなたが望むものではありません。おそらくバイナリを探しているので、ページを見てそれらに関する情報を見つける必要があります（使用しているプラットフォームによって異なります）。この本の目的は、Lua言語を教えることだけであり、Luaツールの使用法を教えることではありません。この本では読者は組み込み環境でLuaを使用すると想定れていますが、必ずしもそのとおりであるわけではありません。それは、この本の中では、Luaの使用法をスタンドアロン言語として説明していないことを意味するだけです。 
+
 Lua can be obtained on the official Lua website, [on the download page](http://www.lua.org/download.html). Instructions are also available there: the download button is for the source code, which is probably not what you want. You are probably looking for binaries, so you should look around the page to find information about those (what exactly you are looking for depends on the platform you are using). The purpose of this book is only to teach the Lua language, not to teach usage of the Lua tools. It is generally assumed that the reader will be using Lua in an embedded environment, but this does not need to be the case for the book to be useful, only does it mean that the book will not describe the usage of Lua as a standalone language.
 
 ## Quiz
+
+この章の内容を理解したことを確認するために質問がいくつかあります。これらの質問の対する答えを見つけるには、この章に記載されていない知識が必要になる場合があることに注意してださい。これは正常なことです。クイズは学習体験の一部であり、本の他の場所では入手できない情報を紹介することができます。
 
 There are some questions you can answer to verify that you have understood the material in this chapter. Note that finding the answer to some of those questions could require having knowledge that is not presented in this chapter. This is normal: the quizzes are part of the learning experience, and they can introduce information that is not available elsewhere in the book.
 
 
 
-**1**What does "Lua" mean in Portuguese?
+**1**　ポルトガル語で「ルア」とはどういう意味ですか？What does "Lua" mean in Portuguese?
 
 
 
-**2**Which of these is a long comment of level 0?
+**2**　レベル0の長いコメントはどれですか？Which of these is a long comment of level 0?
 
-|      |                    |
+|      | 選択肢             |
 | ---- | ------------------ |
 |      | `--Comment `       |
 |      | `[[Comment]] `     |
@@ -137,9 +141,9 @@ There are some questions you can answer to verify that you have understood the m
 |      | `--[=[Comment]=] ` |
 |      | `[=[Comment]=] `   |
 
-**3**What is extended Backus–Naur form?
+**3**　拡張バッカスナウア記法とは何ですか？What is extended Backus–Naur form?
 
-|      |                                  |
+|      | 選択肢                           |
 | ---- | -------------------------------- |
 |      | A language                       |
 |      | A programming language           |
@@ -150,6 +154,8 @@ There are some questions you can answer to verify that you have understood the m
 
 # Expressions
 
+前に説明したように、式は値を持ち、評価できるコードの断片です。これらは（関数呼び出しを除いて）直接実行できないため、式で構成される次のコードのみを含むスクリプトはエラーになります。
+
 As explained before, expressions are pieces of code that have a value and that can be evaluated. They cannot be executed directly (with the exception of function calls), and thus, a script that would contain only the following code, which consists of an expression, would be erroneous:
 
 ```lua
@@ -158,15 +164,25 @@ As explained before, expressions are pieces of code that have a value and that c
 -- The computer cannot execute '3 + 5', since that does not make sense.
 ```
 
+コードは一連のステートメントで構成されている必要があります。これらのステートメントには、ステートメントが命令を実行するために操作または使用する必要のある値となる式を含めることができます。
+
+この章の一部のコード例は、式のみで構成されているため、有効なコードを構成していません。次の章では、ステートメントについて説明し、有効なコードの記述を開始できるようにします。
+
 Code must be comprised of a sequence of statements. These statements can contain expressions which will be values the statement has to manipulate or use to execute the instruction.
 
 Some code examples in this chapter do not constitute valid code, because they consist of only expressions. In the next chapter, statements will be covered and it will be possible to start writing valid code.
 
 ## Types
 
+式を評価することは、式を計算してその値を見つけることです。特定の式が評価する値は、環境とスタックレベルに依存する可能性があるため、コンテキストごとに異なる場合があります。この値は、数値、テキスト、その他の多くのデータ型のいずれかになる場合があります。そのため、型があると言われます。
+
+Luaおよび一般的なプログラミングでは、式は通常、0個以上の演算子を持つ1つ以上の値で構成されます。一部の演算子は、一部のタイプでのみ使用できます（たとえば、テキストを分割しようとするのは非論理的ですが、数値を分割することは理にかなっています）。演算子には、単項演算子と二項演算子の2種類があります。単項演算子は、1つの値のみを取る演算子です。たとえば、単項演算子は、パラメータとして-5、-3、-6などの1つの数値のみを取ります。パラメータとして1つの数値を取り、その数値を無効にします。ただし、同じ演算子ではない2項演算子は、2つの値を取り、最初の値から2番目の値を減算します：5-3、8-6、4-9など。
+
 To evaluate an expression is to compute it to find its value. The value a given expression evaluates to might be different from one context to another, since it can depend on the environment and stack level. This value will sometimes be a number, sometimes text and the other times any of many other data types, which is why it is said to have a type.
 
 In Lua, and in programming in general, expressions will usually consist of one or more values with zero or more operators. Some operators can only be used with some types (it would be illogical, for example, to try to divide text, while it makes sense to divide numbers). There are two kinds of operators: unary operators and binary operators. Unary operators are operators that only take one value. For example, the unary - operator only takes one number as a parameter: -5, -3, -6, etc. It takes one number as a parameter and negates that number. The binary - operator, however, which is not the same operator, takes two values and subtracts the second from the first: 5 - 3, 8 - 6, 4 - 9, etc.
+
+`type`関数を使用して、数値の型を文字列として取得することができます。
 
 It is possible to obtain a number's type as a string with the `type` function:
 
@@ -175,6 +191,8 @@ print(type(32425)) --> number
 ```
 
 ### Numbers
+
+数字は一般的に数量を表しますが、他の多くのことに使用できます。Luaの数値型は、実数とほとんど同じように機能します。数値は、整数、10進数、10進数の指数、または[16進数](https://en.wikipedia.org/wiki/hexadecimal)で構成できます。有効な番号は次のとおりです。
 
 Numbers generally represent quantities, but they can be used for many other things. The number type in Lua works mostly in the same way as real numbers. Numbers can be constructed as integers, decimal numbers, decimal exponents or even in [hexadecimal](https://en.wikipedia.org/wiki/hexadecimal). Here are some valid numbers:
 
@@ -188,7 +206,19 @@ Numbers generally represent quantities, but they can be used for many other thin
 
 #### Arithmetic operations
 
+Luaの数値の演算子は次のとおりです。
+
 The operators for numbers in Lua are the following:
+
+| 操作         | 構文  | 説明                                         | 例        |
+| ------------ | ----- | -------------------------------------------- | --------- |
+| 算術否定     | -a    | aの符号を変更し、値を返します                | -3.14159  |
+| 添加         | a + b | aとbの合計を返します                         | 5.2 + 3.6 |
+| 減算         | a-b   | aからbを減算し、結果を返します               | 6.7-1.2   |
+| 乗算         | a * b | aとbの積を返します                           | 3.2 * 1.5 |
+| べき乗       | a ^ b | aをbの累乗、またはaのbによるべき乗に返します | 5 ^ 2     |
+| 分割         | a / b | aをbで除算し、結果を返します                 | 6.4 / 2   |
+| モジュロ演算 | a％b  | aをbで割った余りを返します                   | 5％3      |
 
 | Operation           | Syntax | Description                                               | Example   |
 | ------------------- | ------ | --------------------------------------------------------- | --------- |
@@ -200,26 +230,47 @@ The operators for numbers in Lua are the following:
 | Division            | a / b  | Divides a by b and returns the result                     | 6.4 / 2   |
 | Modulo operation    | a % b  | Returns the remainder of the division of a by b           | 5 % 3     |
 
+最後のものを除いて、これらの演算子（基本的な数学演算子と同じ）はすべてすでに知っているでしょう。最後のものはモジュロ演算子と呼ばれ、ある数値を別の数値で除算した余りを単純に計算します。たとえば、5％3は、2が5を3で割った余りであるため、結果として2になります。モジュロ演算子は他の演算子ほど一般的ではありませんが、複数の用途があります。
+
 You probably already know all of these operators (they are the same as basic mathematical operators) except the last. The last is called the modulo operator, and simply calculates the remainder of the division of one number by another. 5 % 3, for example, would give 2 as a result because 2 is the remainder of the division of 5 by 3. The modulo operator is less common than the other operators, but it has multiple uses.
 
 #### Integers
+
+数値の新しいサブタイプである整数がLua5.3で追加されました。数値は整数または浮動小数点数のいずれかです。浮動小数点数は上記の数値に似ていますが、整数は小数部のない数値です。浮動小数点の除算（`/`）とべき乗は、常にオペランドを浮動小数点数に変換しますが、他のすべての演算子は、2つのオペランドが整数の場合、整数を返します。その他の場合、フロア分割演算子（`//`）を除いて、結果はフロートになります。
 
 A new subtype of numbers, integers, was added in Lua 5.3. Numbers can be either integers or floats. Floats are similar to numbers as described above, while integers are numbers with no decimal part. Float division (`/`) and exponentiation always convert their operands to floats, while all other operators give integers if their two operands were integers. In other cases, with the exception of the floor division operator (`//`), the result is a float.
 
 ### Nil
 
+Nilは値 nilのタイプであり、その主なプロパティは他の値とは異なります。これは通常、有用な値がないことを表します。値がnilであるもののいくつかの例：
+
 Nil is the type of the value nil, whose main property is to be different from any other value; it usually represents the absence of a useful value. Some examples of things that have the value nil:
+
+- 値を割り当てる前にアクセスする変数の値
+- スコープ外の変数にアクセスしようとしたときに取得する値
+- 割り当てられていないテーブル内のキーの値
+- `tonumber`によって文字列を数値に変換できない場合に返される値
 
 - value of variables that you access before assigning them a value
 - value you get when trying to access a variable outside of its scope
 - value for any key in a table that hasn't been assigned
 - value returned by `tonumber` if it can't convert a string to a number
 
+より高度な注意点として、意図的にnil値を割り当てると、変数またはテーブルへの参照が削除され、[ガベージコレクター](https://en.m.wikibooks.org/w/index.php?title=Garbage_collection&action=edit&redlink=1)がそのメモリを再利用できるようになります。
+
 On a more advanced note, purposefully assigning a nil value removes the reference to a variable or table, and allows the [garbage collector](https://en.m.wikibooks.org/w/index.php?title=Garbage_collection&action=edit&redlink=1) to reclaim its memory.
 
 ### Booleans
 
+ブール値はtrueまたはfalseのいずれかになりますが、それ以外はありません。これは、予約キーワードである`true`と`false`としてLuaで記述されています。注意すべき重要な点は、これは前述`nil`のように異なるデータ型であるということです。`and`、`or`、`not()`　は通常ブール値と関連していますが、Luaの任意のデータ型で使用することができます。
+
 A boolean value can be either true or false, but nothing else. This is written in Lua as `true` and `false`, which are reserved keywords. Important to note is that `nil` is a different data type as stated earlier. `and`, `or`, `not()` are usually associated with boolean values, but can be used with any datatype in Lua.
+
+| 操作       | 構文     | 説明                                                         |
+| ---------- | -------- | ------------------------------------------------------------ |
+| ブール否定 | not a    | aがfalseまたはnilの場合、trueを返します。それ以外の場合は、falseを返します。 |
+| 論理積     | aとb     | falseまたはnilの場合、最初の引数を返します。それ以外の場合は、2番目の引数を返します。 |
+| 論理和     | aまたはb | falseでもnilでもない場合、最初の引数を返します。それ以外の場合は、2番目の引数を返します。 |
 
 | Operation           | Syntax  | Description                                                  |
 | ------------------- | ------- | ------------------------------------------------------------ |
@@ -227,37 +278,47 @@ A boolean value can be either true or false, but nothing else. This is written i
 | Logical conjunction | a and b | Returns the first argument if it is false or nil. Otherwise, returns the second argument. |
 | Logical disjunction | a or b  | Returns the first argument if it is neither false nor nil. Otherwise, returns the second argument. |
 
+基本的に、`not`演算子はブール値を否定するだけで（trueの場合はfalseにし、falseの場合はtrueにします）、`and`演算子は両方がtrueの場合はtrueを返し、そうでない場合はfalseを返し、`or`演算子はいずれかの引数がtrueの場合はtrueを返します。それ以外の場合はfalse。ただし、上記の表で正確な動作方法が説明されているため、これは正確には動作しません。Luaでは、論理式では値falseとnilの両方がfalseと見なされ、その他はすべてtrueと見なされます（0と空の文字列も含む）。
+
+次の章で紹介する関係演算子（`<`、`>`、`<=`、`>=`、`~=`、`==`）は必ずしもオペランドとしてブール値を取ることはありませんが、常に結果としてブール値が得られます。
+
+これを調整するのは難しい場合があります。わかりやすくするために、ここにいくつかの真理値表または式と結果のペアを示します。ここで`x`は`nil`、`true`または`false`：
+
 Essentially, the `not` operator just negates the boolean value (makes it false if it is true and makes it true if it is false), the `and` operator returns true if both are true and false if not and the `or` operator returns true if either of arguments is true and false otherwise. This is however not exactly how they work, as the exact way they work is explained in the table above. In Lua, the values false and nil are both considered to be false in logical expressions, while everything else is considered as true (even 0 and empty strings).
 
 The relational operators introduced in the next chapter (`<`, `>`, `<=`, `>=`, `~=`, `==`) do not necessarily take boolean values as operands, but will always give a boolean value as a result.
 
 This can be difficult to reconcile. For added clarity, here are some truth tables or expression-result pairs. Here `x` can be `nil`, `true` or `false`:
 
-| Expression    | Result  |
+| 式            | 結果    |
 | ------------- | ------- |
-| `true  and x` | `x`     |
+| `true and x`  | `x`     |
 | `false and x` | `false` |
-| `nil   and x` | `nil`   |
+| `nil and x`   | `nil`   |
 |               |         |
 | `true or x`   | `true`  |
 | `false or x`  | `x`     |
 | `nil or x`    | `x`     |
 
+これはやや直感に反することを意味します
+
 This somewhat counterintuitively means that
 
-| Expression      | Result  |
+| 式              | 結果    |
 | --------------- | ------- |
 | `false and nil` | `false` |
 | `nil and false` | `nil`   |
 
+加えて
+
 In addition,
 
-| Expression                    | Result  |
+| 式                            | 結果    |
 | ----------------------------- | ------- |
 | `false == nil` `nil == false` | `false` |
 | `nil and false`               | `nil`   |
 
-| Expression              | Result  |
+| 式                      | 結果    |
 | ----------------------- | ------- |
 | `not(false)` `not(nil)` | `true ` |
 | `not(true)`             | `false` |
