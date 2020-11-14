@@ -70,7 +70,7 @@ print("This is normal code.")
 print("This is still normal code.") -- This is a comment at the end of a line of code.
 ```
 
-これらのコメントはショートコメントと呼ばれます。長い括弧`[[`で始まり、多くの行に続く長いコメントを作成することもできます。
+これらのコメントはショートコメントと呼ばれます。長い括弧`--[[`で始まり、多くの行に続く長いコメントを作成することもできます。
 These comments are called short comments. It is also possible to create long comments, which start with a long bracket and can continue on many lines:
 
 ```lua
@@ -80,7 +80,7 @@ Line 2
 ]]
 ```
 
-長い角かっこは2つの角かっこで構成され、その中央に任意の数の等号を付けることができます。その数は、長い括弧のレベルと呼ばれます。長い角かっこは、同じレベルの次の角かっこがある場合はそれまで続きます。等号のない長い角かっこは、レベル0の長い角かっこと呼ばれます。このアプローチでは、2つの角かっこの中央に等号を追加することにより、長いコメントの内側で閉じている二重角かっこを使用できます。コメントを使用してコードのブロックを無効にする場合は、これを行うと便利なことがよくあります。
+長い角かっこは2つの角かっこ `[[ ` で 構成され、その中央に任意の数の等号 `=`を付けることができます。その等号の数は、長い括弧のレベルと呼ばれます。長い角かっこは、同じレベルの次の角かっこがあるところまで続きます。等号のない長い角かっこは、レベル0の長い角かっこと呼ばれます。このアプローチでは、2つの角かっこの中央に等号を追加することにより、長いコメントの内側で閉じている二重角かっこを使用できます。コメントを使用してコードのブロックを無効にする場合は、これを行うと便利なことがよくあります。
 
 Long brackets consist of two brackets in the middle of which any number of equality signs may be put. That number is called the level of the long bracket. Long brackets will continue until the next bracket of the same level, if there is one. A long bracket with no equal sign is called a long bracket of level 0. This approach makes it possible to use closing double brackets inside of long comments by adding equal signs in the middle of the two brackets. It is often useful to do this when using comments to disable blocks of code.
 
@@ -99,15 +99,15 @@ In the example above, the closing long bracket of level 0 (`]]`) does not close 
 
 プログラミング言語の構文は、文法が文や単語の書き方を定義するのと同じように、ステートメントや式をそのプログラミング言語で書く方法を定義します。文と表現はそれぞれ文と単語と比較することができます。式は、値を持ち、評価できるコードの断片です。一方、ステートメントは、実行可能で、命令とその命令を使用する1つまたは複数の式を含むコードの断片です。たとえば、`3 + 5`は式であり、`variable = 3 + 5` はその式の値を変数に設定するステートメントです。
 
-Luaの構文全体は、[Lua Webサイト](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=http://www.lua.org/manual/5.1/manual.html&usg=ALkJrhj_HxYENqimSypV-FZTjPomzfmbbA#8)の拡張バッカスナウア記法で見つけることができますが、それを読んでも何も理解できません。[拡張バッカスナウア記法](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form&usg=ALkJrhhZ5MEl-WEm6LiP6u5gH88OH4qsCg)はメタ言語であり、メタウェブサイトがウェブサイトに関するウェブサイトであるように、別の言語を説明するために使用される言語であり、Luaではメタテーブルが他のテーブルの動作を定義するテーブルです（この本の後半のメタテーブルとテーブルについてで学習します））。ただし、この本では、拡張バッカスナウア記法を学ぶ必要はありません。Luaのような言語はメタ言語を使用して説明できますが、単語や文を使用して英語で説明することもできます。これはまさに、この本がしていることです。
-
-英語は別の言語を説明するために使用できるため、それ自体がメタ言語である必要があります（メタ言語の定義に対応しているため）。これは確かに事実です。また、プログラミング言語の目的は命令を記述することであり、英語でそれを行うことができるため、英語もプログラミング言語である必要があります。これは**、ある意味で**、も同様です。実際、英語は多くのことに使用できる言語です。ただし、拡張バッカスナウア記法は特殊言語であり、プログラミング言語も特殊言語です。専門化は、特定のことを行うのは非常に得意であるが、他のことを行うことができないという特徴です。拡張バッカスナウア記法は他の言語の記述に非常に優れていますが、指示を書いたりメッセージを伝えたりするために使用することはできません。プログラミング言語は指示を与えるのに非常に優れていますが、言語の記述やメッセージの伝達には使用できません。
-
-英語は、言語の説明、指示の提供、メッセージの伝達など、すべてを行うことができます。しかし、これらのいくつかを行うのはあまり得意ではありません。実際、指示を与えるのは非常に苦手なので、コンピューターに指示を与えるために使用された場合、コンピューターは何も理解しません。これは、コンピューターが非常に正確で明確な指示を必要とするためです。
-
 The syntax of a programming language defines how statements and expressions must be written in that programming language, just like grammar defines how sentences and words must be written. Statements and expressions can be respectively compared to sentences and words. Expressions are pieces of code that have a value and that can be evaluated, while statements are pieces of code that can be executed and that contain an instruction and one or many expressions to use that instruction with. For example, `3 + 5` is an expression and `variable = 3 + 5` is a statement that sets the value of variable to that expression.
 
+Luaの構文全体は、[Lua Webサイト](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=http://www.lua.org/manual/5.1/manual.html&usg=ALkJrhj_HxYENqimSypV-FZTjPomzfmbbA#8)の拡張バッカスナウア記法で見つけることができますが、それを読んでも何も理解できません。[拡張バッカスナウア記法](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form&usg=ALkJrhhZ5MEl-WEm6LiP6u5gH88OH4qsCg)はメタ言語であり、メタウェブサイトがウェブサイトに関するウェブサイトであるように、別の言語を説明するために使用される言語であり、Luaではメタテーブルが他のテーブルの動作を定義するテーブルです（この本の後半のメタテーブルとテーブルについてで学習します））。ただし、この本では、拡張バッカスナウア記法を学ぶ必要はありません。Luaのような言語はメタ言語を使用して説明できますが、単語や文を使用して英語で説明することもできます。これはまさに、この本がしていることです。
+
 The entire syntax of Lua can be found in extended Backus–Naur form [on the Lua website](http://www.lua.org/manual/5.1/manual.html#8), but you wouldn't understand anything if you read it. [Extended Backus–Naur Form](https://en.wikipedia.org/wiki/Extended_Backus–Naur_Form) is a metalanguage, a language used to describe another language, just like a metawebsite is a website about a website, and just like metatables, in Lua, are tables that define the behavior of other tables (you'll learn about metatables and tables later in this book). But you're not going to have to learn extended Backus–Naur form in this book, because, while a language like Lua can be described using a metalanguage, it can also be described using words and sentences, in English, and this is exactly what this book is going to do.
+
+英語は別の言語を説明するために使用できるため、それ自体がメタ言語である必要があります（メタ言語の定義に対応しているため）。これは確かに事実です。また、プログラミング言語の目的は命令を記述することであり、英語でそれを行うことができるため、英語もプログラミング言語である必要があります。これは**、ある意味で**、そうです。実際、英語は多くのことに使用できる言語です。ただし、拡張バッカスナウア記法は特殊言語であり、プログラミング言語も特殊言語です。専門化は、特定のことを行うのは非常に得意であるが、他のことを行うことができないという特徴です。拡張バッカスナウア記法は他の言語の記述に非常に優れていますが、指示を書いたりメッセージを伝えたりするために使用することはできません。プログラミング言語は指示を与えるのに非常に優れていますが、言語の記述やメッセージの伝達には使用できません。
+
+英語は、言語の説明、指示の提供、メッセージの伝達など、すべてを行うことができます。しかし、プログラミング言語と同等のことはあまり得意ではありません。実際、英語では指示を与えるのは非常に苦手なので、コンピューターに指示を与えるために使用された場合、コンピューターは何も理解しません。これは、コンピューターが非常に正確で明確な指示を必要とするためです。
 
 Since English can be used to describe another language, then it must itself be a metalanguage (because it corresponds to the definition of a metalanguage). This is indeed the case. And since the purpose of a programming language is to describe instructions, and you can do that with English, English must also be a programming language. This, **in a way**, is also the case. In fact, English is a language that can be used for many things. But extended Backus–Naur form is a specialized language, and programming languages are also specialized languages. Specialization is the characteristic of being very good at doing something in particular, but not being capable of doing other things. Extended Backus–Naur form is very good at describing other languages, but it cannot be used to write instructions or to communicate a message. Programming languages are very good at giving instructions, but they cannot be used to describe languages or to communicate messages.
 
