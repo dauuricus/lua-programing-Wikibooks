@@ -384,16 +384,18 @@ There are some questions you can answer to verify that you have understood the m
 
 **2**What will the expression `0 or 8` return?
 
-|      | `true `  |
+|      |          |
 | ---- | -------- |
+|      | `true `  |
 |      | `false ` |
 |      | `0 `     |
 |      | `8 `     |
 
 **3**Which strings are valid?
 
-|      | `"test's test"`  |
+|      |                  |
 | ---- | ---------------- |
+|      | `"test's test"`  |
 |      | `'test\'s test'` |
 |      | `"test"s test"`  |
 |      | `'test"s test'`  |
@@ -402,16 +404,18 @@ There are some questions you can answer to verify that you have understood the m
 
 **4**Which expressions give the string `"1223"`?
 
-|      | `"122" + 3`   |
+|      |               |
 | ---- | ------------- |
+|      | `"122" + 3`   |
 |      | `"122" .. 3`  |
 |      | `"12" + "23"` |
 |      | `12 .. 23`    |
 
 **5**True or false? `not 5^3 == 5`
 
-|      | `true`  |
+|      |         |
 | ---- | ------- |
+|      | `true`  |
 |      | `false` |
 
 #  Statements
