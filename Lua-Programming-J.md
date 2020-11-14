@@ -242,7 +242,7 @@ A new subtype of numbers, integers, was added in Lua 5.3. Numbers can be either 
 
 ### Nil
 
-Nilは値 nilのタイプであり、その主なプロパティは他の値とは異なります。これは通常、有用な値がないことを表します。値がnilであるもののいくつかの例：
+Nilは値 nilのタイプであり、その主なプロパティは他の値とは異なります。これは通常、有用な値がないことを表します。nilを値に持つものの例：
 
 Nil is the type of the value nil, whose main property is to be different from any other value; it usually represents the absence of a useful value. Some examples of things that have the value nil:
 
@@ -262,15 +262,15 @@ On a more advanced note, purposefully assigning a nil value removes the referenc
 
 ### Booleans
 
-ブール値はtrueまたはfalseのいずれかになりますが、それ以外はありません。これは、予約キーワードである`true`と`false`としてLuaで記述されています。注意すべき重要な点は、これは前述`nil`のように異なるデータ型であるということです。`and`、`or`、`not()`　は通常ブール値と関連していますが、Luaの任意のデータ型で使用することができます。
+ブール値は true または false のいずれかになりますが、それ以外はありません。これは、予約キーワードである`true`と`false`としてLuaで記述されています。注意すべき重要な点は、これは前述`nil`のように異なるデータ型であるということです。`and`、`or`、`not()`　は通常ブール値と関連していますが、Luaの任意のデータ型で使用することができます。
 
 A boolean value can be either true or false, but nothing else. This is written in Lua as `true` and `false`, which are reserved keywords. Important to note is that `nil` is a different data type as stated earlier. `and`, `or`, `not()` are usually associated with boolean values, but can be used with any datatype in Lua.
 
-| 操作       | 構文     | 説明                                                         |
-| ---------- | -------- | ------------------------------------------------------------ |
-| ブール否定 | not a    | aがfalseまたはnilの場合、trueを返します。それ以外の場合は、falseを返します。 |
-| 論理積     | aとb     | falseまたはnilの場合、最初の引数を返します。それ以外の場合は、2番目の引数を返します。 |
-| 論理和     | aまたはb | falseでもnilでもない場合、最初の引数を返します。それ以外の場合は、2番目の引数を返します。 |
+| 操作       | 構文    | 説明                                                         |
+| ---------- | ------- | ------------------------------------------------------------ |
+| ブール否定 | not a   | aがfalseまたはnilの場合、trueを返します。それ以外の場合は、falseを返します。 |
+| 論理積     | a and b | falseまたはnilの場合、最初の引数を返します。それ以外の場合は、2番目の引数を返します。 |
+| 論理和     | a or b  | falseでもnilでもない場合、最初の引数を返します。それ以外の場合は、2番目の引数を返します。 |
 
 | Operation           | Syntax  | Description                                                  |
 | ------------------- | ------- | ------------------------------------------------------------ |
