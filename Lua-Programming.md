@@ -315,45 +315,43 @@ The bitwise operators in Lua always operate on integers, converting their operan
 
 The bitwise AND operation (with operator `&`) performs logical conjunction on each pair of bits of two binary representations of equal length. For example, `5 & 3` evaluates to 1. We can explain this by looking at the binary representation of these numbers (the subscripts are used to denote the base):
 
-{\displaystyle (5)_{10}=(0101)_{2}}![(5)_{{10}}=(0101)_{2}](images/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
+{\displaystyle (5)_{10}=(0101)_{2}}![(5)_{{10}}=(0101)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
 
-{\displaystyle (3)_{10}=(0011)_{2}}![(3)_{{10}}=(0011)_{2}](images/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
+{\displaystyle (3)_{10}=(0011)_{2}}![(3)_{{10}}=(0011)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
 
-{\displaystyle (1)_{10}=(0001)_{2}}![(1)_{{10}}=(0001)_{2}](images/7a6a4e17ea375c6c55f3bc5053bb8a17070c19f5)
+{\displaystyle (1)_{10}=(0001)_{2}}![(1)_{{10}}=(0001)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7a6a4e17ea375c6c55f3bc5053bb8a17070c19f5)
 
 If the bits in a given position in the binary representation of both 5 and 3 are 1 (as is the case for the last bit), then the bit at that position will be 1 in the result; in all other cases, it will be 0.
 
 The bitwise OR operation (with operator `|`) works in the same way as the bitwise AND, performing logical disjunction instead where it performs logical conjunction. Thus, `5 | 3` will evaluate to 7:
 
-{\displaystyle (5)_{10}=(0101)_{2}}![(5)_{{10}}=(0101)_{2}](/images/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
+{\displaystyle (5)_{10}=(0101)_{2}}![(5)_{{10}}=(0101)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
 
-{\displaystyle (3)_{10}=(0011)_{2}}![(3)_{{10}}=(0011)_{2}](/images/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
+{\displaystyle (3)_{10}=(0011)_{2}}![(3)_{{10}}=(0011)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
 
-{\displaystyle (7)_{10}=(0111)_{2}}![(7)_{{10}}=(0111)_{2}](/images/e3e15c3c8aa9d76b66bb3a556f837dd3b85905a2)
+{\displaystyle (7)_{10}=(0111)_{2}}![(7)_{{10}}=(0111)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/e3e15c3c8aa9d76b66bb3a556f837dd3b85905a2)
 
 Here, we can see that the bit in each position in the final result was 0 only when the binary representations of the two operands had a 0-bit at that position.
 
 The bitwise XOR operation (with operator `~`) works like two others, but at a given position, the final bit is only 1 if one, and not both, of the bits in the operands are 1.
 
-{\displaystyle (5)_{10}=(0101)_{2}}![(5)_{{10}}=(0101)_{2}](/images/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
+{\displaystyle (5)_{10}=(0101)_{2}}![(5)_{{10}}=(0101)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7d7304ba8f4097f07787270c75a4a8fee5558f3e)
 
-{\displaystyle (3)_{10}=(0011)_{2}}![(3)_{{10}}=(0011)_{2}](/images/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
+{\displaystyle (3)_{10}=(0011)_{2}}![(3)_{{10}}=(0011)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/cc7e6d2c6b228674c5c57b9f82b086f0177e41d2)
 
-{\displaystyle (6)_{10}=(0110)_{2}}![(6)_{{10}}=(0110)_{2}](/images/fc5e1e2283de38017ad922d2605016d653b6d436)
+{\displaystyle (6)_{10}=(0110)_{2}}![(6)_{{10}}=(0110)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/fc5e1e2283de38017ad922d2605016d653b6d436)
 
 This is the same as the previous example, but we can see that the last bit in the result is 0 instead of 1, since the last bit of both operands was 1.
 
 The bitwise NOT operation (with operator `~`) performs logical negation on each bit of its unique operand, which means that each 0 becomes 1 and that each 1 becomes 0. Thusly, `~7` will evaluate to -8:
 
-{\displaystyle (7)_{10}=(0111)_{2}}![(7)_{{10}}=(0111)_{2}](/images/e3e15c3c8aa9d76b66bb3a556f837dd3b85905a2)
+{\displaystyle (7)_{10}=(0111)_{2}}![(7)_{{10}}=(0111)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/e3e15c3c8aa9d76b66bb3a556f837dd3b85905a2)
 
-{\displaystyle (8)_{10}=(1000)_{2}}![(8)_{{10}}=(1000)_{2}](/images/c146e6bd4e3cba0908fea6a819b278a46c3bffc7)
+{\displaystyle (8)_{10}=(1000)_{2}}![(8)_{{10}}=(1000)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/c146e6bd4e3cba0908fea6a819b278a46c3bffc7)
 
 Here, the first bit became 1 in the result because it was 0 in the operand, and the other bits became 0 because they were all 1.
 
-[![Left shift](/images/210px-Rotate_left_logically.svg.png)](https://en.m.wikibooks.org/wiki/File:Rotate_left_logically.svg)[![Right shift](images/175px-Rotate_right_arithmetically.svg.png)
-
-[](https://en.m.wikibooks.org/wiki/File:Rotate_right_arithmetically.svg)
+[![Left shift](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Rotate_left_logically.svg/210px-Rotate_left_logically.svg.png)](https://en.m.wikibooks.org/wiki/File:Rotate_left_logically.svg)[![Right shift](https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Rotate_right_arithmetically.svg/175px-Rotate_right_arithmetically.svg.png)](https://en.m.wikibooks.org/wiki/File:Rotate_right_arithmetically.svg)
 
 In addition to these bitwise operators, Lua 5.3 also supports arithmetic bit shifts. The left shift, with operator `<<` and illustrated on left, consists in shifting all bits to the left, by a number of bits that corresponds to the second operand. The right shift, denoted by operator `>>` and illustrated on right, does the same but in the opposite direction.
 
@@ -1051,4 +1049,278 @@ The lua-users wiki, an excellent resource to find information about Lua, provide
 - [Program Analysis](http://lua-users.org/wiki/ProgramAnalysis)
 - [Debugging and Testing](http://lua-users.org/wiki/DebuggingAndTesting)
 
+# Glossary
 
+This is a glossary that contains terms related to programming in the context of Lua. Its use is recommended to find the meaning of words that are not understood.
+
+- abstract class
+
+  An [abstract class](https://en.wikipedia.org/wiki/concrete_class#Abstract_and_concrete) is a class of which instances cannot be created directly. Abstract classes are [abstract types](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#abstract_type).
+
+- abstract data type
+
+  An [abstract data type](https://en.wikipedia.org/wiki/abstract_data_type) is a model to represent a class of [data structures](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#data_structure) that have similar behavior. Abstract data types are defined by the operations that can be performed on them and by mathematical constraints of these operations rather than by the implementation and the way the data is stored in the memory of the computer.
+
+- abstract type
+
+  An [abstract type](https://en.wikipedia.org/wiki/abstract_type) is a type of data of which instances cannot be created directly.
+
+- actual parameter
+
+  See [argument](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#argument).
+
+- additive inverse
+
+  The [additive inverse](https://en.wikipedia.org/wiki/additive_inverse) of a number is the number that, when added to that number, yields zero. For example, the additive inverse of 42 is -42.
+
+- arithmetic negation
+
+  Arithmetic negation is the operation that produces the [additive inverse](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#additive_inverse) of a number.
+
+- arithmetic operation
+
+  An [arithmetic operation](https://en.wikipedia.org/wiki/arithmetic_operation) is an operation whose operands are numbers.
+
+- arity
+
+  The [arity](https://en.wikipedia.org/wiki/arity) of an operation or of a function is the number of operands or arguments the operation or function accepts.
+
+- argument
+
+  An [argument](https://en.wikipedia.org/wiki/parameter_(computer_programming)) is a value passed to a [function](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#function).
+
+- array
+
+  An [array](https://en.wikipedia.org/wiki/array_data_structure) is a [data structure](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#data_structure) consisting of a collection of values, each identified by at least one array index or key.
+
+- associative array
+
+  An [associative array](https://en.wikipedia.org/wiki/associative_array) is an [abstract data type](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#abstract_data_type) composed of a collection of pairs of keys and values, such that each possible key appears at most once in the collection.
+
+- augmented assignment
+
+  [Augmented assignment](https://en.wikipedia.org/wiki/Augmented_assignment) is a type of assignment that gives a variable a value that is relative to its prior value.
+
+- binary operation
+
+  A [binary operation](https://en.wikipedia.org/wiki/binary_operation) is an operation of which the arity is two.
+
+- boolean
+
+  See [logical data](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#logical_data).
+
+- boolean negation
+
+  See [logical negation](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#logical_negation).
+
+- chained assignment
+
+  [Chained assignment](https://en.wikipedia.org/wiki/Chained_assignment) is a type of assignment that gives a single value to many variables. Example: `a = b = c = d = 0`.
+
+- chunk
+
+  A chunk is a sequence of statements.
+
+- compound assignment
+
+  See [augmented assignment](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#augmented_assignment).
+
+- concatenation
+
+  [String concatenation](https://en.wikipedia.org/wiki/String_concatenation) is the operation of joining two strings of characters. For example, the concatenation of "snow" and "ball" is "snowball".
+
+- concrete class
+
+  A concrete class is a class of which instances can be created directly. Concrete classes are [concrete types](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#concrete_type).
+
+- concrete type
+
+  A concrete type is a type of which instances can be created directly.
+
+- condition
+
+  A condition is a [predicate](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#predicate) that is used in a [conditional statement](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#conditional_statement) or as an operand to the [conditional operator](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#conditional_operator). Conditions, in Lua, are considered as true when their expression evaluates to a value other than `nil` or `false`, and are considered as false otherwise.
+
+- conditional operator
+
+  A [conditional operator](https://en.wikipedia.org/wiki/conditional_operator) is an operator that returns a value if a [condition](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#condition) is true and another if it isn't.
+
+- conditional statement
+
+  A [conditional statement](https://en.wikipedia.org/wiki/conditional_(computer_programming)) is a statement that executes a piece of code if a [condition](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#condition) is true.
+
+- data structure
+
+  A [data structure](https://en.wikipedia.org/wiki/data_structure) is a particular way of storing and organizing data in the memory of a computer. It is the implementation of an [abstract data type](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#abstract_data_type).
+
+- data type
+
+  A [data type](https://en.wikipedia.org/wiki/data_type) is a model for representing the storage of data in the memory of a computer.
+
+- dictionary
+
+  See [associative array](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#associative_array).
+
+- exclusive disjunction
+
+  [![img](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Venn0110.svg/110px-Venn0110.svg.png)](https://en.m.wikibooks.org/wiki/File:Venn0110.svg)[Venn diagram](https://en.wikipedia.org/wiki/Venn_diagram) of {\displaystyle \scriptstyle a\veebar b}![\scriptstyle a\veebar b](https://wikimedia.org/api/rest_v1/media/math/render/svg/a52d88abb3e9486cf9fcd53b50c0fcaf3a621f32)The [exclusive disjunction](https://en.wikipedia.org/wiki/exclusive_or) operation is a [binary operation](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#binary_operation) that produces the value `true` when one of its operands is true but the other is not. The exclusive disjunction of a and b is expressed mathematically as {\displaystyle \scriptstyle a\veebar b}![\scriptstyle a\veebar b](https://wikimedia.org/api/rest_v1/media/math/render/svg/a52d88abb3e9486cf9fcd53b50c0fcaf3a621f32). There is no operator corresponding to exclusive disjunction in Lua, but {\displaystyle \scriptstyle a\veebar b}![\scriptstyle a\veebar b](https://wikimedia.org/api/rest_v1/media/math/render/svg/a52d88abb3e9486cf9fcd53b50c0fcaf3a621f32) can be represented as `(a or b) and not (a and b)`.
+
+- formal parameter
+
+  See [parameter](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#parameter).
+
+- function
+
+  A function is a sequence of statements (instructions) that perform a specific task. Functions can be used in a program wherever that particular task needs to be performed. Functions are usually defined in the program that will use them, but are sometimes defined in libraries that can be used by other programs.
+
+- hash map
+
+  See [hash table](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#hash_table).
+
+- hash table
+
+  A [hash table](https://en.wikipedia.org/wiki/hash_table) is an implementation as a [data structure](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#data_structure) of the [associative array](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#associative_array). A hash table uses a [hash function](https://en.wikipedia.org/wiki/hash_function) to compute an index into an array of buckets or slots, from which the value corresponding to the index can be found.
+
+- inline if
+
+  See [conditional operator](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#conditional_operator).
+
+- integer
+
+  An [integer](https://en.wikipedia.org/wiki/integer) is a number that can be written without a fractional or decimal component. Integers are implemented in Lua in the same way as other numbers.
+
+- length operation
+
+  The length operation is the operation that produces the number of values in an array.
+
+- literal
+
+  A literal is a notation for representing a fixed value in source code. All values can be represented as literals in Lua except threads and userdata.
+
+- logical complement
+
+  The [logical complement](https://en.wikipedia.org/wiki/logical_complement) of a boolean value is the boolean value that is not that value. This means the logical complement of `true` is `false` and vice versa.
+
+- logical conjunction
+
+  [![img](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Venn0001.svg/110px-Venn0001.svg.png)](https://en.m.wikibooks.org/wiki/File:Venn0001.svg)Venn diagram of {\displaystyle \scriptstyle a\land b}![{\displaystyle \scriptstyle a\land b}](https://wikimedia.org/api/rest_v1/media/math/render/svg/60d14811b3ea72e1c7f806e4d3b71eb03a1c532c)The [logical conjunction](https://en.wikipedia.org/wiki/logical_conjunction) operation is a [binary operation](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#binary_operation) that produces the value `true` when both of its operands are true and `false` in all other cases. It is implemented as the `and` operator in Lua and it returns its first operand if it is `false` or `nil` and the second operand otherwise. The logical conjunction of a and b is expressed mathematically as {\displaystyle \scriptstyle a\land b}![{\displaystyle \scriptstyle a\land b}](https://wikimedia.org/api/rest_v1/media/math/render/svg/60d14811b3ea72e1c7f806e4d3b71eb03a1c532c).
+
+- logical data
+
+  The [logical data type](https://en.wikipedia.org/wiki/logical_data_type), which is generally called the boolean type, is the type of the values `false` and `true`.
+
+- logical disjunction
+
+  [![img](https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Venn0111.svg/110px-Venn0111.svg.png)](https://en.m.wikibooks.org/wiki/File:Venn0111.svg)Venn diagram of {\displaystyle \scriptstyle a\lor b}![{\displaystyle \scriptstyle a\lor b}](https://wikimedia.org/api/rest_v1/media/math/render/svg/ceea040fb1a260ea93318775c6b3c643e2964f9f)The [logical disjunction](https://en.wikipedia.org/wiki/logical_disjunction) operation is a [binary operation](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#binary_operation) that produces the value `false` when both of its operands are false and `true` in all other cases. It is implemented as the `or` operator in Lua and it returns the first operand if it is neither `false` nor `nil` and the second otherwise. The logical disjunction of a and b is expressed mathematically as {\displaystyle \scriptstyle a\lor b}![{\displaystyle \scriptstyle a\lor b}](https://wikimedia.org/api/rest_v1/media/math/render/svg/ceea040fb1a260ea93318775c6b3c643e2964f9f).
+
+- logical negation
+
+  [Logical negation](https://en.wikipedia.org/wiki/Logical_negation), implemented in Lua by the `not` operator, is the operation that produces the [logical complement](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#logical_complement) of a boolean value.
+
+- map
+
+  See [associative array](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#associative_array).
+
+- method
+
+  A [method](https://en.wikipedia.org/wiki/method_(computer_programming)) is a function that is a member of an object and generally operates on that object.
+
+- modulo
+
+  See [modulo operation](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#modulo_operation).
+
+- modulo operation
+
+  The [modulo operation](https://en.wikipedia.org/wiki/modulo_operation), implemented in Lua by the `%` operator, is the operation that produces the remainder of the division of a number by another.
+
+- modulus
+
+  See [modulo operation](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#modulo_operation).
+
+- multiple assignment
+
+  See [parallel assignment](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#parallel_assignment).
+
+- nil
+
+  The type nil is the type of the value `nil`, whose main property is to be different from any other value; it usually represents the absence of a useful value.
+
+- not operator
+
+  See [logical negation](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#logical_negation).
+
+- number
+
+  The number type represents real ([double-precision floating-point](https://en.wikipedia.org/wiki/double-precision_floating-point)) numbers. It is possible to build Lua interpreters that use other internal representations for numbers, such as single-precision float or long integers.
+
+- operator
+
+  An [operator](https://en.wikipedia.org/wiki/operator_(computer_programming)) is a token that generates a value from one or many operands.
+
+- parallel assignment
+
+  [Parallel assignment](https://en.wikipedia.org/wiki/Parallel_assignment) is a type of assignment that simultaneously assigns values to different variables.
+
+- parameter
+
+  A [parameter](https://en.wikipedia.org/wiki/parameter_(computer_programming)) is a variable in a function definition to which the argument that corresponds to it in a call to that function is assigned.
+
+- predicate
+
+  A predicate is an expression that evaluates to a piece of [logical data](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#logical_data).
+
+- procedure
+
+  See [function](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#function).
+
+- relational operator
+
+  A [relational operator](https://en.wikipedia.org/wiki/relational_operator) is an operator that is used to compare values.
+
+- routine
+
+  See [function](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#function).
+
+- sign change
+
+  See [arithmetic negation](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#arithmetic_negation).
+
+- simultaneous assignment
+
+  See [parallel assignment](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#parallel_assignment).
+
+- string
+
+  The type string represents arrays of characters. Lua is 8-bit clean: strings can contain any 8-bit character, including embedded zeros.
+
+- string literal
+
+  A [string literal](https://en.wikipedia.org/wiki/string_literal) is the representation of a string value within the source code of a computer program. With respect to syntax, a string literal is an expression that evaluates to a string.
+
+- subprogram
+
+  See [function](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#function).
+
+- subroutine
+
+  See [function](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#function).
+
+- symbol
+
+  See [token](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#token).
+
+- symbol table
+
+  A [symbol table](https://en.wikipedia.org/wiki/symbol_table) is an implementation as a [data structure](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#data_structure) of the [associative array](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#associative_array). They are commonly implemented as [hash tables](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#hash_table).
+
+- token
+
+  A token is an atomic piece of data, such as a word in a human language or such as a keyword in a programming language, for which a meaning may be inferred during parsing.
+
+- variable
+
+  A [variable](https://en.wikipedia.org/wiki/variable_(computer_science)) is a label associated to a location in the memory. The data in that location can be changed and the variable will point to the new data.
+
+- variadic function
+
+  A [variadic function](https://en.wikipedia.org/wiki/variadic_function) is a function of indefinite arity.
