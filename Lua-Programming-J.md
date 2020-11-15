@@ -325,7 +325,7 @@ In addition,
 
 ### Strings
 
-文字列は、テキストを表すために使用できる文字のシーケンスです。これらは、[コメントに関するセクションで]()前に説明した二重引用符、一重引用符、または長い角かっこで囲むことにより、Luaで記述でき[ます。コメントと文字列には、コメントの場合は2つのハイフンを前に付けて、両方を長い角かっこで区切ることができるという事実以外に共通点がないことに注意してください）。長い括弧に含まれていない文字列は、1行だけ続きます。このため、長い角かっこを使用せずに多くの行を含む文字列を作成する唯一の方法は、エスケープシーケンスを使用することです。これは、特定の場合に一重引用符または二重引用符を挿入する唯一の方法でもあります。エスケープシーケンスは、Luaでは常にバックスラッシュ（ ' \ ' ）であるエスケープ文字と、エスケープする文字を識別する識別子の2つで構成されます。
+文字列は、テキストを表すために使用できる文字のシーケンスです。これらは、[コメントに関するセクションで]()前に説明した二重引用符、一重引用符、または長い角かっこで囲むことにより、Luaで記述でき[ます。コメントと文字列には、コメントの場合は2つのハイフンを前に付けて、両方を長い角かっこで区切ることができるという事実以外に共通点がないことに注意してください）。長い括弧に含まれていない文字列は、1行だけ続きます。このため、長い角かっこを使用せずに多くの行を含む文字列を作成する唯一の方法は、エスケープシーケンスを使用することです。これは、特定の場合に一重引用符または二重引用符を挿入する唯一の方法でもあります。エスケープシーケンスは、Luaでは常にエスケープ文字であるバックスラッシュ（ ' \ ' ）と、エスケープする文字を識別する識別子の2つで構成されます。
 
 Strings are sequences of characters that can be used to represent text. They can be written in Lua by being contained in double quotes, single quotes or long brackets, which were covered before in [the section about comments](https://en.m.wikibooks.org/wiki/Lua_Programming/Introduction#Comments) (it should be noted that comments and strings have nothing in common other than the fact they can both be delimited by long brackets, preceded by two hyphens in the case of comments). Strings that aren't contained in long brackets will only continue for one line. Because of this, the only way to make a string that contains many lines without using long brackets is to use escape sequences. This is also the only way to insert single or double quotes in certain cases. Escape sequences consist of two things: an escape character, which will always be a backslash ('\') in Lua, and an identifier that identifies the character to be escaped.
 
@@ -337,6 +337,8 @@ Strings are sequences of characters that can be used to represent text. They can
 | \\              | A backslash                                                  |
 | \t              | A horizontal tab                                             |
 | \###            | ### must be a number from 0 to 255. The result will be the corresponding [ASCII](https://en.wikipedia.org/wiki/ASCII) character. |
+
+文字を文字列に直接入れると問題が発生する場合は、エスケープシーケンスを使用します。たとえば、二重引用符で囲まれ、二重引用符を含める必要があるテキストの文字列がある場合は、文字列を別の文字で囲むか、二重引用符をエスケープする必要があります。長い角かっこで区切られた文字列内の文字をエスケープする必要はありません。これはすべての文字に当てはまります。長い括弧で区切られた文字列内のすべての文字は、そのまま使用されます。`%` 文字は、魔法の文字をエスケープする文字列パターンで使用されていますが、用語のエスケープは、別のコンテキストで使用されています。
 
 Escape sequences are used when putting the character directly in the string would cause a problem. For example, if you have a string of text that is enclosed in double quotes and must contain double quotes, then you need to enclose the string in different characters or to escape the double quotes. Escaping characters in strings delimited by long brackets is not necessary, and this is true for all characters. All characters in a string delimited with long brackets will be taken as-is. The `%` character is used in string patterns to escape magic characters, but the term *escaping* is then used in another context.
 
@@ -359,6 +361,8 @@ It can contain single quotes, double quotes and everything else (-- including co
 "This is " not a valid string because there is an unescaped double quote in the middle of it."
 ```
 
+便宜上、開いている長い文字列ブラケットの直後に新しい行が続く場合、その新しい行は無視されます。したがって、次の2つの文字列は同等です。
+
 For convenience, if an opening long string bracket is immediately followed by a new line, that new line will be ignored. Therefore, the two following strings are equivalent:
 
 ```lua
@@ -372,6 +376,8 @@ that can continue on many lines.]]
 -- Since the opening long bracket of the second string is immediately followed by a new line, that new line is ignored.
 ```
 
+単項長演算子 ( '＃' )を使用すると、文字列の長さを数値として取得できます。
+
 It is possible to get the length of a string, as a number, by using the unary length operator ('#'):
 
 ```lua
@@ -380,9 +386,15 @@ print(#("This is a string")) --> 16
 
 #### Concatenation
 
+[形式言語理論](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/formal_language&usg=ALkJrhhiq47ZaA189c8B3lAkhbdIPf-fsw)と[コンピュータプログラミング](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/computer_programming&usg=ALkJrhh0AyYC55lQ-sU28Pv_ZemrP7dAUQ)、**文字列の連結は、** 2つの[文字列](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/character_string_(computer_science)&usg=ALkJrhi_O9cTd4GHux39enA4M1-llG5B1w)エンドツーエンドをつなげる操作です。たとえば、「雪」と「ボール」の連結は「雪玉」です。
+
+—ウィキペディア、 [Concatenation](https://en.wikipedia.org/wiki/Concatenation)
+
 > In [formal language theory](https://en.wikipedia.org/wiki/formal_language) and [computer programming](https://en.wikipedia.org/wiki/computer_programming), **string concatenation** is the operation of joining two [character strings](https://en.wikipedia.org/wiki/character_string_(computer_science)) end-to-end. For example, the concatenation of "snow" and "ball" is "snowball".
 >
 > —Wikipedia, [Concatenation](https://en.wikipedia.org/wiki/Concatenation)
+
+Luaの文字列連結演算子は、2つのドット ('..') で示されます。これは、「snow」と「ball」を連結して結果を出力する連結の例です。
 
 The string concatenation operator in Lua is denoted by two dots ('..'). Here is an example of concatenation that concatenates "snow" and "ball" and prints the result:
 
@@ -390,17 +402,25 @@ The string concatenation operator in Lua is denoted by two dots ('..'). Here is 
 print("snow" .. "ball") --> snowball
 ```
 
+このコードは「snow」と「ball」を連結し、結果を出力します。
+
 This code will concatenate "snow" and "ball" and will print the result.
 
 ### Other types
+
+Luaの4つの基本タイプ（数値、ブール値、nil、文字列）については前のセクションで説明しましたが、関数、テーブル、ユーザーデータ、スレッドの4つのタイプがありません。関数は、呼び出して値を受け取り、値を返すことができるコードの断片です。テーブルは、データ操作に使用できるデータ構造です。ユーザーデータは、Luaが組み込まれているアプリケーションによって内部的に使用され、Luaがアプリケーションによって制御されるオブジェクトを介してそのプログラムと通信できるようにします。最後に、スレッドはコルーチンによって使用されます。これにより、多くの関数を同時に実行できます。これらはすべて後で説明するので、他のデータ型があることだけを覚えておいてください。
 
 The four basic types in Lua (numbers, booleans, nil and strings) have been described in the previous sections, but four types are missing: functions, tables, userdata and threads. Functions are pieces of code that can be called, receive values and return values back. Tables are data structures that can be used for data manipulation. Userdata are used internally by applications Lua is embedded in to allow Lua to communicate with that program through objects controlled by the application. Finally, threads are used by coroutines, which allow many functions to run at the same time. These will all be described later, so you only need to keep in mind that there are other data types.
 
 ## Literals
 
+リテラルは、ソースコードで固定値を表すための表記法です。Luaではスレッドとユーザーデータを除くすべての値は、リテラルとして表すことができます。文字列リテラル（文字列として評価されるリテラル）は、たとえば、テキストの文字列を一重引用符、二重引用符、または長い角かっこで囲んで構成します。一方、数値リテラルは、10進表記（例: `12.43`)、科学的記数法（例：`3.1416e-2`および`0.31416E1`）、または16進表記（例:`0xff`)を使用して表現された数値で構成されます。
+
 Literals are notations for representing fixed values in source code. All values can be represented as literals in Lua except threads and userdata. String literals (literals that evaluate to strings), for example, consist of the text that the string must represent enclosed into single quotes, double quotes or long brackets. Number literals, on the other hand, consist the number they represent expressed using decimal notation (ex: `12.43`), scientific notation (ex: `3.1416e-2` and `0.31416E1`) or hexadecimal notation (ex: `0xff`).
 
 ## Coercion
+
+Coercion とは、あるデータ型の値を別のデータ型の値に変換することです。Luaは、文字列値と数値の間の自動変換を提供します。文字列に適用される算術演算は、この文字列を数値に変換しようとします。逆に、文字列が予期され、代わりに数値が使用される場合は常に、数値は文字列に変換されます。これは、Lua演算子とデフォルト関数（言語で提供される関数）の両方に適用されます。
 
 Coercion is the conversion of a value of one data type to a value of another data type. Lua provides automatic coercion between string and number values. Any arithmetic operation applied to a string will attempt to convert this string to a number. Conversely, whenever a string is expected and a number is used instead, the number will be converted to a string. This applies both to Lua operators and to default functions (functions that are provided with the language).
 
@@ -409,9 +429,17 @@ print("122" + 1) --> 123
 print("The number is " .. 5 .. ".") --> The number is 5.
 ```
 
+数値から文字列への Coercion および文字列から数値への Coercion は、`tostring` 関数と 　`tonumber` 関数を使用して手動で行うこともできます。前者は数値を引数として受け入れて文字列に変換し、後者は文字列を引数として受け入れて数値に変換します（デフォルトの10進数とは異なるベースをオプションで2番目の引数に指定できます）。
+
 Coercion of numbers to strings and strings to numbers can also be done manually with the `tostring` and `tonumber` functions. The former accepts a number as an argument and converts it to a string, while the second accepts a string as an argument and converts it to a number (a different base than the default decimal one can optionally be given in the second argument).
 
 ## Bitwise operations
+
+Lua 5.3以降、2進数（ビットパターン）を操作するためのビット演算子が提供されています。これらの演算子は他の演算子ほど頻繁には使用されないため、不要な場合はこのセクションをスキップできます。
+
+Luaのビット演算子は常に整数を操作し、必要に応じてオペランドを変換します。それらは整数も与えます。
+
+ビット単位のAND演算（演算子`&`を使用）は、同じ長さの2つのバイナリ表現のビットの各ペアに対して論理積を実行します。たとえば、`5 & 3` は 1 と評価されます。これは、これらの数値の2進表現を調べることで説明できます（下付き文字は基数を示すために使用されます）。
 
 Since Lua 5.3, bitwise operators are provided to operate on binary numerals (bit patterns). These operators are not used as frequently as the others, so you may skip this section if you do not need them.
 
@@ -425,7 +453,11 @@ The bitwise AND operation (with operator `&`) performs logical conjunction on ea
 
 ![(1)_{{10}}=(0001)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7a6a4e17ea375c6c55f3bc5053bb8a17070c19f5)
 
+5と3の両方のバイナリ表現の特定の位置にあるビットが1である場合（最後のビットの場合のように）、その位置にあるビットは1になります。それ以外の場合はすべて0になります。
+
 If the bits in a given position in the binary representation of both 5 and 3 are 1 (as is the case for the last bit), then the bit at that position will be 1 in the result; in all other cases, it will be 0.
+
+ビット単位のOR演算（演算子`|`を使用）は、ビット単位のAND演算と同じように機能し、論理積を実行する代わりに論理和を実行します。したがって、`5 | 3` は7と評価されます。
 
 The bitwise OR operation (with operator `|`) works in the same way as the bitwise AND, performing logical disjunction instead where it performs logical conjunction. Thus, `5 | 3` will evaluate to 7:
 
@@ -435,7 +467,11 @@ The bitwise OR operation (with operator `|`) works in the same way as the bitwis
 
 ![(7)_{{10}}=(0111)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/e3e15c3c8aa9d76b66bb3a556f837dd3b85905a2)
 
+ここで、2つのオペランドのバイナリ表現がその位置に0ビットを持っていた場合にのみ、最終結果の各位置のビットが0であることがわかります。
+
 Here, we can see that the bit in each position in the final result was 0 only when the binary representations of the two operands had a 0-bit at that position.
+
+ビット単位のXOR演算（演算子`~`を使用）は他の2つの演算と同じように機能しますが、特定の位置では、オペランドのビットの両方ではなく片方が1の場合、最後のビットは1になります。
 
 The bitwise XOR operation (with operator `~`) works like two others, but at a given position, the final bit is only 1 if one, and not both, of the bits in the operands are 1.
 
@@ -445,7 +481,11 @@ The bitwise XOR operation (with operator `~`) works like two others, but at a gi
 
 ![(6)_{{10}}=(0110)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/fc5e1e2283de38017ad922d2605016d653b6d436)
 
+これは前の例と同じですが、両方のオペランドの最後のビットが1であったため、結果の最後のビットが1ではなく0であることがわかります。
+
 This is the same as the previous example, but we can see that the last bit in the result is 0 instead of 1, since the last bit of both operands was 1.
+
+ビット単位のNOT演算（演算子`~`を使用）は、一意のオペランドの各ビットに対して論理否定を実行します。つまり、0が1になり、1が0になります。したがって、`~7` は -8 と評価されます。
 
 The bitwise NOT operation (with operator `~`) performs logical negation on each bit of its unique operand, which means that each 0 becomes 1 and that each 1 becomes 0. Thusly, `~7` will evaluate to -8:
 
