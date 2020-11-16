@@ -959,7 +959,11 @@ The `load` function can be used to load a chunk. If the first parameter given to
 
 The `load` function will return the compiled chunk as a function if there is no syntactic error. Otherwise, it will return nil and the error message.
 
+`load`関数の2番目のパラメーターは、チャンクのソースを設定するために使用されます。すべてのチャンクは、適切なエラーメッセージとデバッグ情報を提供できるように、ソースのコピーをチャンク内に保持します。デフォルトでは、それらのソースのコピーは`load`に与えられたコードになります（コードが与えられた場合、代わりに関数が与えられた場合、それは「=(load)」になります）。このパラメーターを使用して変更できます。これは、元のソースを取り戻せないようにコードをコンパイルするときに最も役立ちます。次に、バイナリ表現に含まれているソースを削除する必要があります。そうしないと、元のコードを取得できるためです。
+
 The second parameter of the `load` function is used to set the source of the chunk. All chunks keep a copy of their source within them, in order to be able to give appropriate error messages and debugging information. By default, that copy of their source will be the code given to `load` (if code was given; if a function was given instead, it will be "=(load)"). This parameter can be used to change it. This is mostly useful when compiling code to prevent people from getting the original source back. It is then necessary to remove the source included with the binary representation because otherwise the original code can be obtained there.
+
+`load`関数の3番目のパラメーターは、生成された関数の環境を設定するために使用でき、4番目のパラメーターは、チャンクをテキストにするかバイナリにするかを制御します。文字列「b」（バイナリチャンクのみ）、「t」（テキストチャンクのみ）、または「bt」（バイナリとテキストの両方）の場合があります。デフォルトは「bt」です。
 
 The third parameter of the `load` function can be used to set the environment of the generated function and the fourth parameter controls whether the chunk can be in text or binary. It may be the string "b" (only binary chunks), "t" (only text chunks), or "bt" (both binary and text). The default is "bt".
 
