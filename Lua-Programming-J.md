@@ -1056,11 +1056,17 @@ print "Hello, world!"
 print {4, 5}
 ```
 
+前の例のコードの2行目は、テーブルのメモリアドレスを出力します。`print`関数が自動的に値を文字列に変換すると、複合型（関数、テーブル、ユーザーデータ、スレッド）がそれらのメモリアドレスに変更されます。ただし、ブール値、数値、および nil 値は、対応する文字列に変換されます。
+
 The second line of code in the previous example would print the memory address of the table. When converting values to strings, which the `print` function does automatically, complex types (functions, tables, userdata and threads) are changed to their memory addresses. Booleans, numbers and the nil value, however, will be converted to corresponding strings.
+
+*パラメータ*と*引数*という用語は、同じ意味で使われることがよくあります。この本では、適切な意味で、*パラメータ*と*引数*という用語は、それぞれ、パラメータとして割り当てられて関数に渡される値と対応する引数として値が割り当てられる名前を意味します。
 
 The terms *parameter* and *argument* are often used interchangeably in practice. In this book, and in their proper meanings, the terms *parameter* and *argument* mean, respectively, a name to which the value of the corresponding argument will be assigned and a value that is passed to a function to be assigned to a parameter.
 
 ## Returning values
+
+関数は入力を受け取り、それを操作し、出力を返すことができます。入力（パラメーター）を受け取り、それを操作する方法（関数本体）は既に知っています。また、returnステートメントを使用して、任意のタイプの1つまたは複数の値を返すことによって出力することもできます。これが、関数呼び出しがステートメントと式の両方である理由です。それらは実行できますが、評価することもできます。
 
 Functions can receive input, manipulate it and give back output. You already know how they can receive input (parameters) and manipulate it (function body). They can also give output by returning one or many values of any type, which is done using the return statement. This is why function calls are both statements and expressions: they can be executed, but they can also be evaluated.
 
