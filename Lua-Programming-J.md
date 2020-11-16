@@ -34,7 +34,7 @@ Programming, which is also sometimes called scripting in the case of programs th
 
 ## Hello, world
 
-Luaは、アプリケーションに埋め込まれて使用することも、単独で使用することもできます。この本では、Luaをコンピューターにインストールするプロセスについては説明していませんが、[codepad](http://codepad.org/)または[the Lua demo](http://www.lua.org/demo.html)を使用してコードを実行できます。この本のLuaコードの最初の例は、基本的で伝統的なhelloworldプログラムです。
+Luaは、アプリケーションに埋め込まれて使用することも、単独で使用することもできます。この本では、Luaをコンピューターにインストールするプロセスについては説明していませんが、[codepad](http://codepad.org/)または[the Lua demo](http://www.lua.org/demo.html)を使用してコードを実行できます。この本のLuaコードの最初の例は、基本的で伝統的な「hello world」プログラムです。
 
 > **「Hello World」のプログラムは、**表示装置に「Hello world」出力するコンピュータプログラムです。これは通常、ほとんどのプログラミング言語で可能な最も単純なプログラムの1つであるため、プログラミング言語の最も基本的な構文を初心者に説明したり、言語またはシステムが正しく動作していることを確認したりするためによく使用されます。
 >
@@ -60,7 +60,7 @@ Note that Lua is most of the time [embedded](https://en.wikipedia.org/wiki/Embed
 
 ## Comments
 
-コメントは、プログラミング言語によって無視されるコード注釈です。コメントは、1行または複数行のコードの説明、プログラムの文書化、コードの一時的な無効化、またはその他の理由で使用できます。Luaが認識できるようにするには、接頭辞として2つのハイフン`--`を付ける必要があり、独自の行または別の行の末尾に配置できます。
+コメントとは、プログラミング言語によって無視されるコード注釈です。コメントは、1行または複数行のコードの説明、プログラムの文書化、コードの一時的な無効化、またはその他の理由で使用できます。Luaがコメントだと認識できるようにするには、接頭辞として2つのハイフン`--`を付ける必要があり、独自の行または別の行の末尾に配置できます。
 
 A comment is a code annotation that is ignored by the programming language. Comments can be used to describe one or many lines of code, to document a program, to temporarily disable code, or for any other reason. They need to be prefixed by two hyphens to be recognized by Lua and they can be put either on their own line or at the end of another line:
 
@@ -522,6 +522,8 @@ Operator precedence works the same way in Lua as it typically does in mathematic
 11. ブール値と： `and`
 12. ブール値または： `or`
 
+
+
 1. Exponentiation: `^`
 2. Unary operators: `not`, `#`, `-`, `~`
 3. Level 2 mathematical operators: `*`, `/`, `//`, `%`
@@ -830,18 +832,29 @@ Note that the `else` block must always be the last one. There cannot be an `else
 
 Operators used to compare two values, some of which are used in the code above, are called relational operators. If the relation is true, they return the boolean value `true`. Otherwise, they return the boolean value `false`.
 
+|                 | 等しい | 等しくない | より大きい | 未満 | 以上 | 以下 |
+| --------------- | ------ | ---------- | ---------- | ---- | ---- | ---- |
+| 数学表記        | =      | ≠          | >          | <    | ≥    | ≤    |
+| Luaオペレーター | ==     | 〜=        | >          | <    | >=   | <=   |
+
 |                       | equal to | not equal to | greater than | less than | greater than or equal to | less than or equal to |
 | --------------------- | -------- | ------------ | ------------ | --------- | ------------------------ | --------------------- |
 | Mathematical notation | =        | ≠            | >            | <         | ≥                        | ≤                     |
 | Lua operator          | ==       | ~=           | >            | <         | >=                       | <=                    |
 
+上記のコードは、`and`キーワードを使用して、条件式で多くのブール式を組み合わせる方法も示しています。
+
 The code above also demonstrates how the `and` keyword can be used to combine many boolean expressions in a conditional expression.
 
 ## Loops
 
+多くの場合、プログラマーは特定のコードまたは同様のコードを何度も実行するか、ユーザー入力に応じて特定のコードを何度も実行する必要があります。ループは、1回指定されますが、連続して複数回実行される可能性のある一連のステートメントです。
+
 Frequently, programmers will need to run a certain piece of code or a similar piece of code many times, or to run a certain piece of code a number of times that may depend on user input. A loop is a sequence of statements which is specified once but which may be carried out several times in succession.
 
 ### Condition-controlled loops
+
+条件制御ループは、条件によって制御されるループです。これらは条件ステートメントに非常に似ていますが、条件がtrueの場合にコードを実行し、それ以外の場合はスキップする代わりに、条件がtrueの間、または条件がfalseになるまでコードを実行し続けます。 Luaには、と条件制御ループの2つのステートメントがあります。`while`ループと　`repeat`　ループです。このようなループはコードを実行し、条件が真であるかどうかを確認します。 trueの場合、コードを再度実行し、条件がfalseになるまで繰り返します。条件がfalseの場合、コードの繰り返しを停止し、プログラムフローが続行されます。コードの各実行は、 iteration（反復）と呼ばれます。`while`と`repeat`ループの違いは、`repeat`ループはループの最後に条件をチェックすることです。`while`ループは、ループの開始時にそれをチェックします。これは、最初の反復でのみ違いがあります。コードが最初に実行されたときに条件がfalseであっても、`repeat`ループは常に少なくとも1回はコードを実行します。これは、条件が実際に true である場合にのみコードを最初に実行する`while`ループには当てはまりません。
 
 Condition-controlled loops are loops that are controlled by a condition. They are very similar to conditional statements, but instead of executing the code if the condition is true and skipping it otherwise, they will keep running it while the condition is true, or until the condition is false. Lua has two statements for condition-controlled loops: the `while` loop and the `repeat` loop. Such loops will run code, then check if the condition is true. If it is true, then they run the code again, and they repeat until the condition is false. When the condition is false, they stop repeating the code and the program flow continues. Each execution of the code is called an iteration. The difference between `while` and `repeat` loops is that `repeat` loops will check the condition at the end of the loop while `while` loops will check it at the start of the loop. This only makes a difference for the first iteration: `repeat` loops will always execute the code at least once, even if the condition is false at the first time the code is executed. This is not the case for `while` loops, which will only execute the code the first time if the condition is actually true.
 
