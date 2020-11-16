@@ -886,6 +886,8 @@ The code above will do exactly the same thing as the code that used a `while` lo
 
 ### Count-controlled loops
 
+変数をインクリメントすると、その値が段階的に、特に1ステップづつ増加します。前のセクションの2つのループは、変数の数字をインクリメントし、それを使用してコードを特定の回数実行しました。この種のループは非常に一般的であるため、Luaを含むほとんどの言語には組み込みのループ制御構造があります。この制御構造はカウント制御ループと呼ばれ、Luaおよびほとんどの言語では、`for`ステートメントによって定義されます。このようなループで使用される変数は、ループカウンターと呼ばれます。
+
 Incrementing a variable is increasing its value by steps, especially by steps of one. The two loops in the previous section incremented the variable number and used it to run the code a certain number of times. This kind of loop is so common that most languages, including Lua, have a built-in control structure for it. This control structure is called a count-controlled loop, and, in Lua and most languages, is defined by the `for` statement. The variable used in such loops is called the loop counter.
 
 ```lua
