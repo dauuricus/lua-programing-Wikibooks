@@ -896,6 +896,8 @@ for number = 0, 9, 1 do
 end
 ```
 
+上記のコードは、前のセクションで示した2つのループとまったく同じことを行いますが、数値変数はループのローカルであるため、ループ内からのみアクセスできます。変数名と等号記号に続く最初の数字は初期化です。ループカウンタが初期化される値です。 2番目の番号は、ループが停止する番号です。変数をインクリメントし、変数がこの数に達するまでコードを繰り返します。最後に、3番目の数値は増分です。これは、各反復でループカウンターが増加する値です。増分が指定されていない場合、Luaでは1と見なされます。したがって、以下のコードは1、1.1、1.2、1.3、1.4、1.5を出力します。
+
 The code above does exactly the same thing as the two loops presented in the previous section, but the number variable can only be accessed from inside the loop because it is local to it. The first number following the variable name and the equality symbol is the initialization. It is the value the loop counter is initialized to. The second number is the number the loop stops at. It will increment the variable and repeat the code until the variable reaches this number. Finally, the third number is the increment: it is the value the loop counter is increased of at each iteration. If the increment is not given, it will be assumed to be 1 by Lua. The code below would therefore print 1, 1.1, 1.2, 1.3, 1.4 and 1.5.
 
 ```lua
