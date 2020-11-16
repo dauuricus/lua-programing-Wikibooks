@@ -915,7 +915,11 @@ The reason the code above does not go up to 2 and only up to 1.5 is because of t
 
 ## Blocks
 
+ブロックは、順番に実行されるステートメントのリストです。これらのステートメントには、命令を含まない空のステートメントを含めることができます。空のステートメントを使用して、セミコロンでブロックを開始したり、2つのセミコロンを順番に書き込んだりできます。
+
 A block is a list of statements that are executed sequentially. These statements can include empty statements, that do not contain any instruction. Empty statements can be used to start a block with a semicolon or write two semicolons in sequence.
+
+関数の呼び出しと割り当ては括弧で始まる場合があり、あいまいさを招く可能性があります。このフラグメントの例です：
 
 Function calls and assignments may start with a parenthesis, which can lead to an ambiguity. This fragment is an example of this:
 
@@ -924,12 +928,16 @@ a = b + c
 (print or io.write)('done')
 ```
 
+このコードは、次の2つの方法で解釈できます。
+
 This code could be interpreted in two ways:
 
 ```lua
 a = b + c(print or io.write)('done')
 a = b + c; (print or io.write)('done')
 ```
+
+現在のパーサーは、常に最初の方法でそのような構文を認識し、最初の括弧を呼び出しの引数の開始として解釈します。このあいまいさを回避するために、次のように常に括弧で始まるセミコロンステートメントを前に付けることをお勧めします。
 
 The current parser always sees such constructions in the first way, interpreting the opening parenthesis as the start of the arguments to a call. To avoid this ambiguity, it is a good practice to always precede with a semicolon statements that start with a parenthesis:
 
