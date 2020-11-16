@@ -967,7 +967,14 @@ The second parameter of the `load` function is used to set the source of the chu
 
 The third parameter of the `load` function can be used to set the environment of the generated function and the fourth parameter controls whether the chunk can be in text or binary. It may be the string "b" (only binary chunks), "t" (only text chunks), or "bt" (both binary and text). The default is "bt".
 
+
+505/5000
+
+`load`とまったく同じように機能する` loadfile`関数もありますが、この関数はファイルからコードを取得するものです。 最初のパラメーターは、コードを取得するファイルの名前です。 バイナリ表現に格納されているソースを変更するパラメータはありません。`load`関数の3番目と4番目のパラメータは、この関数の2番目と3番目のパラメータに対応しています。 `loadfile`関数を使用して、標準入力からコードをロードすることもできます。これは、ファイル名が指定されていない場合に実行されます。
+
 There is also a `loadfile` function that works exactly like `load`, but instead gets the code from a file. The first parameter is the name of the file from which to get the code. There is no parameter to modify the source stored in the binary representation, and the third and fourth parameters of the `load` function correspond to the second and third parameters of this function. The `loadfile` function can also be used to load code from the standard input, which will be done if no file name is given.
+
+この`dofile`関数は`loadfile`関数に似ていますが、コードを関数としてファイルにロードする代わりに、ソースコードファイルに含まれているコードをLuaチャンクとしてすぐに実行します。その唯一のパラメーターは、コンテンツを実行するファイルの名前を指定するために使用されます。引数が指定されていない場合は、標準入力の内容が実行されます。チャンクが値を返す場合、それらは`dofile`関数の呼び出しによって提供されます。`dofile`はプロテクトモードでは実行されないため、`dofile`で実行されたチャンク内のすべてのエラーが伝播します。
 
 The `dofile` function is similar to the `loadfile` function, but instead of loading the code in a file as a function, it immediately executes the code contained in a source code file as a Lua chunk. Its only parameter is used to specify the name of the file it should execute the contents of; if no argument is given, it will execute the contents of the standard input. If the chunk returns values, they will be provided by the call to the `dofile` function. Because `dofile` does not run in protected mode, all errors in chunks executed through it will propagate.
 
