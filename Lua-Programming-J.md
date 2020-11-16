@@ -1000,7 +1000,7 @@ An illustration of a stack and of the operations that can be performed on it.
 
 
 
-スタックは、*後入れ先出しの*原則に従って動作する、アイテムを追加（*プッシュ*）または削除（*ポップ*）できるアイテムのリストです。つまり、最後に追加されたアイテムが最初に削除されます。このようなリストがスタックと呼ばれるのはこのためです。スタックでは、最初にその上にあるアイテムを削除せずにアイテムを削除することはできません。したがって、すべての操作はスタックの最上位で行われます。アイテムは、他のアイテムの後に追加された場合は上にあり、他のアイテムの前に追加された場合は下にあります。
+スタックは、*後入れ先出しの*原則に従って動作する、アイテムを追加（*プッシュ*）または削除（*ポップ*）できるアイテムのリストです。つまり、最後に追加されたアイテムが最初に削除されます。このようなリストがスタックと呼ばれるのはこのためです。スタックでは、最初にその上にあるアイテムを削除せずにアイテムを削除することはできません。したがって、すべての操作はスタックの最上位（Top）で行われます。アイテムは、他のアイテムの後に追加された場合は上にあり、他のアイテムの前に追加された場合は下にあります。
 
 A stack is a list of items where items can be added (*pushed*) or removed (*popped*) that behaves on the last-in-first-out principle, which means that the last item that was added will be the first to be removed. This is why such lists are called stacks: on a stack, you cannot remove an item without first removing the items that are on top of it. All operations therefore happen at the top of the stack. An item is above another if it was added after that item and is below it if it was added before that item.
 
