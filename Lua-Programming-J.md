@@ -1141,12 +1141,19 @@ It may be hard to understand why one would desire to voluntarily throw an error,
 
 Sometimes, it can be useful to prevent an error from stopping the code and instead do something like displaying an error message to the user so he can report the bug to the developer. This is called exception handling (or error handling) and is done by catching the error to prevent its propagation and running an exception handler to handle it. The way it is done in different programming languages varies a lot. In Lua, it is done using protected calls[[1\]](https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version#cite_note-2). They are called protected calls because a function called in protected mode will not stop the program if an error happens. There are two functions that can be used to call a function in protected mode:
 
+| 関数                             | 説明                                                         |
+| -------------------------------- | ------------------------------------------------------------ |
+| `pcall(function, ...)`           | プロテクトモードで関数を呼び出し、ステータスコード（エラーがスローされたかどうかによって値が異なるブール値）と関数によって返される値、または関数がエラーによって停止された場合はエラーメッセージを返します。引数は、プロテクトモードで呼び出す必要のある関数である最初の引数の後に`pcall`関数に渡すことで関数に指定できます。 |
+| `xpcall(function, handler, ...)` | pcallと同じことを行いますが、関数エラーが発生すると、pcallが返すのと同じ値を返す代わりに、それらをパラメーターとしてハンドラー関数を呼び出します。次に、ハンドラ関数を使用して、たとえば、エラーメッセージを表示できます。`pcall`関数に関しては、`xpcall`関数に対して引数として与えることで関数に引数を渡すことができます。 |
+
 | Function                         | Description                                                  |
 | -------------------------------- | ------------------------------------------------------------ |
 | `pcall(function, ...)`           | Calls the function in protected mode and returns a status code (a boolean value whose value depends on if an error was thrown or not) and the values returned by the function, or the error message if the function was stopped by an error. Arguments can be given to the function by passing them to the `pcall` function after the first argument, which is the function that should be called in protected mode. |
 | `xpcall(function, handler, ...)` | Does the same thing as pcall, but, when the function errors, instead of returning the same values as those pcall would return, it calls the handler function with them as parameters. The handler function can then be used, for example, to display an error message. As for the `pcall` function, arguments can be passed to the function by being given to the `xpcall` function. |
 
 ## Stack overflow
+
+呼び出しスタック、つまり呼び出された順序で呼び出されたすべての関数を含むスタックについては、前述しました。Luaを含むほとんどの言語でのその呼び出しスタックには、最大サイズがあります。この最大サイズは非常に大きいため、ほとんどの場合心配する必要はありませんが、自分自身を呼び出す関数（これは再帰性と呼ばれ、このような関数は再帰関数と呼ばれます）は、自分自身を呼び出すことを妨げるものがない場合、この制限に達する可能性がありますそして無期限に。これはスタックオーバーフローと呼ばれます。スタックがオーバーフローすると、コードの実行が停止し、エラーがスローされます。
 
 The call stack, the stack that contains all the functions that were called in the order in which they were called, was mentioned earlier. That call stack in most languages, including Lua, has a maximum size. This maximum size is so big that it should not be worried about in most cases, but functions that call themselves (this is called recursivity and such functions are called recursive functions) can reach this limit if there is nothing to prevent them from calling themselves over and over indefinitely. This is called a stack overflow. When the stack overflows, the code stops running and an error is thrown.
 
