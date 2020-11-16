@@ -4,7 +4,7 @@ Lua（「LUA」という表記は正しくありません）は、強力で、�
 
 この本は、Luaの最新バージョンの使用法を教えることを目的としています。これは、Luaの新しいバージョンがリリースされると、定期的に更新が試みられることを意味します（Luaのリリースはそれほど頻繁ではないため、それほど難しくはありません）。現在、この本は以前のバージョンであるLua5.2の最新版です。5.xブランチ（Lua5.0およびLua5.1）で古いバージョンのLuaを使用する組み込み環境でLuaを使用している場合でも、資料は十分に関連しているはずです。
 
-Luaは、リオデジャネイロのポンティフィカルカトリック大学の研究所で設計および保守されています。作成者は、 Roberto Ierusalimschy,、Waldemar Celes 、Luiz Henrique de Figueiredoです。
+Luaは、リオデジャネイロのポンティフィカルカトリック大学の研究所で設計および保守されています。作成者は、 Roberto Ierusalimschy、Waldemar Celes 、Luiz Henrique de Figueiredoです。
 
 Lua (not "LUA", which is incorrect although common) is a powerful, fast, lightweight and embeddable programming language. It is used by many frameworks, games and other applications. While it can be used by itself, it has been designed to be easy to embed in another application. It is implemented in ANSI C, a subset of the C programming language that is very portable, which means it can run on many systems and many devices where most other scripting languages would not be able to run. The purpose of this book is to teach Lua programming to anyone regardless of previous programming experience. The book can be used as an introduction to programming, for someone who has never programmed before, or as an introduction to Lua, for people who have programmed before but not in Lua. Since there are many development platforms and games that use Lua, this book can also be used to learn to use Lua and then to use it in that development platform.
 
@@ -825,6 +825,8 @@ end
 `else`ブロックは常に最後のものでなければならないことに注意してください。`elseif`ブロックの後に`else`ブロックを置くことはできません。`elseif`ブロックは、それらを先行ブロックのいずれも実行されなかった場合にのみ意味があります。
 
 Note that the `else` block must always be the last one. There cannot be an `elseif` block after the `else` block. The `elseif` blocks are only meaningful if none of the blocks that preceded them was executed.
+
+2つの値を比較するために使用される演算子は、上記のコードで使用されているものもあり、関係演算子と呼ばれます。関係がtrueの場合、ブール値`true`を返します。それ以外の場合は、ブール値`false`を返します。
 
 Operators used to compare two values, some of which are used in the code above, are called relational operators. If the relation is true, they return the boolean value `true`. Otherwise, they return the boolean value `false`.
 
