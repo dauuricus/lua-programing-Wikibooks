@@ -994,9 +994,8 @@ The `dofile` function is similar to the `loadfile` function, but instead of load
 
 スタックとそのスタックで実行できる操作の図。
 
-[![An illustration of a stack and of the operations that can be performed on it.](images/220px-Data_stack.svg.png)](https://en.m.wikibooks.org/wiki/File:Data_stack.svg)
+![An illustration of a stack and of the operations that can be performed on it.](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Data_stack.svg/320px-Data_stack.svg.png)
 
-An illustration of a stack and of the operations that can be performed on it.
 
 
 
