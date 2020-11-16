@@ -1031,6 +1031,8 @@ local function func(first_parameter, second_parameter, third_parameter)
 end
 ```
 
+なお、第2の形式を使用する場合は、内部から関数を参照することができますが、第1の形式を使用する場合は参照できません。これは、`local function foo() end`が `local foo = function() end`ではなく`local foo; foo = function() end`に変換されるためです。これは、fooが1番目の形式ではなく2番目の形式の関数の環境の一部であることを意味します。これは、なぜ2番目の形式が関数自体を参照できるかを説明しています。
+
 It should be noted that, when using the second form, it is possible to refer to the function from inside itself, which is not possible when using the first form. This is because `local function foo() end` translates to `local foo; foo = function() end` rather than `local foo = function() end`. This means that foo is part of the function’s environment in the second form and not in the first, which explains why the second form makes it possible to refer to the function itself.
 
 In both cases, it is possible to omit the `local` keyword to store the function in a global variable. Parameters work like variables and allow functions to receive values. When a function is called, arguments may be given to it. The function will then receive them as parameters. Parameters are like local variables defined at the beginning of a function, and will be assigned in order depending on the order of the arguments as they are given in the function call; if an argument is missing, the parameter will have the value `nil`. The function in the following example adds two numbers and prints the result. It would therefore print 5 when the code runs.
