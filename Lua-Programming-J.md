@@ -499,11 +499,28 @@ Here, the first bit became 1 in the result because it was 0 in the operand, and 
 
 [![Left shift](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Rotate_left_logically.svg/210px-Rotate_left_logically.svg.png)](https://en.m.wikibooks.org/wiki/File:Rotate_left_logically.svg)[![Right shift](https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Rotate_right_arithmetically.svg/175px-Rotate_right_arithmetically.svg.png)](https://en.m.wikibooks.org/wiki/File:Rotate_right_arithmetically.svg)
 
+これらのビット演算子に加えて、Lua5.3は算術ビットシフトもサポートしています。演算子`<<`を使用して左側に示されている左シフトは、すべてのビットを、第2オペランドに対応するビット数だけ左にシフトすることで構成されます。演算子で示され、右に示されている右シフト`>>`も同じですが、反対方向です。
+
 In addition to these bitwise operators, Lua 5.3 also supports arithmetic bit shifts. The left shift, with operator `<<` and illustrated on left, consists in shifting all bits to the left, by a number of bits that corresponds to the second operand. The right shift, denoted by operator `>>` and illustrated on right, does the same but in the opposite direction.
 
 ## Operator precedence
 
+演算子の優先順位は、Luaでも数学で通常行われるのと同じように機能します。特定の演算子は他の演算子よりも先に評価され、括弧を使用して、操作を実行する順序を任意に変更できます。演算子が評価される優先度は、優先度の高いものから低いものへと、以下のリストにあります。これらの演算子のいくつかはまだ議論されていませんが、それらはすべてこの本のある時点でカバーされます。
+
 Operator precedence works the same way in Lua as it typically does in mathematics. Certain operators will be evaluated before others, and parentheses can be used to arbitrarily change the order in which operations should be executed. The priority in which operators are evaluated is in the list below, from higher to lower priority. Some of these operators were not discussed yet, but they will all be covered at some point in this book.
+
+1. べき乗： `^`
+2. 単項演算子：`not`、`#`、`-`、`~`
+3. レベル2数学演算子：`*`、`/`、`//`、`%`
+4. レベル1の数学演算子：`+`、`-`
+5. 連結： `..`
+6. ビットシフト：`<<`、`>>`
+7. ビットごとのAND： `&`
+8. ビットごとのXOR： `~`
+9. ビットごとのOR： `|`
+10. 関係演算子：`<`、`>`、`<=`、`>=`、`~=`、`==`
+11. ブール値と： `and`
+12. ブール値または： `or`
 
 1. Exponentiation: `^`
 2. Unary operators: `not`, `#`, `-`, `~`
@@ -520,15 +537,19 @@ Operator precedence works the same way in Lua as it typically does in mathematic
 
 ## Quiz
 
+この章の内容を理解したことを確認するために回答できる質問がいくつかあります。これらの質問のいくつかに対する答えを見つけるには、この章に記載されていない知識が必要になる場合があることに注意してください。これは正常です。クイズは学習体験の一部であり、本の他の場所では入手できない情報を紹介することができます。
+
 There are some questions you can answer to verify that you have understood the material in this chapter. Note that finding the answer to some of those questions could require having knowledge that is not presented in this chapter. This is normal: the quizzes are part of the learning experience, and they can introduce information that is not available elsewhere in the book.
 
 
 
-**1**What will `print(type(type(5.2)))` output?
+
+
+**1**　何が出力されますか？`print(type(type(5.2)))`　What will `print(type(type(5.2)))` output?
 
 
 
-**2**What will the expression `0 or 8` return?
+**2** `0 or 8` この式は何を返しますか？What will the expression `0 or 8` return?
 
 |      |          |
 | ---- | -------- |
@@ -537,7 +558,7 @@ There are some questions you can answer to verify that you have understood the m
 |      | `0 `     |
 |      | `8 `     |
 
-**3**Which strings are valid?
+**3** どの文字列が有効ですか？Which strings are valid?
 
 |      |                  |
 | ---- | ---------------- |
@@ -548,7 +569,7 @@ There are some questions you can answer to verify that you have understood the m
 |      | `"test\'s test"` |
 |      | `'test's test'`  |
 
-**4**Which expressions give the string `"1223"`?
+**4** どの式が`"1223"`の文字列を与えますか？Which expressions give the string `"1223"`?
 
 |      |               |
 | ---- | ------------- |
@@ -557,7 +578,7 @@ There are some questions you can answer to verify that you have understood the m
 |      | `"12" + "23"` |
 |      | `12 .. 23`    |
 
-**5**True or false? `not 5^3 == 5`
+**5** 正誤問題`not 5^3 == 5` true or false? `not 5^3 == 5`
 
 |      |         |
 | ---- | ------- |
@@ -566,9 +587,13 @@ There are some questions you can answer to verify that you have understood the m
 
 #  Statements
 
+ステートメントは、実行可能なコードの一部であり、ステートメントで使用する命令と式が含まれています。一部のステートメントには、たとえば特定の条件下で実行される可能性のあるコードも含まれます。式とは異なり、式に直接入れることができ、実行されます。Luaにはいくつかの命令がありますが、これらの命令を他の命令や複雑な式と組み合わせると、ユーザーに十分な制御と柔軟性が与えられます。
+
 Statements are pieces of code that can be executed and that contain an instruction and expressions to use with it. Some statements will also contain code inside of themselves that may, for example, be run under certain conditions. Dissimilarly to expressions, they can be put directly in code and will execute. Lua has few instructions, but these instructions, combined with other instructions and with complex expressions, give a good amount of control and flexibility to the user.
 
 ## Assignment
+
+プログラマーは、後で使用できるように、値をメモリーに格納できる必要があることがよくあります。これは変数を使用して行われます。変数は、コンピューターのメモリに格納されている値への参照です。それらは、メモリに保存した後、後で番号にアクセスするために使用できます。割り当ては、変数に値を割り当てるために使用される命令です。これは、値を格納する必要がある変数の名前、等号、および変数に格納する必要がある値で構成されます。
 
 Programmers frequently need to be able to store values in the memory to be able to use them later. This is done using variables. Variables are references to a value which is stored in the computer's memory. They can be used to access a number later after storing it in the memory. Assignment is the instruction that is used to assign a value to a variable. It consists of the name of the variable the value should be stored in, an equal sign, and the value that should be stored in the variable:
 
@@ -577,13 +602,19 @@ variable = 43
 print(variable) --> 43
 ```
 
+上記のコードで示されているように、変数の値にアクセスするには、変数の名前を値にアクセスする必要があります。
+
 As demonstrated in the above code, the value of a variable can be accessed by putting the variable's name where the value should be accessed.
 
 ### The assignment operator
 
+Luaでは、他のほとんどのプログラミング言語と同様に、等号（`=`）は、右側のオペランドの式の値を左側のオペランドで指定された変数に割り当てる2項代入演算子として機能します
+
 In Lua, as with most other programming languages, the equals sign (`=`) acts as a dyadic assignment operator assigning the value of the expression of the right hand operand to the variable named by the left operand:
 
 ### Assignment of variables
+
+次の例は、変数の割り当てに等号を使用する方法を示しています。
 
 The following examples show the use of the equals sign for the assignment of variables:
 
@@ -594,12 +625,16 @@ count = 5         -- assign a numeric value to a variable
 
 ### Strings and Numeric Values
 
+リテラル文字列は、変数名と区別するために引用符で囲む必要があることに注意してください。
+
 Note that literal strings should be enclosed in quotation marks to distinguish them from variable names:
 
 ```lua
 apples = 5
 favourite = "apples"   -- without quotes, apples would be interpreted as a variable name
 ```
+
+変数名は数字で始めることができないため、数値を引用符で囲む必要はなく、変数名として誤って解釈することはできないことに注意してください。
 
 Note that numeric values do not need to be enclosed in quotation marks and cannot be misinterpreted as a variable name, because variable names cannot begin with a numeral:
 
@@ -610,6 +645,8 @@ pears = "5"   -- quotes will cause the value to be considered a string
 
 ### Multiple Assignments
 
+Luaプログラミング言語は複数の割り当てをサポートしています。
+
 The Lua programming language supports multiple assignments:
 
 ```lua
@@ -618,7 +655,11 @@ apples, favorite = 5, "apples" -- assigns apples = 5, favorite = "apples"
 
 ### Identifiers
 
+Luaでは、[識別子](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Identifier&usg=ALkJrhjOm8MkOYUvFRaGGawhC9zzFbfEew#In_computer_science)は名前とも呼ばれます。文字、数字、アンダースコアで構成され、数字で始まらない任意のテキストを使用できます。これらは、テーブルに関する章で説明する変数とテーブルフィールドに名前を付けるために使用されます
+
 [Identifiers](https://en.wikipedia.org/wiki/Identifier#In_computer_science), in Lua, are also called names. They can be any text composed of letters, digits, and underscores and not beginning with a digit. They are used to name variables and table fields, which will be covered in the chapter about tables.
+
+いくつかの有効な名前は次のとおりです。
 
 Here are some valid names:
 
@@ -630,7 +671,15 @@ Here are some valid names:
 - `__`
 - `_thisIs_StillaValid23name`
 
+いくつかの無効な名前は次のとおりです。
+
 Here are some invalid names:
+
+- `2hello` ：数字で始まる
+- `th$i` ：文字、数字、またはアンダースコアではない文字が含まれている
+- `hel!o` ：文字、数字、またはアンダースコアではない文字が含まれている
+- `563text` ：数字で始まる
+- `82_something` ：数字で始まる
 
 - `2hello` : starts with a digit
 - `th$i` : contains a character that isn't a letter, a digit or an underscore
@@ -638,13 +687,21 @@ Here are some invalid names:
 - `563text` : starts with a digit
 - `82_something` : starts with a digit
 
+また、次のキーワードのLUAによって予約されており、名称として使用することはできません：`and`、`end`、`in`、`repeat`、`break`、`false`、`local`、`return`、`do`、`for`、`nil`、`then`、`else`、`function`、`not`、`true`、`elseif`、`if`、`or`、`until`、`while`。
+
 Also, the following keywords are reserved by Lua and can not be used as names: `and`, `end`, `in`, `repeat`, `break`, `false`, `local`, `return`, `do`, `for`, `nil`, `then`, `else`, `function`, `not`, `true`, `elseif`, `if`, `or`, `until`, `while`.
+
+変数またはテーブルフィールドに名前を付けるときは、その有効な名前を選択する必要があります。したがって、文字またはアンダースコアで始まり、文字、アンダースコア、および数字のみを含める必要があります。Luaでは大文字と小文字が区別されることに注意してください。これは、`Hello`と`hello`が2つの異なる名前であることを意味します。
 
 When naming a variable or a table field, you must choose a valid name for it. It must therefore start with a letter or an underscore and only contain letters, underscores and digits. Note that Lua is case sensitive. This means that `Hello` and `hello` are two different names.
 
 ### Scope
 
+[変数](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Scope_(computer_science)&usg=ALkJrhgPIty13LsluvhQl0GnViEF63s0ow)の[スコープ](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Scope_(computer_science)&usg=ALkJrhgPIty13LsluvhQl0GnViEF63s0ow)は、その変数が意味を持つプログラムのコードの領域です。これまでに見た変数の例はすべてグローバル変数の例であり、プログラムのどこからでもアクセスできる変数です。一方、ローカル変数は、それらが定義されたプログラムの領域から、およびプログラムのその領域内にあるプログラムの領域でのみ使用できます。これらはグローバル変数とまったく同じ方法で作成されますが、接頭辞として`local`キーワードを付ける必要があります。
+
 The [scope of a variable](https://en.wikipedia.org/wiki/Scope_(computer_science)) is the region of the code of the program where that variable is meaningful. The examples of variables you have seen before are all examples of global variables, variables which can be accessed from anywhere in the program. Local variables, on the other hand, can only be used from the region of the program in which they were defined and in regions of the program that are located inside that region of the program. They are created exactly in the same way as global variables, but they must be prefixed with the `local` keyword.
+
+`do`ステートメントは、それらを記述するために使用されます。この`do`ステートメントは、新しいコードブロック、つまり新しいスコープを作成する以外の目的がないステートメントです。`end`キーワードで終わります：
 
 The `do` statement will be used to describe them. The `do` statement is a statement that has no other purpose than to create a new block of code, and therefore a new scope. It ends with the `end` keyword:
 
@@ -660,7 +717,11 @@ end
 print(variable) --> 18
 ```
 
+スコープが終了すると、スコープ内のすべての変数が削除されます。コードの領域では、含まれているコードの領域で定義された変数を使用できますが、同じ名前のローカル変数を定義して変数を「上書き」すると、コードの他の領域で定義された変数の代わりにそのローカル変数が使用されます。 。これが、print関数の最初の呼び出しが16を出力し、`do`ステートメントによって作成されたスコープ外の2番目の呼び出しが18を出力する理由です。
+
 When a scope ends, all the variables in it are gotten rid of. Regions of code can use variables defined in regions of code they are included in, but if they "overwrite" them by defining a local variable with the same name, that local variable will be used instead of the one defined in the other region of code. This is why the first call to the print function prints 16 while the second, which is outside the scope created by the `do` statement, prints 18.
+
+実際には、ローカル変数のみを使用する必要があります。ローカル変数は、グローバル変数のように現在の関数の環境に格納されるのではなく、レジスタに格納されるため、グローバル変数よりも高速に定義およびアクセスできるためです。レジスターは、Luaがローカル変数を格納してそれらにすばやくアクセスするために使用する領域であり、通常は最大200個のローカル変数しか含めることができません。すべてのコンピューターの重要なコンポーネントであるプロセッサーにもレジスターがありますが、これらはLuaのレジスターとは関係ありません。各関数（メインスレッド、プログラムのコア、関数でもある）にも独自の環境があります。これは、変数名にインデックスを使用し、これらの変数の値をこれらのインデックスに対応する値に格納するテーブルです。
 
 In practice, only local variables should be used because they can be defined and accessed faster than global variables, since they are stored in registers instead of being stored in the environment of the current function, like global variables. Registers are areas that Lua uses to store local variables to access them quickly, and can only usually contain up to 200 local variables. The processor, an important component of all computers, also has registers, but these are not related to Lua's registers. Each function (including the main thread, the core of the program, which is also a function) also has its own environment, which is a table that uses indices for the variable names and stores the values of these variables in the values that correspond to these indices.
 
@@ -668,9 +729,13 @@ In practice, only local variables should be used because they can be defined and
 
 #### Augmented assignment
 
+複合代入とも呼ばれる[拡張代入](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/augmented_assignment&usg=ALkJrhikuZjAdzs7U5ormJmVswQmKe2I2g)は、変数に前の値を基準にした値を与えるタイプの代入です。たとえば、現在の値をインクリメントする、aの値を8ずつインクリメントするコード`a += 8`相当するものは、[C](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/C_(programming_language)&usg=ALkJrhiCKRK36t_KSDoPF3Pn4cHeTdDEkg)、[JavaScript](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/JavaScript&usg=ALkJrhh7zVRtj4K3FtxX_r4i7EYhiSqtlw)、[Ruby](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Ruby_(programming_language)&usg=ALkJrhjzUGQdMGYRxbbFJVnabYKtQcLMTw)、[Python](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Python_(programming_language)&usg=ALkJrhhE0iY1VFHE7kYCrOh5VrK0LUblFQ)に存在しますが、Luaには存在しません。つまり、を`a = a + 8`記述する必要があります。
+
 [Augmented assignment](https://en.wikipedia.org/wiki/augmented_assignment), which is also called compound assignment, is a type of assignment that gives a variable a value that is relative to its previous value, for example, incrementing the current value. An equivalent of the code `a += 8`, which increments the value of a by 8, known to exist in [C](https://en.wikipedia.org/wiki/C_(programming_language)), [JavaScript](https://en.wikipedia.org/wiki/JavaScript), [Ruby](https://en.wikipedia.org/wiki/Ruby_(programming_language)), [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) does not exist in Lua, which means that it is necessary to write `a = a + 8`.
 
 #### Chained assignment
+
+[連鎖割り当て](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/chained_assignment&usg=ALkJrhgehEARyigOZsol5yhQc_EDmvGTNA)は、多くの変数に単一の値を与える割り当ての一種です。たとえば、このコード`a = b = c = d = 0`は、CおよびPythonでa、b、c、およびdの値を0に設定します。Luaでは、このコードはエラーを発生させるため、前の例は次のように記述する必要があります。
 
 [Chained assignment](https://en.wikipedia.org/wiki/chained_assignment) is a type of assignment that gives a single value to many variables. The code `a = b = c = d = 0`, for example, would set the values of a, b, c and d to 0 in C and Python. In Lua, this code will raise an error, so it is necessary to write the previous example like this:
 
@@ -683,6 +748,10 @@ a = b -- or a = 0
 
 #### Parallel assignment
 
+[並列割り当て](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/parallel_assignment&usg=ALkJrhjRq6OLEUV5Vz11i3F4GbHyYr19fg)は、同時割り当ておよび複数割り当てとも呼ばれ、異なる変数に異なる値（同じ値にすることもできます）を同時に割り当てるタイプの割り当てです。連鎖割り当てや拡張割り当てとは異なり、Luaでは並列割り当てを使用できます。
+
+前のセクションの例は、並列割り当てを使用するように書き直すことができます。
+
 [Parallel assignment](https://en.wikipedia.org/wiki/parallel_assignment), which is also called simultaneous assignment and multiple assignment, is a type of assignment that simultaneously assigns different values (they can also be the same value) to different variables. Unlike chained assignment and augmented assignment, parallel assignment is available in Lua.
 
 The example in the previous section can be rewritten to use parallel assignment:
@@ -691,7 +760,11 @@ The example in the previous section can be rewritten to use parallel assignment:
 a, b, c, d = 0, 0, 0, 0
 ```
 
+値よりも多くの変数を指定すると、一部の変数には値が割り当てられません。変数よりも多くの値を指定すると、余分な値は無視されます。より技術的には、値のリストは、割り当てが行われる前に変数のリストの長さに調整されます。つまり、余分な値が削除され、最後に余分なnil値が追加されて、のリストと同じ長さになります。変数。*値リストの最後に*関数呼び出しが存在する場合、関数呼び出しが括弧で囲まれていない限り、返される値はそのリストの最後に追加されます。
+
 If you provide more variables than values, some variables will be not be assigned any value. If you provide more values than variables, the extra values will be ignored. More technically, the list of values is adjusted to the length of list of variables before the assignment takes place, which means that excess values are removed and that extra nil values are added at its end to make it have the same length as the list of variables. If a function call is present *at the end of the values list*, the values it returns will be added at the end of that list, unless the function call is put between parentheses.
+
+さらに、ほとんどのプログラミング言語とは異なり、Luaは[permutation （順列）](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/permutation&usg=ALkJrhhRb0PyUQ2b_i7Jt4_nA1LscYhbvQ)を介して変数の値の再割り当てを可能にします。例えば：
 
 Moreover, unlike most programming languages Lua enables reassignment of variables' values through [permutation](https://en.wikipedia.org/wiki/permutation). For example:
 
@@ -700,6 +773,8 @@ first_variable, second_variable = 54, 87
 first_variable, second_variable = second_variable, first_variable
 print(first_variable, second_variable) --> 87 54
 ```
+
+これが機能するのは、割り当てステートメントが何かを割り当てる前にすべての変数と値を評価するためです。割り当ては、実際に同時であるかのように実行されます。つまり、新しい値が割り当てられる前に、変数とその変数の値でインデックス付けされたテーブルフィールドに同時に値を割り当てることができます。つまり、次のコードは、`dictionary[1]`を12に設定するのではなく`dictionary[2]`に設定します。
 
 This works because the assignment statement evaluates all the variables and values before assigning anything. Assignments are performed as if they were really simultaneous, which means you can assign at the same time a value to a variable and to a table field indexed with that variable’s value before it is assigned a new value. In other words, the following code will set `dictionary[2]`, and not `dictionary[1]`, to 12.
 
@@ -710,6 +785,8 @@ index, dictionary[index] = index - 1, 12
 ```
 
 ## Conditional statement
+
+条件文は、式が真であるかどうかをチェックし、真である場合は特定のコードを実行する命令です。式が真でない場合は、そのコードをスキップするだけで、プログラムが続行されます。Luaでは、唯一の条件文が`if`命令を使用します。Falseとnilは両方ともfalseと見なされ、その他はすべてtrueと見なされます。
 
 Conditional statements are instructions that check whether an expression is true and execute a certain piece of code if it is. If the expression is not true, they just skip over that piece of code and the program continues. In Lua, the only conditional statement uses the `if` instruction. False and nil are both considered as false, while everything else is considered as true.
 
