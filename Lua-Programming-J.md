@@ -1035,6 +1035,8 @@ end
 
 It should be noted that, when using the second form, it is possible to refer to the function from inside itself, which is not possible when using the first form. This is because `local function foo() end` translates to `local foo; foo = function() end` rather than `local foo = function() end`. This means that foo is part of the function’s environment in the second form and not in the first, which explains why the second form makes it possible to refer to the function itself.
 
+どちらの場合も、`local`キーワードを省略して関数をグローバル変数に格納することができます。パラメータは変数のように機能し、関数が値を受け取ることを可能にします。関数が呼び出されると、引数が与えられます。その後、関数はそれらをパラメーターとして受け取ります。パラメータは、関数の先頭で定義されたローカル変数のようなものであり、関数呼び出しで指定された引数の順序に応じて順番に割り当てられます。引数が欠落している場合、パラメーターの値は`nil`になります。次の例の関数は、2つの数値を加算し、結果を出力します。したがって、コードの実行時に5が出力されます。
+
 In both cases, it is possible to omit the `local` keyword to store the function in a global variable. Parameters work like variables and allow functions to receive values. When a function is called, arguments may be given to it. The function will then receive them as parameters. Parameters are like local variables defined at the beginning of a function, and will be assigned in order depending on the order of the arguments as they are given in the function call; if an argument is missing, the parameter will have the value `nil`. The function in the following example adds two numbers and prints the result. It would therefore print 5 when the code runs.
 
 ```lua
@@ -1044,6 +1046,8 @@ end
 
 add(2, 3)
 ```
+
+関数呼び出しは、ほとんどの場合、フォーム`name(arguments)`の下にあります。ただし、引数が1つだけで、それがテーブルまたは文字列であり、変数に含まれていない場合（つまり、関数呼び出しで直接作成され、リテラルとして表される場合）、括弧は省略できます。
 
 Function calls are most of the time under the form `name(arguments)`. However, if there is only one argument and it is either a table or a string, and it isn't in a variable (meaning it is constructed directly in the function call, expressed as a literal), the parentheses can be omitted:
 
