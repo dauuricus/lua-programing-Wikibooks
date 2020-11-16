@@ -867,6 +867,8 @@ while number < 10 do
 end
 ```
 
+上記のコードは、0、1、2、3のように、9まで出力します。10回目の反復後、数値は10以上になるため、ループの実行は停止します。ループは永久に実行されることを意味する場合があり、その場合、ループは無限ループと呼ばれます。たとえば、レンダラー、つまり画面上に物を描画するソフトウェアプロセスは、ユーザーに表示される画像を更新するために画面を再描画するために絶えずループすることがよくあります。これはビデオゲームでよくあることで、ユーザーに表示されるものを最新の状態に保つために、ゲームビューを常に更新する必要があります。ただし、ループを永久に実行する必要がある場合はまれであり、そのようなループはエラーの結果であることがよくあります。無限ループは多くのコンピュータリソースを消費する可能性がありますが、したがって、ユーザーから予期しない入力を受け取った場合でも、ループが常に終了するようにすることが重要です。
+
 The code above will print 0, then 1, then 2, then 3, and so on, until 9. After the tenth iteration, number will no longer be smaller than ten, and therefore the loop will stop executing. Sometimes, loops will be meant to run forever, in which case they are called infinite loops. Renderers, software processes that draw things on the screen, for example, will often loop constantly to redraw the screen to update the image that is shown to the user. This is frequently the case in video games, where the game view must be updated constantly to make sure what the user sees is kept up-to-date. However, cases where loops need to run forever are rare and such loops will often be the result of errors. Infinite loops can take a lot of computer resources, so it is important to make sure that loops will always end even if unexpected input is received from the user.
 
 ```lua
@@ -877,6 +879,8 @@ repeat
 	number = number + 1
 until number >= 10
 ```
+
+上記のコードは、上記の`while`ループを使用したコードとまったく同じことを行います。主な違いは``、`while`キーワードと`do`キーワードの間に条件が配置される`while`ループとは異なり、条件はループの最後、untilキーワードの後に配置されることです。`repeat`ループは、`end`キーワードによってブロックが閉じられていないLuaで唯一のステートメントです。
 
 The code above will do exactly the same thing as the code that used a `while` loop above. The main differences is that, unlike `while` loops, where the condition is put between the `while` keyword and the `do` keyword, the condition is put at the end of the loop, after the `until` keyword. The `repeat` loop is the only statement in Lua that creates a block and that is not closed by the `end` keyword.
 
