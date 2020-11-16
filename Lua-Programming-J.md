@@ -1060,7 +1060,7 @@ print {4, 5}
 
 The second line of code in the previous example would print the memory address of the table. When converting values to strings, which the `print` function does automatically, complex types (functions, tables, userdata and threads) are changed to their memory addresses. Booleans, numbers and the nil value, however, will be converted to corresponding strings.
 
-*パラメータ*と*引数*という用語は、同じ意味で使われることがよくあります。この本では、適切な意味で、*パラメータ*と*引数*という用語は、それぞれ、パラメータとして割り当てられて関数に渡される値と対応する引数として値が割り当てられる名前を意味します。
+*パラメータ*と*引数*という用語は、同じ意味で使われることがよくあります。この本では、適切な意味で、*パラメータ*と*引数*という用語は、それぞれ、パラメータとして割り当てられて関数に渡される値と対応する引数として値が割り当てられるものの名前を意味します。
 
 The terms *parameter* and *argument* are often used interchangeably in practice. In this book, and in their proper meanings, the terms *parameter* and *argument* mean, respectively, a name to which the value of the corresponding argument will be assigned and a value that is passed to a function to be assigned to a parameter.
 
