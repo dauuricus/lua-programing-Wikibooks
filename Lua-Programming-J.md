@@ -1078,23 +1078,33 @@ end
 print(add(5, 6))
 ```
 
+上記の関数のコードは、最初に`add`関数を定義しています。次に、5と6を値として呼び出します。`add`関数はそれらを加算して結果を返し、出力されます。これが、上記のコードが11を出力する理由です。これらの値に評価される式をコンマで区切ることにより、関数が多くの値を返すことも可能です。
+
 The code in the above function will first define the function `add`. Then, it will call it with 5 and 6 as values. The function will add them and return the result, which will then be printed. This is why the code above would print 11. It is also possible for a function to return many values by separating the expressions that evaluate to these values with commas.
 
 ## Errors
+
+エラーには、構文エラー、静的セマンティックエラー、セマンティックエラーの3種類があります。構文エラーは、コードが明らかに無効な場合に発生します。たとえば、次のコードはLuaによって無効として検出されます。
 
 There are three types of errors: syntactic errors, static semantic errors and semantic errors. Syntactic errors happen when code is plainly invalid. The following code, for example, would be detected by Lua as invalid:
 
 ```lua
 print(5 ++ 4 return)
 ```
+上記のコードは意味がありません。それから意味を引き出すことは不可能です。同様に、英語では、「cat（猫）　dog（犬）　tree（木）」は意味がないため、構文的に有効ではありません。文を作成するための規則に従っていません。
 
 The code above doesn't make sense; it is impossible to get a meaning out of it. Similarly, in English, "cat dog tree" is not syntactically valid because it has no meaning. It doesn't follow the rules for creating a sentence.
+
+静的セマンティックエラーが起こるのはコードは意味を持っているが、まだ成立しない場合です。例えば、文字列に対して数字を足そうとすると静的セマンティックエラーになります。
+これは文字列に数字を加算できないためです。
 
 Static semantic errors happen when code has a meaning, but still doesn't make sense. For example, if you try adding a string with a number, you get a static semantic error because it is impossible to add a string with a number:
 
 ```lua
 print("hello" + 5)
 ```
+
+上記のコードはLuaの構文規則には従いますが、数値を含む文字列を追加することは不可能であるため、意味が成立しません（文字列が数値を表す場合を除き、その場合は強制的に1つになります）。これは英語で「I are big」という文と比較することができます。英語で文章を作成するための規則に収まっていますが、「I」は単数形で「are」は複数形であるため、それでもやはりおかしいわけです。
 
 The code above follows Lua's syntactic rules, but it still doesn't make sense because it is impossible to add a string with a number (except when the string represents a number, in which case it will be coerced into one). This can be compared in English to the sentence "I are big". It follows the rules for creating sentences in English, but it still doesn't make sense because "I" is singular and "are" is plural.
 
