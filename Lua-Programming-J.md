@@ -1,3 +1,14 @@
+wikibook
+https://en.m.wikibooks.org/wiki/Lua_Programming
+
+# Lua Programming
+
+GNU Lesser General Public License
+GNU Free Documentation License
+GNU GENERAL PUBLIC LICENSE
+
+
+
 # Introduction
 
 Lua（「LUA」という表記は正しくありません）は、強力で、高速で、軽量で、埋め込み可能なプログラミング言語です。多くのフレームワーク、ゲーム、その他のアプリケーションで使用されています。単独で使用することもできますが、他のアプリケーションに簡単に組み込むことができるように設計されています。これは、非常に移植性の高いCプログラミング言語のサブセットであるANSI Cで実装されています。つまり、他のほとんどのスクリプト言語では実行できない多くのシステムやデバイスで実行できます。この本の目的は、以前のプログラミング経験に関係なく、誰にでもLuaプログラミングを教えることです。この本は、プログラミングの紹介として、これまでプログラミングしたことがない人のために、またはLuaの紹介として、他の言語でのプログラミング経験のある人のために使用できます。Luaを使用する開発プラットフォームやゲームはたくさんあるので、この本はLuaの使い方を学び、その開発プラットフォームでそれを使用するためにも使用できます。
@@ -981,9 +992,15 @@ The `dofile` function is similar to the `loadfile` function, but instead of load
 
 # Functions
 
+スタックとそのスタックで実行できる操作の図。
+
 [![An illustration of a stack and of the operations that can be performed on it.](images/220px-Data_stack.svg.png)](https://en.m.wikibooks.org/wiki/File:Data_stack.svg)
 
 An illustration of a stack and of the operations that can be performed on it.
+
+
+
+スタックは、*後入れ先出しの*原則に従って動作する、アイテムを追加（*プッシュ*）または削除（*ポップ*）できるアイテムのリストです。つまり、最後に追加されたアイテムが最初に削除されます。このようなリストがスタックと呼ばれるのはこのためです。スタックでは、最初にその上にあるアイテムを削除せずにアイテムを削除することはできません。したがって、すべての操作はスタックの最上位で行われます。アイテムは、他のアイテムの後に追加された場合は上にあり、他のアイテムの前に追加された場合は下にあります。
 
 A stack is a list of items where items can be added (*pushed*) or removed (*popped*) that behaves on the last-in-first-out principle, which means that the last item that was added will be the first to be removed. This is why such lists are called stacks: on a stack, you cannot remove an item without first removing the items that are on top of it. All operations therefore happen at the top of the stack. An item is above another if it was added after that item and is below it if it was added before that item.
 
