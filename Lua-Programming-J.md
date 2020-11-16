@@ -493,6 +493,8 @@ The bitwise NOT operation (with operator `~`) performs logical negation on each 
 
 ![(8)_{{10}}=(1000)_{2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/c146e6bd4e3cba0908fea6a819b278a46c3bffc7)
 
+ここで、最初のビットはオペランドが0であるため結果で1になり、他のビットはすべて1であるため0になります。
+
 Here, the first bit became 1 in the result because it was 0 in the operand, and the other bits became 0 because they were all 1.
 
 [![Left shift](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Rotate_left_logically.svg/210px-Rotate_left_logically.svg.png)](https://en.m.wikibooks.org/wiki/File:Rotate_left_logically.svg)[![Right shift](https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Rotate_right_arithmetically.svg/175px-Rotate_right_arithmetically.svg.png)](https://en.m.wikibooks.org/wiki/File:Rotate_right_arithmetically.svg)
