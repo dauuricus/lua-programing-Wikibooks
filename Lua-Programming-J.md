@@ -1129,9 +1129,15 @@ if variable % 5 ~= 0 then
 end
 ```
 
+`error`関数には、エラーがスローされるスタックレベルを示す2番目の引数もありますが、これについては本書では取り上げません。この`assert`関数は`error`関数と同じことを行いますが、最初の引数が nil または false と評価され、エラーをスローするスタックレベルを指定するために使用できる引数がない場合にのみエラーをスローします。` assert`関数は、スクリプトの開始時に役立ちます。たとえば、スクリプトが機能するために必要なライブラリが使用可能かどうかを確認する場合などです
+
 The `error` function also has a second argument, which indicates the stack level at which the error should be thrown, but this will not be covered in this book. The `assert` function does the same thing as the `error` function, but it will only throw an error if its first argument evaluates to nil or false and it doesn't have an argument that can be used to specify the stack level at which the error should be thrown. The assert function is useful at the start of a script, for example, to check if a library that is required for the script to work is available.
 
+エラーがスローされるたびにプログラム内のコードの実行が停止するため、なぜ自発的にエラーをスローしたいのか理解するのは難しいかもしれませんが、多くの場合、関数が正しく使用されていないときやプログラムが適切な環境で実行されていないときにエラーをスローし、コードをデバッグしなければならない人が、何が悪いのか気付かずにコードを長時間見つめることなく、速く間違いを見つけるのに役立ちます。
+
 It may be hard to understand why one would desire to voluntarily throw an error, since the code in a program stops running whenever an error is thrown, but, often, throwing errors when functions are used incorrectly or when a program is not running in the right environment can be helpful to help the person who will have to debug the code to find it immediately without having to stare at the code for a long time without realizing what is wrong.
+
+エラーがコードを停止するのを防ぎ、代わりにユーザーにエラーメッセージを表示して、開発者にバグを報告できるようにすることが役立つ場合があります。これは例外処理（またはエラー処理）と呼ばれ、エラーをキャッチして伝播を防ぎ、例外ハンドラーを実行して処理することで実行されます。さまざまなプログラミング言語でこの方法は大きく異なります。Luaでは、プロテクトされた呼び出しを使用して行われます[[1\]](https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version#cite_note-2)。プロテクトモードで呼び出された関数は、エラーが発生してもプログラムを停止しないため、これらはプロテクト呼び出しと呼ばれます。プロテクトモードで関数を呼び出すために使用できる関数は2つあります。
 
 Sometimes, it can be useful to prevent an error from stopping the code and instead do something like displaying an error message to the user so he can report the bug to the developer. This is called exception handling (or error handling) and is done by catching the error to prevent its propagation and running an exception handler to handle it. The way it is done in different programming languages varies a lot. In Lua, it is done using protected calls[[1\]](https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version#cite_note-2). They are called protected calls because a function called in protected mode will not stop the program if an error happens. There are two functions that can be used to call a function in protected mode:
 
