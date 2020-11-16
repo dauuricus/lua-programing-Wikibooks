@@ -1011,6 +1011,8 @@ A function (also called a subroutine, a procedure, a routine or a subprogram) is
 
 Because functions can be called from other functions, the Lua interpreter (the program that reads and executes Lua code) needs to be able to know what function called the function it is currently executing so that, when the function terminates (when there is no more code to execute), it can return to execution of the right function. This is done with a stack called the call stack: each item in the call stack is a function that called the function that is directly above it in the stack, until the last item in the stack, which is the function currently being executed. When a function terminates, the interpreter uses the stack's pop operation to remove the last function in the list, and it then returns to the previous function.
 
+関数には、組み込み関数とユーザー定義関数の2種類があります。組み込み関数はLuaで提供される関数であり、すでに知っている`print`関数などの関数が含まれています。print関数のように直接アクセスできるものもあれば、乱数を返す`math.random`関数のようにライブラリを介してアクセスする必要があるものもあります。ユーザー定義関数は、ユーザーが定義した関数です。ユーザー定義関数は、関数コンストラクターを使用して定義されます。
+
 There are two types of functions: built-in functions and user-defined functions. Built-in functions are functions provided with Lua and include functions such as the `print` function, which you already know. Some can be accessed directly, like the `print` function, but others need to be accessed through a library, like the `math.random` function, which returns a random number. User-defined functions are functions defined by the user. User-defined functions are defined using a function constructor:
 
 ```lua
@@ -1018,6 +1020,8 @@ local func = function(first_parameter, second_parameter, third_parameter)
 	-- function body (a function's body is the code it contains)
 end
 ```
+
+上記のコードは、3つのパラメーターを持つ関数を作成し、それを変数funcに格納します。次のコードは上記のコードとまったく同じですが、関数を定義するためにシンタックスシュガーを使用しています。
 
 The code above creates a function with three parameters and stores it in the variable func. The following code does exactly the same as the above code, but uses syntactic sugar for defining the function:
 
