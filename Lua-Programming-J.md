@@ -947,9 +947,15 @@ The current parser always sees such constructions in the first way, interpreting
 
 ### Chunks
 
+Luaのコンパイル単位はチャンクと呼ばれます。チャンクは、ホストプログラム内のファイルまたは文字列に格納できます。チャンクを実行するために、Luaは最初にチャンクを仮想マシンの命令にプリコンパイルし、次にコンパイルされたコードを仮想マシンのインタープリターで実行します。チャンクは、Luaに付属のコンパイルプログラム`luac`、または指定された関数のバイナリ表現を含む文字列を返す`string.dump`関数を使用して、バイナリ形式（バイトコード）にプリコンパイルすることもできます。
+
 The unit of compilation of Lua is called a chunk. A chunk can be stored in a file or in a string inside the host program. To execute a chunk, Lua first precompiles the chunk into instructions for a virtual machine, and then it executes the compiled code with an interpreter for the virtual machine. Chunks can also be precompiled into binary form (bytecode) using `luac`, the compilation program that comes with Lua, or the `string.dump` function, which returns a string containing a binary representation of the function it is given.
 
+この`load`関数を使用して、チャンクをロードできます。`load`関数に指定された最初のパラメーターが文字列の場合、チャンクはその文字列です。この場合、文字列はLuaコードまたはLuaバイトコードのいずれかです。最初のパラメーターが関数の場合、`load`チャンクを取得するためにその関数を繰り返し呼び出します。各チャンクは、前の文字列と連結される文字列です。次に、何も返されないか、空の文字列が返されたときに、チャンクが完了したと見なされます。
+
 The `load` function can be used to load a chunk. If the first parameter given to the `load` function is a string, the chunk is that string. In this case, the string may be either Lua code or Lua bytecode. If the first parameter is a function, `load` will call that function repeatedly to get the pieces of the chunk, each piece being a string that will be concatenated with the previous strings. It is then considered that the chunk is complete when nothing or the empty string is returned.
+
+`load`関数は構文エラーがない場合は関数としてコンパイルされたチャンクを返します。それ以外の場合は、`nil`とエラーメッセージが返されます。
 
 The `load` function will return the compiled chunk as a function if there is no syntactic error. Otherwise, it will return nil and the error message.
 
