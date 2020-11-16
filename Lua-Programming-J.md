@@ -800,7 +800,11 @@ end
 -- Other code can be here and it will execute regardless of whether the code in the conditional statement executed.
 ```
 
+上記のコードでは、変数番号には、代入ステートメントを使用して番号6が割り当てられています。次に、条件ステートメントは、変数番号に格納されている値が10より小さいかどうかをチェックします。これは、ここに当てはまります。そうである場合は、「6は10より小さい」と出力されます。
+
 In the code above, the variable number is assigned the number 6 with an assignment statement. Then, a conditional statement checks if the value stored in the variable number is smaller than ten, which is the case here. If it is, it prints "The number 6 is smaller than ten.".
+
+`else`キーワードを使用して式が真でない場合に*のみ*特定のコードを実行し、`elseif`条件ステートメントをチェーン化することもできます。
 
 It is also possible to execute a certain piece of code *only* if the expression was not true by using the `else` keyword and to chain conditional statements with the `elseif` keyword:
 
@@ -817,6 +821,8 @@ else
 	print("The number is either 1000 or bigger than 2999.")
 end
 ```
+
+`else`ブロックは常に最後のものでなければならないことに注意してください。`elseif`ブロックの後に`else`ブロックを置くことはできません。`elseif`ブロックは、それらを先行ブロックのいずれも実行されなかった場合にのみ意味があります。
 
 Note that the `else` block must always be the last one. There cannot be an `elseif` block after the `else` block. The `elseif` blocks are only meaningful if none of the blocks that preceded them was executed.
 
