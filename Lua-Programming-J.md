@@ -1,4 +1,4 @@
-wikibook
+wikibooks
 https://en.m.wikibooks.org/wiki/Lua_Programming
 
 # Lua Programming
@@ -23,7 +23,7 @@ This book aims to teach usage of the latest version of Lua. This means it will b
 
 Lua was designed and is being maintained at the Pontifical Catholic University of Rio de Janeiro, which is located in Brazil. Its creators are Roberto Ierusalimschy, Waldemar Celes and Luiz Henrique de Figueiredo.
 
-> 「ルア」（LOO-ahと発音）はポルトガル語で「月」を意味します。そのため、頭字語でも略語でもありませんが、名詞です。より具体的には、「ルア」は名前、地球の月の名前、そして言語の名前です。ほとんどの名前と同様に、小文字で最初の大文字、つまり「Lua」を使用して記述する必要があります。醜くて紛らわしい「LUA」とは書かないでください。人によって意味が異なる頭字語になります。だから、「Lua」と書いてください！
+> 「ルア」（LOO-ahと発音）はポルトガル語で「月」を意味します。そのため、頭字語でも略語でもありませんが、名詞です。より具体的には、「ルア」は名前、地球の月の名前、そして言語の名前です。ほとんどの名前と同様に、小文字で最初の大文字、つまり「Lua」を使用して記述する必要があります。ひどくて紛らわしい「LUA」とは書かないでください。人によって意味が異なる略語になります。だから、ぜひ「Lua」と書くようにしてくださいね！
 >
 > —Luaの作者、[Luaについて](http://www.lua.org/about.html)
 
@@ -1108,11 +1108,17 @@ print("hello" + 5)
 
 The code above follows Lua's syntactic rules, but it still doesn't make sense because it is impossible to add a string with a number (except when the string represents a number, in which case it will be coerced into one). This can be compared in English to the sentence "I are big". It follows the rules for creating sentences in English, but it still doesn't make sense because "I" is singular and "are" is plural.
 
+最後に、セマンティックエラーは、コードの一部の意味がその作成者が考えているものではない場合に発生するエラーです。これらは見つけるのが非常に難しいため、最悪のエラーです。 Luaは、構文エラーまたは静的セマンティックエラー（これはエラーのスローと呼ばれます）がある場合は常に通知しますが、セマンティックエラーがある場合は、どのような考えでコードが意味づけされていたかわからないため、通知できません。これらのエラーは、思っているよりも頻繁に発生し、エラーを見つけて修正することに、多くのプログラマーがたくさんの時間を費やしています。
+
 Finally, semantic errors are errors that happen when the meaning of a piece of code is not what its creator thinks it is. Those are the worst errors because they can be very hard to find. Lua will always tell you when there is a syntactic error or a static semantic error (this is called throwing an error), but it cannot tell you when there is a semantic error since it doesn't know what you think the meaning of the code is. These errors happen more often than most people would think they do and finding and correcting them is something many programmers spend a lot of time doing.
+
+エラーを見つけて修正するプロセスは、デバッグと呼ばれます。ほとんどの場合、プログラマーは実際にエラーを修正するよりもエラーを見つけることに多くの時間を費やします。これは、すべてのタイプのエラーに当てはまります。問題が何であるかがわかれば、通常は簡単に修正できますが、プログラマーがコードのどこに問題があるのかを見つけられずに、何時間もコードを見直す場合もあります。
 
 The process of finding errors and correcting them is called debugging. Most of the time, programmers will spend more time finding errors than actually correcting them. This is true for all types of errors. Once you know what the problem is, it is usually simple to fix it, but sometimes, a programmer can look at a piece of code for hours without finding what is wrong in it.
 
 ### Protected calls
+
+エラーをスローすることは、インタープリター（コードを読み取って実行するプログラム）によって手動で行われたか自動で行われたかにかかわらず、コードに問題があることを示すアクションです。指定されたコードが無効な場合、Luaによって自動的に実行されますが、`error`関数を使用して手動で実行できます。
 
 Throwing an error is the action of indicating, whether it is done manually or automatically by the interpreter (the program that reads the code and executes it), that something is wrong with the code. It is done automatically by Lua when the code given is invalid, but it can be done manually with the `error` function:
 
