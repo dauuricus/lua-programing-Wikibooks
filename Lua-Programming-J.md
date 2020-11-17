@@ -1225,17 +1225,30 @@ Weak references are references that are ignored by the garbage collector. These 
 
 #### Manipulating the garbage collector[Edit](https://en.m.wikibooks.org/w/index.php?title=Lua_Programming/Standard_libraries&action=edit&section=T-5)
 
-ガベージコレクターは、基本ライブラリの一部であり、ガベージコレクターへのインターフェイスとして機能する `collectgarbage` 関数で操作できます。その最初の引数は、実行するアクションをガベージコレクターに示す文字列です。2番目の引数は、一部のアクションで使用されます。この`collectgarbage`関数を使用して、ガベージコレクターを停止し、手動で収集サイクルを実行し、Luaが使用するメモリをカウントできます。
+ガベージコレクターは、基本ライブラリの一部であり、ガベージコレクターへのインターフェイスとして機能する `collectgarbage` 関数で操作できます。その最初の引数は、実行するアクションをガベージコレクターに示す文字列です。2番目の引数は、一部のアクションで使用されます。この `collectgarbage` 関数を使用して、ガベージコレクターを停止し、手動で収集サイクルを実行し、Luaが使用するメモリをカウントできます。
 
 The garbage collector may be manipulated with the `collectgarbage` function, which is part of the basic library and serves as an interface to the garbage collector. Its first argument is a string that indicates to the garbage collector what action should be performed; a second argument is used by some actions. The `collectgarbage` function can be used to stop the garbage collector, manually perform collection cycles and count the memory used by Lua.
 
 ## Coroutines
 
+> **Coroutines**は、[サブルーチン](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/subroutine&usg=ALkJrhi8jzOULEjJ1hplRlFcGlV8gZcr1A)を一般化して、特定の場所で実行を一時停止および再開するための複数の[エントリポイント](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/entry_point&usg=ALkJrhixPlb6PyQYLsRnHACHiivW2ePROw)を許可する[コンピュータプログラム](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/computer_program&usg=ALkJrhgAvIURsjyE4JqxxgW2ym075csorQ)コンポーネントです。コルーチンは、[協調タスク](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/cooperative_multitasking&usg=ALkJrhiADjyfevkjw_WwIRcUOxersI1rFA)、[例外](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/exception_handling&usg=ALkJrhi6Dwz-mOPvvY0gX_crK2yqVehZdA)、[イベントループ](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/event_loop&usg=ALkJrhgZFK2afaQnYMYTsZQW6SeTfM648Q)、[イテレータ](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/iterator&usg=ALkJrhhlgP0_0SmgvvmITMRLx_wRnlww7g)、[無限リスト](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/lazy_evaluation&usg=ALkJrhi6cLQdDRdvh_DK9IAsxXK-vF8I7g)、[パイプ](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/pipeline_(software)&usg=ALkJrhhdyPCiI1O0UXvWU1Q1dAkZUaEmTg)など、より使い慣れたプログラムコンポーネントの実装に最適です。
+>
+> —ウィキペディア、[コルーチン](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Coroutine&usg=ALkJrhjwxw7xoPpU8qfJJvK6w4Mnbf0rvw)
+
 > **Coroutines** are [computer program](https://en.wikipedia.org/wiki/computer_program) components that generalize [subroutines](https://en.wikipedia.org/wiki/subroutine) to allow multiple [entry points](https://en.wikipedia.org/wiki/entry_point) for suspending and resuming execution at certain locations. Coroutines are well-suited for implementing more familiar program components such as [cooperative tasks](https://en.wikipedia.org/wiki/cooperative_multitasking), [exceptions](https://en.wikipedia.org/wiki/exception_handling), [event loop](https://en.wikipedia.org/wiki/event_loop), [iterators](https://en.wikipedia.org/wiki/iterator), [infinite lists](https://en.wikipedia.org/wiki/lazy_evaluation) and [pipes](https://en.wikipedia.org/wiki/pipeline_(software)).
 >
 > —Wikipedia, [Coroutine](https://en.wikipedia.org/wiki/Coroutine)
 
+コルーチンは、Luaのコルーチンライブラリを使用して作成および操作できるコンポーネントであり、コルーチンを内部から生成する関数またはコルーチンを外部から再開する関数を呼び出すことにより、特定の場所で関数の実行を生成および再開できるようにします 。例：
+
 Coroutines are components that can be created and manipulated with the coroutine library in Lua and that allow the yielding and resuming of the execution of a function at specific locations by calling functions that yield the coroutine from inside of itself or that resume it from outside of itself. Example:
+
+1. メインスレッドの関数は、`coroutine.create`関数からコルーチンを作成し、`coroutine.resume`で再開します。コルーチンには、番号3が渡されます。
+2. コルーチンの関数が実行され、引数として `coroutine.resume` に渡された数値を取得します。
+3. 関数は、実行の特定の時点に到達し`coroutine.yield`、引数として、受け取った引数の合計（3）と2（したがって、3 + 2 = 5）を呼び出します。
+4. `coroutine.resume`への呼び出しは` coroutine.yield`に渡されたため、5を返し、メインスレッドは現在再び実行されており、その数値を変数に格納します。 コードを実行した後、コルーチンを再開し、 `coroutine.resume`の呼び出しから受け取った値の2倍を` coroutine.resume`に渡します（つまり、5×2 = 10を渡します）。
+5. コルーチンは、 `coroutine.yield` の呼び出しの結果として、`coroutine.resume` に渡された値を取得し、さらにコードを実行した後に終了します。 これは、 `coroutine.yield` の呼び出しの結果と、最初にパラメーターとして指定された値（つまり、10-3 = 7）との差を返します。
+6. メインスレッドは、 `coroutine.resume` の呼び出しの結果としてコルーチンによって返される値を取得し、続行します。
 
 1. A function in the main thread creates a coroutine from a function with `coroutine.create` and resumes it with `coroutine.resume`, to which the number 3 is passed.
 2. The function in the coroutine executes and gets the number passed to `coroutine.resume` as an argument.
