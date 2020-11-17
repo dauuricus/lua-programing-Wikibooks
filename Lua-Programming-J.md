@@ -1176,8 +1176,7 @@ end
 
 It is not necessary to understand the code above as it is only a demonstration of a variadic function.
 
-この`select`関数は、テーブルを使用せずに引数リストを操作するのに役立ちます。引数の数が不定であるため、それ自体がvariadic関数です。最初の引数として指定された番号を使用して、引数の後のすべての引数を返します（指定された番号が負の場合、最後からインデックスを付けます。つまり、-1が最後の引数です）。また、最初の引数が文字列 "＃"の場合、最初の引数を除いて、受け取った引数の数も返します。引数リスト内の特定の数より前のすべての引数を破棄すると、より元々は、引数として送信されるnil値と、引数として送信されない値を区別するのに役立ちます。`#`は最初の引数として、値が無いことから nil 値が指定されると`select`は区別します。引数リスト（および戻りリストも）はタプル（tuples
-:いくつかの部分からなるデータの構造）のインスタンスであり、テーブルに関する章で説明します。この`select`関数はすべてのタプルで機能します。
+この`select`関数は、テーブルを使用せずに引数リストを操作するのに役立ちます。引数の数が不定であるため、それ自体がvariadic関数です。最初の引数として指定された番号を使用して、引数の後のすべての引数を返します（指定された番号が負の場合、最後からインデックスを付けます。つまり、-1が最後の引数です）。また、最初の引数が文字列 "＃"の場合、最初の引数を除いて、受け取った引数の数も返します。引数リスト内の特定の数より前のすべての引数を破棄すると、より元々は、引数として送信されるnil値と、引数として送信されない値を区別するのに役立ちます。`#`は最初の引数として、値が無いことから nil 値が指定されると`select`は区別します。引数リスト（および戻りリストも）はタプル（tuples:いくつかの部分からなるデータの構造）のインスタンスであり、テーブルに関する章で説明します。この`select`関数はすべてのタプルで機能します。
 
 The `select` function is useful to manipulate argument lists without needing to use tables. It is itself a variadic function, as it accepts an indefinite number of arguments. It returns all arguments after the argument with the number given as its first argument (if the number given is negative, it indexes starting from the end, meaning -1 is the last argument). It will also return the number of arguments it received, excluding the first one, if the first argument is the string "#". It can be useful to discard all arguments in an argument list before a certain number, and, more originally, to distinguish between nil values being sent as arguments and nothing being sent as an argument. Indeed, `select` will distinguish, when `"#"` is given as its first argument, nil values from no value. Argument lists (and return lists as well) are instances of tuples, which will be explored in the chapter about tables; the `select` function works with all tuples.
 
