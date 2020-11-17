@@ -1201,9 +1201,13 @@ Lua is a language that is said to "not be provided with batteries". This means t
 
 ## Basic library
 
+基本ライブラリはLuaにコア機能を提供します。そのすべての関数と値はグローバル環境で直接利用可能であり、デフォルトでグローバル環境で直接利用可能なすべての関数と値は基本ライブラリの一部です。
+
 The basic library provides core functionality to Lua. All its functions and values are directly available in the global environment, and all functions and values available directly in the global environment by default are part of the basic library.
 
 ### Assertion
+
+アサーションは、開発者が true であると想定する述語です。これらは、プログラムの実行の特定の瞬間に特定の条件が真であることを保証するためにプログラムで使用されます。アサーションは、プログラムが正しく機能することを確認するための[unit tests](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.m.wikibooks.org/w/index.php%3Ftitle%3DLua_Programming/Unit_testing%26action%3Dedit%26redlink%3D1&usg=ALkJrhgO49Wfq8PkkhqVgyO8fwPyXEAHxA)で使用されますが、プログラムコードでも使用されます。この場合、アサーションが false の場合、プログラムが正しい環境を確認するため、またはプログラムコードでエラーが発生していないことを確認し、適切なエラーメッセージを生成して、予期したとおりに何かが発生しなかったときにコードのバグを見つけやすくします。 Luaでは、条件とメッセージ（デフォルトでは「アサーションに失敗しました！」）をパラメーターとして受け入れる`assert`関数を使用してアサーションが作成されます。条件が false と評価された場合、`assert`はメッセージとともにエラーをスローします。true と評価された場合は、`assert`はすべての引数を返します。
 
 An assertion is a predicate that is assumed by the developer to be true. They are used in programs to ensure that a specific condition is true at a specific moment of the execution of a program. Assertions are used in [unit tests](https://en.m.wikibooks.org/w/index.php?title=Lua_Programming/Unit_testing&action=edit&redlink=1) to verify that a program works correctly, but are also used in program code, in which case the program will fail when an assertion is false, either to verify that the environment in which the program is correct, or to verify that no error was made in program code and to generate appropriate error messages to make it easier to find bugs in the code when something doesn't happen as expected. In Lua, assertions are made with the `assert` function, which accepts a condition and a message (which will default to "assertion failed!") as parameters. When the condition evaluates to false, `assert` throws an error with the message. When it evaluates to true, `assert` returns all its arguments.
 
