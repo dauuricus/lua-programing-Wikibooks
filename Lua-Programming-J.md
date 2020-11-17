@@ -1218,7 +1218,7 @@ Garbage collection is a form of automatic memory management implemented by Lua a
 
 #### Weak references
 
-弱参照は、ガベージコレクターによって無視される参照です。これらの参照は、開発者が `mode` メタメソッドを使用してガベージコレクターに示します。テーブルの `mode` メタメソッドは文字列である必要があります。その文字列に文字「k」が含まれている場合、テーブルのフィールドのすべてのキーは弱く、文字「v」が含まれている場合、テーブルのフィールドのすべての値は弱くなります。オブジェクトの配列に弱い値がある場合、ガベージコレクターは、その配列および他の弱い参照でのみ参照されている限り、その配列で参照されている場合でもこれらのオブジェクトを収集します。この動作は便利な場合もありますが、ほとんど使用されません。
+弱参照は、[ガベージコレクターによって無視される参照](https://ja.wikipedia.org/wiki/%E5%BC%B1%E3%81%84%E5%8F%82%E7%85%A7)です。これらの参照は、開発者が `mode` メタメソッドを使用してガベージコレクターに示します。テーブルの `mode` メタメソッドは文字列である必要があります。その文字列に文字「k」が含まれている場合、テーブルのフィールドのすべてのキーは弱く、文字「v」が含まれている場合、テーブルのフィールドのすべての値は弱くなります。オブジェクトの配列に弱い値がある場合、ガベージコレクターは、その配列および他の弱い参照でのみ参照されている限り、その配列で参照されている場合でもこれらのオブジェクトを収集します。この動作は便利な場合もありますが、ほとんど使用されません。
 
 Weak references are references that are ignored by the garbage collector. These references are indicated to the garbage collector by the developer, using the `mode` metamethod. A table's `mode` metamethod should be a string. If that string contains the letter "k", all the keys of the table's fields are weak, and if it contains the letter "v", all the values of the table's fields are weak. When an array of objects has weak values, the garbage collector will collect these objects even if they are referenced in that array, as long as they are only referenced in that array and in other weak references. This behavior is sometimes useful, but rarely used.
 
@@ -1256,6 +1256,8 @@ Coroutines are components that can be created and manipulated with the coroutine
 5. The coroutine gets the value passed to `coroutine.resume` as the result of the call to `coroutine.yield` and terminates after running some more code. It returns the difference between the result of the call to `coroutine.yield` and the value it was given as a parameter initially (i.e. 10−3=7).
 6. The main thread gets the value returned by the coroutine as the result of the call to `coroutine.resume` and goes on.
 
+この例をコードに入れると、次のようになります。
+
 This example, put in code, gives the following:
 
 ```lua
@@ -1269,14 +1271,27 @@ local _, final_result = coroutine.resume(co, initial_result * 2) -- 5*2=10
 print(final_result) --> 7
 ```
 
+`coroutine.create`関数は、関数からコルーチンを作成します。 コルーチンは「スレッド」タイプの値です。 `coroutine.resume`は、コルーチンの実行を開始または継続します。 コルーチンは、エラーが発生した場合、または実行するものが何も残っていない場合（この場合、実行が終了した場合）にデッドと呼ばれます。 コルーチンが死んでいる場合、再開することはできません。 `coroutine.resume`関数は、コルーチンの実行が成功した場合は` true`を返し、コルーチンが終了した場合は返されたすべての値とともに、終了しなかった場合は `coroutine.yield`に渡されます。 実行が成功しなかった場合は、エラーメッセージとともに「false」が返されます。 `coroutine.resume`は実行中のコルーチンを返し、そのコルーチンがメインスレッドの場合は` true`を返し、それ以外の場合は `false`を返します。
+
 The `coroutine.create` function creates a coroutine from a function; coroutines are values of type "thread". `coroutine.resume` starts or continues the execution of a coroutine. A coroutine is said to be dead when it has encountered an error or has nothing left to run (in which case it has terminated its execution). When a coroutine is dead, it cannot be resumed. The `coroutine.resume` function will return `true` if the execution of the coroutine was successful, along with all the values returned, if the coroutine has terminated, or passed to `coroutine.yield` if it has not. If the execution was not successful, it will return `false` along with an error message. `coroutine.resume` returns the running coroutine and `true` when that coroutine is the main thread, or `false` otherwise.
 
+この`coroutine.status`関数は、コルーチンのステータスを文字列として返します。
+
 The `coroutine.status` function returns the status of a coroutine as a string:
+
+* コルーチンが実行中の場合は「実行中」。つまり、 `coroutine.status`を呼び出したコルーチンである必要があります。
+* コルーチンがyieldの呼び出しで一時停止されている場合、またはコルーチンがまだ実行を開始していない場合は、「一時停止」
+* コルーチンがアクティブであるが実行されていない場合は「正常」、つまり別のコルーチンを再開したことを意味します
+* コルーチンの実行が終了した場合、またはエラーが発生した場合は「デッド」
 
 - "running" if the coroutine is running, which means it must be the coroutine which called `coroutine.status`
 - "suspended" if the coroutine is suspended in a call to yield or if it has not started running yet
 - "normal" if the coroutine is active but not running, which means it has resumed another coroutine
 - "dead" if the coroutine has finished running or has encountered an error
+
+`coroutine.wrap`関数は、呼び出されるたびにコルーチンを再開する関数を返します。 この関数に指定された追加の引数は、 `coroutine.resume`への追加の引数として機能し、コルーチンによって返される値、または` coroutine.yield`に渡される値は、関数の呼び出しによって返されます。 `coroutine.wrap`関数は、` coroutine.resume`とは異なり、プロテクトモードでコルーチンを呼び出さず、エラーを伝播します。
+
+コルーチンには多くのユースケースがありますが、それらを説明することはこの本の範囲外です。
 
 The `coroutine.wrap` function returns a function that resumes a coroutine every time it is called. Extra arguments given to this function will act as extra arguments to `coroutine.resume` and values returned by the coroutine or passed to `coroutine.yield` will be returned by a call to the function. The `coroutine.wrap` function, unlike `coroutine.resume`, does not call the coroutine in protected mode and propagates errors.
 
