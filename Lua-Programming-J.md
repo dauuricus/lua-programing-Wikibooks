@@ -1153,7 +1153,7 @@ Sometimes, it can be useful to prevent an error from stopping the code and inste
 
 ## Stack overflow
 
-呼び出しスタック、つまり呼び出された順序で呼び出されたすべての関数を含むスタックについては、前述しました。Luaを含むほとんどの言語でのその呼び出しスタックには、最大サイズがあります。この最大サイズは非常に大きいため、ほとんどの場合心配する必要はありませんが、自分自身を呼び出す関数（これは再帰性と呼ばれ、このような関数は再帰関数と呼ばれます）は、自分自身を呼び出すことを妨げるものがない場合、この制限に達する可能性がありますそして無期限に。これはスタックオーバーフローと呼ばれます。スタックがオーバーフローすると、コードの実行が停止し、エラーがスローされます。
+呼び出しスタック、つまり呼び出された順序で呼び出されたすべての関数を含むスタックについては、前述しました。Luaを含むほとんどの言語でのその呼び出しスタックには、最大サイズがあります。この最大サイズは非常に大きいため、ほとんどの場合心配する必要はありませんが、自分自身を呼び出す関数（これは再帰性と呼ばれ、このような関数は再帰関数と呼ばれます）は、自分自身を呼び出すことを妨げるものがない場合、この制限に達するまで無期限に再帰を続ける可能性があります。これはスタックオーバーフローと呼ばれます。スタックがオーバーフローすると、コードの実行が停止し、エラーがスローされます。
 
 The call stack, the stack that contains all the functions that were called in the order in which they were called, was mentioned earlier. That call stack in most languages, including Lua, has a maximum size. This maximum size is so big that it should not be worried about in most cases, but functions that call themselves (this is called recursivity and such functions are called recursive functions) can reach this limit if there is nothing to prevent them from calling themselves over and over indefinitely. This is called a stack overflow. When the stack overflows, the code stops running and an error is thrown.
 
