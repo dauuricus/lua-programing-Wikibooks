@@ -1159,6 +1159,8 @@ The call stack, the stack that contains all the functions that were called in th
 
 ## Variadic functions
 
+可変引数関数は、vararg関数とも呼ばれ、可変数の引数を受け入れる関数です。可変個引数関数は、パラメーターリストの最後にある3つのドット（ "..."）で示されます。パラメータリストのパラメータに収まらない引数は、破棄されるのではなく、vararg式を介して関数で使用できるようになります。これも3つのドットで示されます。 vararg式の値は、値のリスト（テーブルではない）であり、次の式を使用して、より簡単に操作できるようにテーブルに配置できます。`{...}`。Lua 5.0では、vararg式を介して使用できる代わりに、「arg」と呼ばれる特別なパラメーターで追加の引数を使用できました。次の関数は、受け取ったすべての引数に最初の引数を追加し、次にそれらすべてを合計して結果を出力する関数の例です。
+
 Variadic functions, which are also called vararg functions, are functions that accept a variable number of arguments. A variadic function is indicated by three dots ("...") at the end of its parameter list. Arguments that do not fit in the parameters in the parameter list, instead of being discarded, are then made available to the function through a vararg expression, which is also indicated by three dots. The value of a vararg expression is a list of values (not a table) which can then be put in a table to be manipulated with more ease with the following expression: `{...}`. In Lua 5.0, instead of being available through a vararg expression, the extra arguments were available in a special parameter called "arg". The following function is an example of a function that would add the first argument to all the arguments it receives, then add all of them together and print the result:
 
 ```lua
