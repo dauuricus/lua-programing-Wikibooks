@@ -1219,9 +1219,13 @@ Garbage collection is a form of automatic memory management implemented by Lua a
 
 #### Weak references
 
+弱参照は、ガベージコレクターによって無視される参照です。これらの参照は、開発者が `mode` メタメソッドを使用してガベージコレクターに示します。テーブルの `mode` メタメソッドは文字列である必要があります。その文字列に文字「k」が含まれている場合、テーブルのフィールドのすべてのキーは弱く、文字「v」が含まれている場合、テーブルのフィールドのすべての値は弱くなります。オブジェクトの配列に弱い値がある場合、ガベージコレクターは、その配列および他の弱い参照でのみ参照されている限り、その配列で参照されている場合でもこれらのオブジェクトを収集します。この動作は便利な場合もありますが、ほとんど使用されません。
+
 Weak references are references that are ignored by the garbage collector. These references are indicated to the garbage collector by the developer, using the `mode` metamethod. A table's `mode` metamethod should be a string. If that string contains the letter "k", all the keys of the table's fields are weak, and if it contains the letter "v", all the values of the table's fields are weak. When an array of objects has weak values, the garbage collector will collect these objects even if they are referenced in that array, as long as they are only referenced in that array and in other weak references. This behavior is sometimes useful, but rarely used.
 
 #### Manipulating the garbage collector[Edit](https://en.m.wikibooks.org/w/index.php?title=Lua_Programming/Standard_libraries&action=edit&section=T-5)
+
+ガベージコレクターは、基本ライブラリの一部であり、ガベージコレクターへのインターフェイスとして機能する `collectgarbage` 関数で操作できます。その最初の引数は、実行するアクションをガベージコレクターに示す文字列です。2番目の引数は、一部のアクションで使用されます。この`collectgarbage`関数を使用して、ガベージコレクターを停止し、手動で収集サイクルを実行し、Luaが使用するメモリをカウントできます。
 
 The garbage collector may be manipulated with the `collectgarbage` function, which is part of the basic library and serves as an interface to the garbage collector. Its first argument is a string that indicates to the garbage collector what action should be performed; a second argument is used by some actions. The `collectgarbage` function can be used to stop the garbage collector, manually perform collection cycles and count the memory used by Lua.
 
