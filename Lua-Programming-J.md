@@ -1363,6 +1363,7 @@ Patterns are strings that follow a certain notation to indicate a pattern that a
 | %x                    | Hexadecimal digits                                |
 
 特殊ではないすべての文字はそれ自体を表し、特殊文字（英数字ではないすべての文字）は、パーセント記号を接頭辞として付けることでエスケープできます。 キャラクタークラスを組み合わせて、セットに入れることで、より大きなキャラクタークラスを作成できます。 セットは、角括弧で囲まれた文字クラスとして示されます（つまり、 `[％xp]`は、すべての16進文字と文字「p」のセットです）。 文字の範囲は、範囲の終了文字をハイフンで昇順で区切ることで確認できます（つまり、 `[0-9％s]`は0から9までのすべての数字とスペース文字を表します）。キャレット（ "^"）文字がセットの先頭（開始角括弧の直後）に配置されている場合、セットには、キャレットがセットの先頭に配置されていなかった場合に含まれていた文字を除くすべての文字が含まれます。
+
 All characters that are not special represent themselves and special characters (all characters that are not alphanumeric) can be escaped by being prefixed by a percentage sign. Character classes can be combined to create bigger character classes by being put in a set. Sets are noted as character classes noted between square brackets (i.e. `[%xp]` is the set of all hexadecimal characters plus the letter "p"). Ranges of characters can be noted by separating the end characters of the range, in ascending order, with a hyphen (i.e. `[0-9%s]` represents all the digits from 0 to 9 plus space characters). If the caret ("^") character is put at the start of the set (right after the opening square bracket), the set will contain all characters except those it would have contained if that caret had not been put at the start of the set.
 
 パーセント記号 `%` の前にある文字で表されるすべてのクラスの補数は、パーセント記号の後に対応する大文字が続くものとして示されます（つまり、 `%S` はスペース文字を除くすべての文字を表します）。
@@ -1373,7 +1374,13 @@ The complement of all classes represented by a letter preceded of a percentage s
 
 Patterns are sequences of pattern items that represent what sequences should be found in the pattern for a string to match it. A pattern item can be a character class, in which case it matches any of the characters in the class once, a character class followed by the "*" character, in which case it matches 0 or more repetitions of characters in the class (these repetition items will always match the longest possible sequence), a character class followed by the addition ("+") character, in which case it matches 1 or more repetitions of characters in the class (these repetition items will also always match the longest possible sequence), a character class followed by the minus ("-") character, in which case it matches 0 or more repetitions of characters in the class, but matches the shortest possible sequence or a character class followed by an interrogation mark, in which case it matches one or no occurrence of a character in the class.
 
+以前にキャプチャされた部分文字列と同等の部分文字列を一致させることができます。`%1`は最初にキャプチャされた部分文字列と一致し、 `%2`は2番目の部分文字列と一致し、以下同様に`%9`まで続きます。 キャプチャについては、以下で説明します。 リファレンスマニュアルで説明されているように、パターンによって提供される他の2つの機能があります。
+
 It is possible to match substrings equivalent to previously captured substrings: `%1` will match the first captured substring, `%2` the second, and so on until `%9`. Captures are described below. There are two other functionalities offered by patterns, as described by the reference manual:
+
+> `%bxy`、ここでxとyは2つの異なる文字です。 このような項目は、xで始まり、yで終わり、xとyのバランスが取れている文字列に一致します。 つまり、文字列を左から右に読み、xの場合は + 1、yの場合は-1を数えると、最後のyは、数が0に達する最初のyになります。たとえば、項目 `%b()`は バランスの取れた括弧で式を照合します。
+>
+> `%f[set]`、フロンティアパターン。 このような項目は、次の文字がセットに属し、前の文字がセットに属さないように、任意の位置で空の文字列と一致します。 セットセットは、前述のように解釈されます。 件名の最初と最後は、文字「 '\0'」であるかのように処理されます。
 
 > `%bxy`, where x and y are two distinct characters; such item matches strings that start with x, end with y, and where the x and y are balanced. This means that, if one reads the string from left to right, counting +1 for an x and -1 for a y, the ending y is the first y where the count reaches 0. For instance, the item `%b()` matches expressions with balanced parentheses.
 >
