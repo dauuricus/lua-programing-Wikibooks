@@ -1222,7 +1222,7 @@ Garbage collection is a form of automatic memory management implemented by Lua a
 
 Weak references are references that are ignored by the garbage collector. These references are indicated to the garbage collector by the developer, using the `mode` metamethod. A table's `mode` metamethod should be a string. If that string contains the letter "k", all the keys of the table's fields are weak, and if it contains the letter "v", all the values of the table's fields are weak. When an array of objects has weak values, the garbage collector will collect these objects even if they are referenced in that array, as long as they are only referenced in that array and in other weak references. This behavior is sometimes useful, but rarely used.
 
-#### Manipulating the garbage collector[Edit](https://en.m.wikibooks.org/w/index.php?title=Lua_Programming/Standard_libraries&action=edit&section=T-5)
+#### Manipulating the garbage collector
 
 ガベージコレクターは、基本ライブラリの一部であり、ガベージコレクターへのインターフェイスとして機能する `collectgarbage` 関数で操作できます。その最初の引数は、実行するアクションをガベージコレクターに示す文字列です。2番目の引数は、一部のアクションで使用されます。この `collectgarbage` 関数を使用して、ガベージコレクターを停止し、手動で収集サイクルを実行し、Luaが使用するメモリをカウントできます。
 
@@ -1271,7 +1271,7 @@ local _, final_result = coroutine.resume(co, initial_result * 2) -- 5*2=10
 print(final_result) --> 7
 ```
 
-`coroutine.create`関数は、関数からコルーチンを作成します。 コルーチンは「スレッド」タイプの値です。 `coroutine.resume`は、コルーチンの実行を開始または継続します。 コルーチンは、エラーが発生した場合、または実行するものが何も残っていない場合（この場合、実行が終了した場合）にデッドと呼ばれます。 コルーチンが死んでいる場合、再開することはできません。 `coroutine.resume`関数は、コルーチンの実行が成功した場合は` true`を返し、コルーチンが終了した場合は返されたすべての値とともに、終了しなかった場合は `coroutine.yield`に渡されます。 実行が成功しなかった場合は、エラーメッセージとともに「false」が返されます。 `coroutine.resume`は実行中のコルーチンを返し、そのコルーチンがメインスレッドの場合は` true`を返し、それ以外の場合は `false`を返します。
+`coroutine.create`関数は、関数からコルーチンを作成します。 コルーチンは「スレッド」タイプの値です。 `coroutine.resume`は、コルーチンの実行を開始または継続します。 コルーチンは、エラーが発生した場合、または実行するものが何も残っていない場合（この場合、実行が終了した場合）にデッドと呼ばれます。 コルーチンがデッドの場合、再開することはできません。 `coroutine.resume`関数は、コルーチンの実行が成功した場合は` true`を返し、コルーチンが終了した場合は返されたすべての値とともに、終了しなかった場合は `coroutine.yield`に渡されます。 実行が成功しなかった場合は、エラーメッセージとともに「false」が返されます。 `coroutine.resume`は実行中のコルーチンを返し、そのコルーチンがメインスレッドの場合は` true`を返し、それ以外の場合は `false`を返します。
 
 The `coroutine.create` function creates a coroutine from a function; coroutines are values of type "thread". `coroutine.resume` starts or continues the execution of a coroutine. A coroutine is said to be dead when it has encountered an error or has nothing left to run (in which case it has terminated its execution). When a coroutine is dead, it cannot be resumed. The `coroutine.resume` function will return `true` if the execution of the coroutine was successful, along with all the values returned, if the coroutine has terminated, or passed to `coroutine.yield` if it has not. If the execution was not successful, it will return `false` along with an error message. `coroutine.resume` returns the running coroutine and `true` when that coroutine is the main thread, or `false` otherwise.
 
@@ -1322,6 +1322,8 @@ local start_position, end_position = sentence:find("lazy", 1, true)
 print("The word \"lazy\" was found starting at position " .. start_position .. " and ending at position " .. end_position .. ".")
 ```
 
+これは、文字列の `index`メタメソッドが文字列ライブラリの関数を含むテーブルに設定され、 `string.a(b, ...)`を`b:a(...)`に置き換えることができるために機能します 。
+
 This works because the `index` metamethod of strings is set to the table containing the functions of the string library, making it possible to replace `string.a(b, ...)` by `b:a(...)`.
 
 文字の位置を示すインデックスを受け入れる、またはそのようなインデックスを返す文字列ライブラリ内の関数は、最初の文字が位置1にあると見なします。最後の文字が位置-1で、文字列の末尾から逆方向にインデックスを付けます。
@@ -1360,9 +1362,14 @@ Patterns are strings that follow a certain notation to indicate a pattern that a
 | %w                    | Alphanumeric characters (digits and letters)      |
 | %x                    | Hexadecimal digits                                |
 
+特殊ではないすべての文字はそれ自体を表し、特殊文字（英数字ではないすべての文字）は、パーセント記号を接頭辞として付けることでエスケープできます。 キャラクタークラスを組み合わせて、セットに入れることで、より大きなキャラクタークラスを作成できます。 セットは、角括弧で囲まれた文字クラスとして示されます（つまり、 `[％xp]`は、すべての16進文字と文字「p」のセットです）。 文字の範囲は、範囲の終了文字をハイフンで昇順で区切ることで確認できます（つまり、 `[0-9％s]`は0から9までのすべての数字とスペース文字を表します）。キャレット（ "^"）文字がセットの先頭（開始角括弧の直後）に配置されている場合、セットには、キャレットがセットの先頭に配置されていなかった場合に含まれていた文字を除くすべての文字が含まれます。
 All characters that are not special represent themselves and special characters (all characters that are not alphanumeric) can be escaped by being prefixed by a percentage sign. Character classes can be combined to create bigger character classes by being put in a set. Sets are noted as character classes noted between square brackets (i.e. `[%xp]` is the set of all hexadecimal characters plus the letter "p"). Ranges of characters can be noted by separating the end characters of the range, in ascending order, with a hyphen (i.e. `[0-9%s]` represents all the digits from 0 to 9 plus space characters). If the caret ("^") character is put at the start of the set (right after the opening square bracket), the set will contain all characters except those it would have contained if that caret had not been put at the start of the set.
 
+パーセント記号 `%` の前にある文字で表されるすべてのクラスの補数は、パーセント記号の後に対応する大文字が続くものとして示されます（つまり、 `%S` はスペース文字を除くすべての文字を表します）。
+
 The complement of all classes represented by a letter preceded of a percentage sign can be noted as a percentage sign followed by the corresponding uppercase letter (i.e. `%S` represents all characters except space characters).
+
+パターンは、文字列がパターンに一致するためにパターン内でどのシーケンスを見つける必要があるかを表すパターンアイテムのシーケンスです。 パターンアイテムは、文字クラスにすることができます。この場合、クラス内の任意の文字に1回一致し、文字クラスの後に「`*`」文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致します（これら 繰り返し項目は常に可能な限り長いシーケンスに一致します）、文字クラスの後に追加（ 「`+`」）文字が続きます。この場合、クラス内の文字の1つ以上の繰り返しに一致します（これらの繰り返し項目も常に可能な限り長いものに一致します） シーケンス）、文字クラスの後にマイナス（ 「`-`」）文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致しますが、最も短いシーケンスまたは文字クラスとそれに続く疑問符に一致します。この場合、クラス内の文字の1つまたは出現なしに一致します。
 
 Patterns are sequences of pattern items that represent what sequences should be found in the pattern for a string to match it. A pattern item can be a character class, in which case it matches any of the characters in the class once, a character class followed by the "*" character, in which case it matches 0 or more repetitions of characters in the class (these repetition items will always match the longest possible sequence), a character class followed by the addition ("+") character, in which case it matches 1 or more repetitions of characters in the class (these repetition items will also always match the longest possible sequence), a character class followed by the minus ("-") character, in which case it matches 0 or more repetitions of characters in the class, but matches the shortest possible sequence or a character class followed by an interrogation mark, in which case it matches one or no occurrence of a character in the class.
 
