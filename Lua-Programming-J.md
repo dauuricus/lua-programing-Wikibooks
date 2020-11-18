@@ -61,7 +61,7 @@ Lua can either be used embedded in an application or by itself. This book will n
 print("Hello, world!")
 ```
 
-上記のコードは、Hello, world! というテキストを出力します。紙に何かを印刷するのではなく、出力にテキストを表示することを参照して印刷します。これは、`print`という関数を呼び出すことによって引数として文字列"Hello, world!"を使用して行われます。これについては、関数に関する章で説明します。
+上記のコードは、Hello, world! というテキストを出力します。紙に何かを印刷するのではなく、出力にテキストを表示することを参照してプリントします。これは、`print`という関数を呼び出すことによって引数として文字列"Hello, world!"を使用して行われます。これについては、関数に関する章で説明します。
 
 Luaはほとんどの場合、低レベルのアプリケーションに[埋め込まれ](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Embedded_system&usg=ALkJrhjO7IDN0JceQxPpd_cx_j0Qs56Ktg)ていることに注意してください。つまり、`print`関数は、ユーザーに表示される領域にテキストを常に表示するとは限りません。これらのアプリケーションのプログラミングインターフェイスのドキュメントでは、一般に、テキストをユーザーに表示する方法について説明します。
 
@@ -1370,7 +1370,7 @@ All characters that are not special represent themselves and special characters 
 
 The complement of all classes represented by a letter preceded of a percentage sign can be noted as a percentage sign followed by the corresponding uppercase letter (i.e. `%S` represents all characters except space characters).
 
-パターンは、文字列がパターンに一致するためにパターン内でどのシーケンスを見つける必要があるかを表すパターンアイテムのシーケンスです。 パターンアイテムは、文字クラスにすることができます。この場合、クラス内の任意の文字に1回一致し、文字クラスの後に「`*`」文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致します（これら 繰り返し項目は常に可能な限り長いシーケンスに一致します）、文字クラスの後に追加（ 「`+`」）文字が続きます。この場合、クラス内の文字の1つ以上の繰り返しに一致します（これらの繰り返し項目も常に可能な限り長いものに一致します） シーケンス）、文字クラスの後にマイナス（ 「`-`」）文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致しますが、最も短いシーケンスまたは文字クラスとそれに続く疑問符に一致します。この場合、クラス内の文字の1つまたは出現なしに一致します。
+パターンは、文字列がそれに一致するためにパターン内でどのシーケンスを見つける必要があるかを表すパターンアイテムのシーケンスです。 パターンアイテムは、文字クラスにすることができます。この場合、クラス内の任意の文字に1回一致し、文字クラスの後に「`*`」文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致します（これら 繰り返し項目は常に可能な限り長いシーケンスに一致します）、文字クラスの後に追加（ 「`+`」）文字が続きます。この場合、クラス内の文字の1つ以上の繰り返しに一致します（これらの繰り返し項目も常に可能な限り長いものに一致します） シーケンス）、文字クラスの後にマイナス（ 「`-`」）文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致しますが、最も短いシーケンスまたは文字クラスとそれに続く疑問符に一致します。この場合、クラス内の文字の1つまたは出現なしに一致します。
 
 Patterns are sequences of pattern items that represent what sequences should be found in the pattern for a string to match it. A pattern item can be a character class, in which case it matches any of the characters in the class once, a character class followed by the "*" character, in which case it matches 0 or more repetitions of characters in the class (these repetition items will always match the longest possible sequence), a character class followed by the addition ("+") character, in which case it matches 1 or more repetitions of characters in the class (these repetition items will also always match the longest possible sequence), a character class followed by the minus ("-") character, in which case it matches 0 or more repetitions of characters in the class, but matches the shortest possible sequence or a character class followed by an interrogation mark, in which case it matches one or no occurrence of a character in the class.
 
@@ -1396,7 +1396,19 @@ It is possible to match substrings equivalent to previously captured substrings:
 
 Patterns are sequences of pattern items, optionally preceded by a caret, which indicates that the pattern can only match at the beginning of the string, and optionally followed by a dollar sign, which indicates that the pattern can only match at the end of the string. These symbols are said to anchor the match at the beginning or the end of the string. These two characters only have a special meaning when at the beginning or at the end of a pattern.
 
+
+
+サブパターンは、キャプチャを示すためにパターン内の括弧で囲むことができます。一致が成功すると、キャプチャに一致する文字列の部分文字列は、将来使用するために保存されます。たとえば、`gmatch`によって返されます。常に左括弧の位置から番号が付けられます。 2つの空の括弧は、現在の文字列位置（数値であり、文字列の一部ではありません）をキャプチャする空のキャプチャを示します。
+
+
+
 Sub-patterns can be enclosed inside parentheses inside patterns to indicate captures. When a match succeeds, the substrings of the string that match captures are stored for future use, for example to be returned by `gmatch`. They are always numbered starting from the position of their left parenthesis. Two empty parentheses denote the empty capture, which captures the current string position (which is a number and is not a part of the string).
+
+
+
+この`gmatch`関数を使用して、文字列内のパターンの出現を反復処理できます。`find`関数とは異なり、検索を開始する初期位置を指定したり、単純なマッチングを実行したりすることはできません。この`gmatch`関数は、呼び出されると、文字列内の指定されたパターンから次のキャプチャを返すイテレータを返します。パターンにキャプチャが指定されていない場合は、代わりに一致全体が示されます。次の例は、文中の単語を反復処理して1つずつプリントする方法を示しています。
+
+
 
 The `gmatch` function can be used to iterate through the occurrences of a pattern in a string; it is not possible, unlike with the `find` function, to specify an initial position to start searching or to perform simple matching. The `gmatch` function returns an iterator that, when called, returns the next captures from the given pattern in the string. The whole match is given instead if there are no captures specified in the pattern. The following example shows how to iterate through the words in a sentence and print them one by one:
 
@@ -1407,14 +1419,23 @@ for word in sentence:gmatch('%a+') do
 end
 ```
 
+この例では、一致全体は、イテレータであるwordによって返される唯一の値によって与えられます。
+
+`gsub`関数を使用して、文字列内のパターンのすべての出現箇所を別のものに置き換えることができます。 最初の2つの引数は文字列とパターンで、3番目はオカレンスを置き換える文字列で、4番目は置き換える必要のあるオカレンスの最大数です。 3番目の引数は、文字列ではなく、テーブルまたは関数にすることもできます。
+
 In this example, the entire match is given by the only value returned by the iterator, word.
 
 The `gsub` function can be used to replace all occurrences of a pattern in a string by something else. Its first two arguments are the string and the pattern, while the third is the string to replace occurrences by and the fourth is the maximum number of occurrences that should be replaced. The third argument, instead of being a string, can also be a table or a function.
 
+3番目の引数が文字列の場合、それは置換文字列と呼ばれ、文字列内のパターンの出現を置換します。 パターンによって保存されたキャプチャは、置換文字列に埋め込むことができます。 それらは、キャプチャの数を表す数字が続くパーセント記号によって示されます。 一致自体は `%0`で表すことができます。 置換文字列のパーセント記号は、 `%%`としてエスケープする必要があります。
+
 When the third argument is a string, it is called the replacement string and it replaces occurrences of the pattern in the string. Captures stored by the pattern can be embedded in the replacement string; they are noted by a percentage sign followed by a digit representing the number of the capture. The match itself can be represented by `%0`. Percentage signs in replacement strings must be escaped as `%%`.
+
+3番目の引数がテーブルの場合、最初のキャプチャはそのテーブルにインデックスを付けるためのキーとして使用され、置換文字列はテーブル内のそのキーに対応する値です。 関数の場合、その関数は一致するたびに呼び出され、すべてのキャプチャが引数として渡されます。 どちらの場合も、キャプチャがない場合は、代わりに一致全体が使用されます。 関数またはテーブルの値が `false`または` nil`の場合、置換は行われません。
 
 When the third argument is a table, the first capture is used as a key to index that table and the replacement string is the value corresponding to that key in the table. When it is a function, that function is called for every match, with all captures passed as arguments. In both cases, if there is no capture, the entire match is used instead. If the function or table gives the value `false` or `nil`, no replacement is done.
 
+Lua 5.2リファレンスマニュアルから直接引用したいくつかの例を次に示します。
 Here are some examples taken directly from the Lua 5.2 Reference Manual:
 
 > ```lua
@@ -1441,6 +1462,8 @@ Here are some examples taken directly from the Lua 5.2 Reference Manual:
 > ```
 >
 > —Lua authors, [Lua 5.2 Reference Manual](http://www.lua.org/manual/5.2/manual.html#6.4.1)
+
+Luaは、パターンマッチング以外の文字列操作機能を提供します。 これらには、文字の順序を逆にして文字列を返す `reverse`関数、文字列に相当する小文字を返す` lower`関数、文字列に相当する大文字を返す `upper`関数が含まれます。 文字列の長さを返す `len`関数と、引数として指定された2つの文字位置で開始および終了する文字列の部分文字列を返す` sub`関数。 他にもあり、それらのドキュメントはLua 5.2リファレンスマニュアルにあります。
 
 Lua offers other functions for manipulating strings than those for pattern matching. These include the `reverse` function, which returns a string with the order of the characters reversed, the `lower` function, which returns the lowercase equivalent of a string, the `upper` function, which returns the uppercase equivalent of a string, the `len` function, which returns the length of a string and the `sub` function, which returns the substring of a string that starts at and ends at the two character positions given as arguments. There are more, and their documentation can be found in the Lua 5.2 Reference Manual.
 
