@@ -1299,7 +1299,11 @@ There are many use cases for coroutines, but describing them are outside the sco
 
 ## String matching
 
+文字列を操作する場合、特定のパターンに従う部分文字列を文字列で検索できると便利なことがよくあります。 Luaには、これを行うための関数と、関数が文字列で検索できるパターンを表現するための表記法を提供する文字列操作ライブラリがあります。 Luaが提供する表記法は、プログラミングの世界のほとんどの言語やツールで使用されるパターンを表現するための[正規表現](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/regular_expression&usg=ALkJrhj_CdR0B83q433wqmYbGdMv6wD_lg)と非常によく似ています。ただし、それはより制限されており、構文がわずかに異なります。
+
 When manipulating strings, it is frequently useful to be able to search strings for substrings that follow a certain pattern. Lua has a string manipulation library that offers functions for doing this and a notation for expressing patterns that the functions can search for in strings. The notation offered by Lua is very similar to [regular expressions](https://en.wikipedia.org/wiki/regular_expression), a notation for expressing patterns used by most languages and tools in the programming world. However, it is more limited and has slightly different syntax.
+
+文字列ライブラリの`find`関数は、文字列内のパターンの最初の一致を探します。文字列内でパターンが見つかった場合、そのパターンが開始および終了する文字列内のインデックス（最初の文字から始まる文字列内の文字の位置を表す整数）を返します。パターンの出現が見つからない場合は、何も返しません。受け入れる最初のパラメーターは文字列で、2番目はパターン、3番目は`find`関数が検索を開始する文字位置を示す整数です。最後に、4番目の引数として`true`値を指定することにより、パターンなしで単純な一致を実行するように`find`関数に指示できます。次に、最初の文字列で指定された2番目の文字列の出現を検索します。単純一致を実行する場合は、3番目の引数を指定する必要があります。このサンプルコードは、文中の「lazy」という単語を検索し、その単語で見つかった出現箇所の開始位置と終了位置を出力します。
 
 The `find` function of the string library looks for the first match of a pattern in a string. If it finds an occurrence of the pattern in the string, it returns the indices in the string (integers representing the position of characters in the string starting from the first character, which is at position 1) where the occurrence starts and ends. If it doesn't find an occurrence of the pattern, it returns nothing. The first parameter it accepts is the string, the second being the pattern and the third being an integer indicating the character position where the `find` function should start searching. Finally, the `find` function can be told to perform a simple match without patterns by being given the value `true` as its fourth argument. It will then simply search for an occurrence of the second string it is given in the first string. The third argument must be given when a simple match is performed. This example code searches for the word "lazy" in a sentence and prints the start and end positions of the occurrence it finds of the word:
 
@@ -1307,6 +1311,8 @@ The `find` function of the string library looks for the first match of a pattern
 local start_position, end_position = string.find("The quick brown fox jumps over the lazy dog.", "lazy", 1, true)
 print("The word \"lazy\" was found starting at position " .. start_position .. " and ending at position " .. end_position .. ".")
 ```
+
+このコードでは「lazy」という単語は、位置36で始まり、位置39で終わることがわかりました。これは次と同等です。
 
 This code gives the result The word "lazy" was found starting at position 36 and ending at position 39.. It is equivalent to the following:
 
@@ -1320,7 +1326,23 @@ This works because the `index` metamethod of strings is set to the table contain
 
 Functions in the string library that accept indices to indicate character position or that return such indices consider the first character as being at position 1. They accept negative numbers and interpret them as indexing backwards, from the end of the string, with the last character being at position -1.
 
+パターンは、文字列が一致するかどうかを示す特定の表記法に従う文字列です。この目的のために、パターンには文字クラス、つまり文字のセットを表す組み合わせが含まれています。
+
 Patterns are strings that follow a certain notation to indicate a pattern that a string may match or not. For this purpose, patterns contain character classes, combinations that represent sets of characters.
+
+| 文字の組み合わせ | 説明                                 |
+| ---------------- | ------------------------------------ |
+| .                | すべての文字                         |
+| %a               | 文字（大文字と小文字）               |
+| ％c              | 制御文字                             |
+| ％d              | 数字                                 |
+| ％g              | 印刷可能な文字（スペース文字を除く） |
+| ％l              | 小文字                               |
+| %p               | 句読文字                             |
+| %s               | スペース文字                         |
+| %u               | 大文字                               |
+| %w               | 英数字（数字と文字）                 |
+| %x               | 16進数                               |
 
 | Character combination | Description                                       |
 | --------------------- | ------------------------------------------------- |
