@@ -342,6 +342,15 @@ Strings are sequences of characters that can be used to represent text. They can
 
 | Escape sequence | Description                                                  |
 | --------------- | ------------------------------------------------------------ |
+| \n              | 改行                                                         |
+| \"              | 二重引用符（ダブルクォーツ）                                 |
+| \'              | 一重引用符（またはアポストロフィ）                           |
+| \\              | バックスラッシュ                                             |
+| \t              | 水平tab                                                      |
+| \###            | ０から255 までの数字でなければなりません。結果は対応する [ASCII文字](https://en.wikipedia.org/wiki/ASCII) . |
+
+| Escape sequence | Description                                                  |
+| --------------- | ------------------------------------------------------------ |
 | \n              | A new line                                                   |
 | \"              | A double quote                                               |
 | \'              | A single quote (or apostrophe)                               |
