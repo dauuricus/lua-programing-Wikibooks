@@ -727,7 +727,7 @@ print(first_variable, second_variable) --> 87 54
 
 これが機能するのは、割り当てステートメントが何かを割り当てる前にすべての変数と値を評価するためです。割り当ては、実際に同時であるかのように実行されます。つまり、新しい値が割り当てられる前に、変数とその変数の値でインデックス付けされたテーブルフィールドに同時に値を割り当てることができます。つまり、次のコードは、`dictionary[1]`を12に設定するのではなく`dictionary[2]`に設定します。
 
-This works because the assignment statement evaluates all the variables and values before assigning anything. Assignments are performed as if they were really simultaneous, which means you can assign at the same time a value to a variable and to a table field indexed with that variable’s value before it is assigned a new value. In other words, the following code will set `dictionary[2]`, and not `dictionary[1]`, to 12.
+
 
 ```lua
 dictionary = {}
@@ -739,7 +739,7 @@ index, dictionary[index] = index - 1, 12
 
 条件文は、式が真であるかどうかをチェックし、真である場合は特定のコードを実行する命令です。式が真でない場合は、そのコードをスキップするだけで、プログラムが続行されます。Luaでは、唯一の条件文が`if`命令を使用します。Falseとnilは両方ともfalseと見なされ、その他はすべてtrueと見なされます。
 
-Conditional statements are instructions that check whether an expression is true and execute a certain piece of code if it is. If the expression is not true, they just skip over that piece of code and the program continues. In Lua, the only conditional statement uses the `if` instruction. False and nil are both considered as false, while everything else is considered as true.
+
 
 ```lua
 local number = 6
@@ -751,13 +751,13 @@ end
 -- Other code can be here and it will execute regardless of whether the code in the conditional statement executed.
 ```
 
-上記のコードでは、変数番号には、代入ステートメントを使用して番号6が割り当てられています。次に、条件ステートメントは、変数番号に格納されている値が10より小さいかどうかをチェックします。これは、ここに当てはまります。そうである場合は、「6は10より小さい」と出力されます。
+上記のコードでは、変数番号には、代入ステートメントを使用して番号6が割り当てられています。次に、条件ステートメントは、変数番号に格納されている値が10より小さいかどうかをチェックします。これは、ここに当てはまります。そうである場合は、「"The number 6 is smaller than ten." 6は10より小さい」と出力されます。
 
-In the code above, the variable number is assigned the number 6 with an assignment statement. Then, a conditional statement checks if the value stored in the variable number is smaller than ten, which is the case here. If it is, it prints "The number 6 is smaller than ten.".
+
 
 `else`キーワードを使用して式が真でない場合に*のみ*特定のコードを実行し、`elseif`条件ステートメントをチェーン化することもできます。
 
-It is also possible to execute a certain piece of code *only* if the expression was not true by using the `else` keyword and to chain conditional statements with the `elseif` keyword:
+
 
 ```lua
 local number = 15
@@ -775,11 +775,11 @@ end
 
 `else`ブロックは常に最後のものでなければならないことに注意してください。`elseif`ブロックの後に`else`ブロックを置くことはできません。`elseif`ブロックは、それらを先行ブロックのいずれも実行されなかった場合にのみ意味があります。
 
-Note that the `else` block must always be the last one. There cannot be an `elseif` block after the `else` block. The `elseif` blocks are only meaningful if none of the blocks that preceded them was executed.
 
-2つの値を比較するために使用される演算子は、上記のコードで使用されているものもあり、関係演算子と呼ばれます。関係がtrueの場合、ブール値`true`を返します。それ以外の場合は、ブール値`false`を返します。
 
-Operators used to compare two values, some of which are used in the code above, are called relational operators. If the relation is true, they return the boolean value `true`. Otherwise, they return the boolean value `false`.
+2つの値を比較するために使用される演算子は、上記のコードで使用されているものもあり、関係演算子と呼ばれます。関係がtrueの場合、ブール値`true`を返します。それ以外の場合は、ブール値 `false` を返します。
+
+
 
 |                 | 等しい | 等しくない | より大きい | 未満 | 以上 | 以下 |
 | --------------- | ------ | ---------- | ---------- | ---- | ---- | ---- |
@@ -793,19 +793,19 @@ Operators used to compare two values, some of which are used in the code above, 
 
 上記のコードは、`and`キーワードを使用して、条件式で多くのブール式を組み合わせる方法も示しています。
 
-The code above also demonstrates how the `and` keyword can be used to combine many boolean expressions in a conditional expression.
+
 
 ## Loops
 
 多くの場合、プログラマーは特定のコードまたは同様のコードを何度も実行するか、ユーザー入力に応じて特定のコードを何度も実行する必要があります。ループは、1回指定されますが、連続して複数回実行される可能性のある一連のステートメントです。
 
-Frequently, programmers will need to run a certain piece of code or a similar piece of code many times, or to run a certain piece of code a number of times that may depend on user input. A loop is a sequence of statements which is specified once but which may be carried out several times in succession.
+
 
 ### Condition-controlled loops
 
 条件制御ループは、条件によって制御されるループです。これらは条件ステートメントに非常に似ていますが、条件がtrueの場合にコードを実行し、それ以外の場合はスキップする代わりに、条件がtrueの間、または条件がfalseになるまでコードを実行し続けます。 Luaには、と条件制御ループの2つのステートメントがあります。`while`ループと　`repeat`　ループです。このようなループはコードを実行し、条件が真であるかどうかを確認します。 trueの場合、コードを再度実行し、条件がfalseになるまで繰り返します。条件がfalseの場合、コードの繰り返しを停止し、プログラムフローが続行されます。コードの各実行は、 iteration（反復）と呼ばれます。`while`と`repeat`ループの違いは、`repeat`ループはループの最後に条件をチェックすることです。`while`ループは、ループの開始時にそれをチェックします。これは、最初の反復でのみ違いがあります。コードが最初に実行されたときに条件がfalseであっても、`repeat`ループは常に少なくとも1回はコードを実行します。これは、条件が実際に true である場合にのみコードを最初に実行する`while`ループには当てはまりません。
 
-Condition-controlled loops are loops that are controlled by a condition. They are very similar to conditional statements, but instead of executing the code if the condition is true and skipping it otherwise, they will keep running it while the condition is true, or until the condition is false. Lua has two statements for condition-controlled loops: the `while` loop and the `repeat` loop. Such loops will run code, then check if the condition is true. If it is true, then they run the code again, and they repeat until the condition is false. When the condition is false, they stop repeating the code and the program flow continues. Each execution of the code is called an iteration. The difference between `while` and `repeat` loops is that `repeat` loops will check the condition at the end of the loop while `while` loops will check it at the start of the loop. This only makes a difference for the first iteration: `repeat` loops will always execute the code at least once, even if the condition is false at the first time the code is executed. This is not the case for `while` loops, which will only execute the code the first time if the condition is actually true.
+
 
 ```lua
 local number = 0
@@ -818,7 +818,7 @@ end
 
 上記のコードは、0、1、2、3のように、9まで出力します。10回目の反復後、数値は10以上になるため、ループの実行は停止します。ループは永久に実行されることを意味する場合があり、その場合、ループは無限ループと呼ばれます。たとえば、レンダラー、つまり画面上に物を描画するソフトウェアプロセスは、ユーザーに表示される画像を更新するために画面を再描画するために絶えずループすることがよくあります。これはビデオゲームでよくあることで、ユーザーに表示されるものを最新の状態に保つために、ゲームビューを常に更新する必要があります。ただし、ループを永久に実行する必要がある場合はまれであり、そのようなループはエラーの結果であることがよくあります。無限ループは多くのコンピュータリソースを消費する可能性がありますが、したがって、ユーザーから予期しない入力を受け取った場合でも、ループが常に終了するようにすることが重要です。
 
-The code above will print 0, then 1, then 2, then 3, and so on, until 9. After the tenth iteration, number will no longer be smaller than ten, and therefore the loop will stop executing. Sometimes, loops will be meant to run forever, in which case they are called infinite loops. Renderers, software processes that draw things on the screen, for example, will often loop constantly to redraw the screen to update the image that is shown to the user. This is frequently the case in video games, where the game view must be updated constantly to make sure what the user sees is kept up-to-date. However, cases where loops need to run forever are rare and such loops will often be the result of errors. Infinite loops can take a lot of computer resources, so it is important to make sure that loops will always end even if unexpected input is received from the user.
+
 
 ```lua
 local number = 0
@@ -831,13 +831,13 @@ until number >= 10
 
 上記のコードは、上記の`while`ループを使用したコードとまったく同じことを行います。主な違いは``、`while`キーワードと`do`キーワードの間に条件が配置される`while`ループとは異なり、条件はループの最後、untilキーワードの後に配置されることです。`repeat`ループは、`end`キーワードによってブロックが閉じられていないLuaで唯一のステートメントです。
 
-The code above will do exactly the same thing as the code that used a `while` loop above. The main differences is that, unlike `while` loops, where the condition is put between the `while` keyword and the `do` keyword, the condition is put at the end of the loop, after the `until` keyword. The `repeat` loop is the only statement in Lua that creates a block and that is not closed by the `end` keyword.
+
 
 ### Count-controlled loops
 
 変数をインクリメントすると、その値が段階的に、特に1ステップづつ増加します。前のセクションの2つのループは、変数の数字をインクリメントし、それを使用してコードを特定の回数実行しました。この種のループは非常に一般的であるため、Luaを含むほとんどの言語には組み込みのループ制御構造があります。この制御構造はカウント制御ループと呼ばれ、Luaおよびほとんどの言語では、`for`ステートメントによって定義されます。このようなループで使用される変数は、ループカウンターと呼ばれます。
 
-Incrementing a variable is increasing its value by steps, especially by steps of one. The two loops in the previous section incremented the variable number and used it to run the code a certain number of times. This kind of loop is so common that most languages, including Lua, have a built-in control structure for it. This control structure is called a count-controlled loop, and, in Lua and most languages, is defined by the `for` statement. The variable used in such loops is called the loop counter.
+
 
 ```lua
 for number = 0, 9, 1 do
@@ -847,7 +847,7 @@ end
 
 上記のコードは、前のセクションで示した2つのループとまったく同じことを行いますが、数値変数はループのローカルであるため、ループ内からのみアクセスできます。変数名と等号記号に続く最初の数字は初期化です。ループカウンタが初期化される値です。 2番目の番号は、ループが停止する番号です。変数をインクリメントし、変数がこの数に達するまでコードを繰り返します。最後に、3番目の数値は増分です。これは、各反復でループカウンターが増加する値です。増分が指定されていない場合、Luaでは1と見なされます。したがって、以下のコードは1、1.1、1.2、1.3、1.4、1.5を出力します。
 
-The code above does exactly the same thing as the two loops presented in the previous section, but the number variable can only be accessed from inside the loop because it is local to it. The first number following the variable name and the equality symbol is the initialization. It is the value the loop counter is initialized to. The second number is the number the loop stops at. It will increment the variable and repeat the code until the variable reaches this number. Finally, the third number is the increment: it is the value the loop counter is increased of at each iteration. If the increment is not given, it will be assumed to be 1 by Lua. The code below would therefore print 1, 1.1, 1.2, 1.3, 1.4 and 1.5.
+
 
 ```lua
 for n = 1, 2, 0.1 do
@@ -858,19 +858,19 @@ for n = 1, 2, 0.1 do
 end
 ```
 
-上記のコードが2までではなく、1.5までしか上がらない理由は、ループを即座に終了する`break`ステートメントのためです。このステートメントは、`while`ループや`repeat`ループを含む任意のループで使用できます。ここでは`>=`演算子が使用されていることに注意してください。ただし、理論的には`==`演算子も同様に機能します。これは、10進数の精度エラーが原因です。Luaは、[倍精度浮動小数点形式で](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Double-precision_floating-point_format&usg=ALkJrhjTDYhvCEmzPxYqVGhWsVnOuke6CA)数値を表します、実際の値の近似値をメモリに格納します。場合によっては、近似の値が数値と正確に一致しますが、場合によっては、概算にすぎません。通常、これらの近似値は、違いが生じないように数値に十分に近いものになりますが、このシステムでは、等式演算子`==`を使用するとエラーが発生する可能性があります。これが、等式演算子の使用を避けて10進数で作業するのが一般的に安全である理由です。この特定のケースでは、等式演算子が使用されていた場合、コードは機能しませんでした[ [1\]](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version&usg=ALkJrhh-N6LiHOskM-AjeqBm6bGdgeh7sQ#cite_note-1)（1.9まで上昇し続けました）が、`>=`演算子では機能します。
+上記のコードが2までではなく、1.5までしか上がらない理由は、ループを即座に終了する`break`ステートメントのためです。このステートメントは、`while`ループや`repeat`ループを含む任意のループで使用できます。ここでは`>=`演算子が使用されていることに注意してください。ただし、理論的には`==`演算子も同様に機能します。これは、10進数の精度エラーが原因です。Luaは、[倍精度浮動小数点形式で](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Double-precision_floating-point_format&usg=ALkJrhjTDYhvCEmzPxYqVGhWsVnOuke6CA)数値を表します、実際の値の近似値をメモリに格納します。場合によっては、近似の値が数値と正確に一致しますが、場合によっては、概算にすぎません。通常、これらの近似値は、違いが生じないように数値に十分に近いものになりますが、このシステムでは、等式演算子`==`を使用するとエラーが発生する可能性があります。これが、等式演算子の使用を避けて10進数で作業するのが一般的に安全である理由です。この特定のケースでは、等式演算子が使用されていた場合、コードは機能しませんでした[ [1\]](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version&usg=ALkJrhh-N6LiHOskM-AjeqBm6bGdgeh7sQ#cite_note-1)（1.9まで上昇し続けました）が、`>=` 演算子では機能します。
 
-The reason the code above does not go up to 2 and only up to 1.5 is because of the `break` statement, which instantly terminates the loop. This statement can be used with any loop, including `while` loops and `repeat` loops. Note that the `>=` operator was used here, although the `==` operator would theoretically have done the job as well. This is because of decimal precision errors. Lua represents numbers with the [double-precision floating-point format](https://en.wikipedia.org/wiki/Double-precision_floating-point_format), which stores numbers in the memory as an approximation of their actual value. In some cases, the approximation will match the number exactly, but in some cases, it will only be an approximation. Usually, these approximations will be close enough to the number for it to not make a difference, but this system can cause errors when using the equality operator. This is why it is generally safer when working with decimal numbers to avoid using the equality operator. In this specific case, the code would not have worked if the equality operator had been used[[1\]](https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version#cite_note-1) (it would have continued going up until 1.9), but it works with the `>=` operator.
+
 
 ## Blocks
 
 ブロックは、順番に実行されるステートメントのリストです。これらのステートメントには、命令を含まない空のステートメントを含めることができます。空のステートメントを使用して、セミコロンでブロックを開始したり、2つのセミコロンを順番に書き込んだりできます。
 
-A block is a list of statements that are executed sequentially. These statements can include empty statements, that do not contain any instruction. Empty statements can be used to start a block with a semicolon or write two semicolons in sequence.
+
 
 関数の呼び出しと割り当ては括弧で始まる場合があり、あいまいさを招く可能性があります。このフラグメントの例です：
 
-Function calls and assignments may start with a parenthesis, which can lead to an ambiguity. This fragment is an example of this:
+
 
 ```lua
 a = b + c
@@ -879,7 +879,7 @@ a = b + c
 
 このコードは、次の2つの方法で解釈できます。
 
-This code could be interpreted in two ways:
+
 
 ```lua
 a = b + c(print or io.write)('done')
@@ -888,7 +888,7 @@ a = b + c; (print or io.write)('done')
 
 現在のパーサーは、常に最初の方法でそのような構文を認識し、最初の括弧を呼び出しの引数の開始として解釈します。このあいまいさを回避するために、次のように常に括弧で始まるセミコロンステートメントを前に付けることをお勧めします。
 
-The current parser always sees such constructions in the first way, interpreting the opening parenthesis as the start of the arguments to a call. To avoid this ambiguity, it is a good practice to always precede with a semicolon statements that start with a parenthesis:
+
 
 ```lua
 ;(print or io.write)('done')
@@ -896,33 +896,33 @@ The current parser always sees such constructions in the first way, interpreting
 
 ### Chunks
 
-Luaのコンパイル単位はチャンクと呼ばれます。チャンクは、ホストプログラム内のファイルまたは文字列に格納できます。チャンクを実行するために、Luaは最初にチャンクを仮想マシンの命令にプリコンパイルし、次にコンパイルされたコードを仮想マシンのインタープリターで実行します。チャンクは、Luaに付属のコンパイルプログラム`luac`、または指定された関数のバイナリ表現を含む文字列を返す`string.dump`関数を使用して、バイナリ形式（バイトコード）にプリコンパイルすることもできます。
+Luaのコンパイル単位はチャンクと呼ばれます。チャンクは、ホストプログラム内のファイルまたは文字列に格納できます。チャンクを実行するために、Luaは最初にチャンクを仮想マシンの命令にプリコンパイルし、次にコンパイルされたコードを仮想マシンのインタープリターで実行します。チャンクは、Luaに付属のコンパイルプログラム`luac`、または指定された関数のバイナリ表現を含む文字列を返す`string.dump` 関数を使用して、バイナリ形式（バイトコード）にプリコンパイルすることもできます。
 
-The unit of compilation of Lua is called a chunk. A chunk can be stored in a file or in a string inside the host program. To execute a chunk, Lua first precompiles the chunk into instructions for a virtual machine, and then it executes the compiled code with an interpreter for the virtual machine. Chunks can also be precompiled into binary form (bytecode) using `luac`, the compilation program that comes with Lua, or the `string.dump` function, which returns a string containing a binary representation of the function it is given.
+
 
 この`load`関数を使用して、チャンクをロードできます。`load`関数に指定された最初のパラメーターが文字列の場合、チャンクはその文字列です。この場合、文字列はLuaコードまたはLuaバイトコードのいずれかです。最初のパラメーターが関数の場合、`load`チャンクを取得するためにその関数を繰り返し呼び出します。各チャンクは、前の文字列と連結される文字列です。次に、何も返されないか、空の文字列が返されたときに、チャンクが完了したと見なされます。
 
-The `load` function can be used to load a chunk. If the first parameter given to the `load` function is a string, the chunk is that string. In this case, the string may be either Lua code or Lua bytecode. If the first parameter is a function, `load` will call that function repeatedly to get the pieces of the chunk, each piece being a string that will be concatenated with the previous strings. It is then considered that the chunk is complete when nothing or the empty string is returned.
+
 
 `load`関数は構文エラーがない場合は関数としてコンパイルされたチャンクを返します。それ以外の場合は、`nil`とエラーメッセージが返されます。
 
-The `load` function will return the compiled chunk as a function if there is no syntactic error. Otherwise, it will return nil and the error message.
+
 
 `load`関数の2番目のパラメーターは、チャンクのソースを設定するために使用されます。すべてのチャンクは、適切なエラーメッセージとデバッグ情報を提供できるように、ソースのコピーをチャンク内に保持します。デフォルトでは、それらのソースのコピーは`load`に与えられたコードになります（コードが与えられた場合、代わりに関数が与えられた場合、それは「=(load)」になります）。このパラメーターを使用して変更できます。これは、元のソースを取り戻せないようにコードをコンパイルするときに最も役立ちます。次に、バイナリ表現に含まれているソースを削除する必要があります。そうしないと、元のコードを取得できるためです。
 
-The second parameter of the `load` function is used to set the source of the chunk. All chunks keep a copy of their source within them, in order to be able to give appropriate error messages and debugging information. By default, that copy of their source will be the code given to `load` (if code was given; if a function was given instead, it will be "=(load)"). This parameter can be used to change it. This is mostly useful when compiling code to prevent people from getting the original source back. It is then necessary to remove the source included with the binary representation because otherwise the original code can be obtained there.
+
 
 `load`関数の3番目のパラメーターは、生成された関数の環境を設定するために使用でき、4番目のパラメーターは、チャンクをテキストにするかバイナリにするかを制御します。文字列「b」（バイナリチャンクのみ）、「t」（テキストチャンクのみ）、または「bt」（バイナリとテキストの両方）の場合があります。デフォルトは「bt」です。
 
-The third parameter of the `load` function can be used to set the environment of the generated function and the fourth parameter controls whether the chunk can be in text or binary. It may be the string "b" (only binary chunks), "t" (only text chunks), or "bt" (both binary and text). The default is "bt".
+
 
 `load`とまったく同じように機能する` loadfile`関数もありますが、この関数はファイルからコードを取得するものです。 最初のパラメーターは、コードを取得するファイルの名前です。 バイナリ表現に格納されているソースを変更するパラメータはありません。`load`関数の3番目と4番目のパラメータは、この関数の2番目と3番目のパラメータに対応しています。 `loadfile`関数を使用して、標準入力からコードをロードすることもできます。これは、ファイル名が指定されていない場合に実行されます。
 
-There is also a `loadfile` function that works exactly like `load`, but instead gets the code from a file. The first parameter is the name of the file from which to get the code. There is no parameter to modify the source stored in the binary representation, and the third and fourth parameters of the `load` function correspond to the second and third parameters of this function. The `loadfile` function can also be used to load code from the standard input, which will be done if no file name is given.
+
 
 この`dofile`関数は`loadfile`関数に似ていますが、コードを関数としてファイルにロードする代わりに、ソースコードファイルに含まれているコードをLuaチャンクとしてすぐに実行します。その唯一のパラメーターは、コンテンツを実行するファイルの名前を指定するために使用されます。引数が指定されていない場合は、標準入力の内容が実行されます。チャンクが値を返す場合、それらは`dofile`関数の呼び出しによって提供されます。`dofile`はプロテクトモードでは実行されないため、`dofile`で実行されたチャンク内のすべてのエラーが伝播します。
 
-The `dofile` function is similar to the `loadfile` function, but instead of loading the code in a file as a function, it immediately executes the code contained in a source code file as a Lua chunk. Its only parameter is used to specify the name of the file it should execute the contents of; if no argument is given, it will execute the contents of the standard input. If the chunk returns values, they will be provided by the call to the `dofile` function. Because `dofile` does not run in protected mode, all errors in chunks executed through it will propagate.
+
 
 1. [↑](https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version#cite_ref-1) http://codepad.org/kYHPSvqx
 
@@ -939,19 +939,19 @@ The `dofile` function is similar to the `loadfile` function, but instead of load
 
 スタックは、*後入れ先出しの*原則に従って動作する、アイテムを追加（*プッシュ*）または削除（*ポップ*）できるアイテムのリストです。つまり、最後に追加されたアイテムが最初に削除されます。このようなリストがスタックと呼ばれるのはこのためです。スタックでは、最初にその上にあるアイテムを削除せずにアイテムを削除することはできません。したがって、すべての操作はスタックの最上位（Top）で行われます。アイテムは、他のアイテムの後に追加された場合は上にあり、他のアイテムの前に追加された場合は下にあります。
 
-A stack is a list of items where items can be added (*pushed*) or removed (*popped*) that behaves on the last-in-first-out principle, which means that the last item that was added will be the first to be removed. This is why such lists are called stacks: on a stack, you cannot remove an item without first removing the items that are on top of it. All operations therefore happen at the top of the stack. An item is above another if it was added after that item and is below it if it was added before that item.
+
 
 関数（サブルーチン、プロシージャ、ルーチン、またはサブプログラムとも呼ばれます）は、特定のタスクを実行する一連の命令であり、その一連の命令を実行する必要があるときはいつでも、プログラムの他の場所から*呼び出す*ことができます。関数は、入力として値を受け取り、入力を操作したり、入力に基づいてタスクを実行したりした後、出力を返すこともできます。関数は、他の関数内を含め、プログラム内のどこからでも定義できます。また、関数にアクセスできるプログラムの任意の部分から呼び出すこともできます。関数は、数値や文字列と同様に値であるため、変数に格納できます。変数に共通するすべてのプロパティがあります。これらの特性により、関数はとてもつかいやすくなります。
 
-A function (also called a subroutine, a procedure, a routine or a subprogram) is a sequence of instructions that perform a specific task and that can be *called* from elsewhere in the program whenever that sequence of instructions should be executed. Functions can also receive values as input and return an output after potentially manipulating the input or executing a task based on the input. Functions can be defined from anywhere in a program, including inside other functions, and they can also be called from any part of the program that has access to them: functions, just like numbers and strings, are values and can therefore be stored in variables and have all the properties that are common to variables. These characteristics make functions very useful.
+
 
 関数は他の関数から呼び出すことができるため、Luaインタープリター（Luaコードを読み取って実行するプログラム）は、関数が終了したとき（それ以上実行するコードがないとき）に、現在実行している関数と呼ばれる関数を認識できる必要があります。それによって正しい関数の実行に戻ることができます。これは、コールスタックと呼ばれるスタックを使用して行われます。コールスタック内の各アイテムは、現在実行されている関数で、スタック内のすぐ上にあるアイテムがなくなるまで呼び出す関数です。関数が終了すると、インタープリターはスタックのポップ操作を使用してリスト内の最後の関数を削除し、その後、前の関数に戻ります。
 
-Because functions can be called from other functions, the Lua interpreter (the program that reads and executes Lua code) needs to be able to know what function called the function it is currently executing so that, when the function terminates (when there is no more code to execute), it can return to execution of the right function. This is done with a stack called the call stack: each item in the call stack is a function that called the function that is directly above it in the stack, until the last item in the stack, which is the function currently being executed. When a function terminates, the interpreter uses the stack's pop operation to remove the last function in the list, and it then returns to the previous function.
+
 
 関数には、組み込み関数とユーザー定義関数の2種類があります。組み込み関数はLuaで提供される関数であり、すでに知っている`print`関数などの関数が含まれています。print関数のように直接アクセスできるものもあれば、乱数を返す`math.random`関数のようにライブラリを介してアクセスする必要があるものもあります。ユーザー定義関数は、ユーザーが定義した関数です。ユーザー定義関数は、関数コンストラクターを使用して定義されます。
 
-There are two types of functions: built-in functions and user-defined functions. Built-in functions are functions provided with Lua and include functions such as the `print` function, which you already know. Some can be accessed directly, like the `print` function, but others need to be accessed through a library, like the `math.random` function, which returns a random number. User-defined functions are functions defined by the user. User-defined functions are defined using a function constructor:
+
 
 ```lua
 local func = function(first_parameter, second_parameter, third_parameter)
@@ -961,7 +961,7 @@ end
 
 上記のコードは、3つのパラメーターを持つ関数を作成し、それを変数funcに格納します。次のコードは上記のコードとまったく同じですが、関数を定義するためにシンタックスシュガーを使用しています。
 
-The code above creates a function with three parameters and stores it in the variable func. The following code does exactly the same as the above code, but uses syntactic sugar for defining the function:
+
 
 ```lua
 local function func(first_parameter, second_parameter, third_parameter)
@@ -971,11 +971,11 @@ end
 
 なお、第2の形式を使用する場合は、内部から関数を参照することができますが、第1の形式を使用する場合は参照できません。これは、`local function foo() end`が `local foo = function() end`ではなく`local foo; foo = function() end`に変換されるためです。これは、fooが1番目の形式ではなく2番目の形式の関数の環境の一部であることを意味します。これは、なぜ2番目の形式が関数自体を参照できるかを説明しています。
 
-It should be noted that, when using the second form, it is possible to refer to the function from inside itself, which is not possible when using the first form. This is because `local function foo() end` translates to `local foo; foo = function() end` rather than `local foo = function() end`. This means that foo is part of the function’s environment in the second form and not in the first, which explains why the second form makes it possible to refer to the function itself.
+
 
 どちらの場合も、`local`キーワードを省略して関数をグローバル変数に格納することができます。パラメータは変数のように機能し、関数が値を受け取ることを可能にします。関数が呼び出されると、引数が与えられます。その後、関数はそれらをパラメーターとして受け取ります。パラメータは、関数の先頭で定義されたローカル変数のようなものであり、関数呼び出しで指定された引数の順序に応じて順番に割り当てられます。引数が欠落している場合、パラメーターの値は`nil`になります。次の例の関数は、2つの数値を加算し、結果を出力します。したがって、コードの実行時に5が出力されます。
 
-In both cases, it is possible to omit the `local` keyword to store the function in a global variable. Parameters work like variables and allow functions to receive values. When a function is called, arguments may be given to it. The function will then receive them as parameters. Parameters are like local variables defined at the beginning of a function, and will be assigned in order depending on the order of the arguments as they are given in the function call; if an argument is missing, the parameter will have the value `nil`. The function in the following example adds two numbers and prints the result. It would therefore print 5 when the code runs.
+
 
 ```lua
 local function add(first_number, second_number)
@@ -987,7 +987,7 @@ add(2, 3)
 
 関数呼び出しは、ほとんどの場合、フォーム`name(arguments)`の下にあります。ただし、引数が1つだけで、それがテーブルまたは文字列であり、変数に含まれていない場合（つまり、関数呼び出しで直接作成され、リテラルとして表される場合）、括弧は省略できます。
 
-Function calls are most of the time under the form `name(arguments)`. However, if there is only one argument and it is either a table or a string, and it isn't in a variable (meaning it is constructed directly in the function call, expressed as a literal), the parentheses can be omitted:
+
 
 ```lua
 print "Hello, world!"
