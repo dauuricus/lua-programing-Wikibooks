@@ -1381,6 +1381,10 @@ It is possible to match substrings equivalent to previously captured substrings:
 > `%bxy`、ここでxとyは2つの異なる文字です。 このような項目は、xで始まり、yで終わり、xとyのバランスが取れている文字列に一致します。 つまり、文字列を左から右に読み、xの場合は + 1、yの場合は-1を数えると、最後のyは、数が0に達する最初のyになります。たとえば、項目 `%b()`は バランスの取れた括弧で式を照合します。
 >
 > `%f[set]`、フロンティアパターン。 このような項目は、次の文字がセットに属し、前の文字がセットに属さないように、任意の位置で空の文字列と一致します。 セットセットは、前述のように解釈されます。 件名の最初と最後は、文字「 '\0'」であるかのように処理されます。
+>
+> —Lua authors, [Lua 5.2 Reference Manual](http://www.lua.org/manual/5.2/manual.html#6.4.1)
+
+
 
 > `%bxy`, where x and y are two distinct characters; such item matches strings that start with x, end with y, and where the x and y are balanced. This means that, if one reads the string from left to right, counting +1 for an x and -1 for a y, the ending y is the first y where the count reaches 0. For instance, the item `%b()` matches expressions with balanced parentheses.
 >
