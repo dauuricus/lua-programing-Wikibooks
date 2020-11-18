@@ -564,7 +564,7 @@ There are some questions you can answer to verify that you have understood the m
 
 **2** `0 or 8` この式は何を返しますか？What will the expression `0 or 8` return?
 
-|      |          |
+|      | 選択肢   |
 | ---- | -------- |
 |      | `true `  |
 |      | `false ` |
@@ -573,7 +573,7 @@ There are some questions you can answer to verify that you have understood the m
 
 **3** どの文字列が有効ですか？Which strings are valid?
 
-|      |                  |
+|      | 選択肢           |
 | ---- | ---------------- |
 |      | `"test's test"`  |
 |      | `'test\'s test'` |
@@ -584,7 +584,7 @@ There are some questions you can answer to verify that you have understood the m
 
 **4** どの式が`"1223"`の文字列を与えますか？Which expressions give the string `"1223"`?
 
-|      |               |
+|      | 選択肢        |
 | ---- | ------------- |
 |      | `"122" + 3`   |
 |      | `"122" .. 3`  |
@@ -593,7 +593,7 @@ There are some questions you can answer to verify that you have understood the m
 
 **5** 正誤問題`not 5^3 == 5` true or false? `not 5^3 == 5`
 
-|      |         |
+|      | 選択肢  |
 | ---- | ------- |
 |      | `true`  |
 |      | `false` |
