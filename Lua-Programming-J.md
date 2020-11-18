@@ -1392,6 +1392,8 @@ It is possible to match substrings equivalent to previously captured substrings:
 >
 > —Lua authors, [Lua 5.2 Reference Manual](http://www.lua.org/manual/5.2/manual.html#6.4.1)
 
+パターンはパターン項目のシーケンスであり、オプションでキャレット`^`が前に付き、パターンが文字列の先頭でのみ一致できることを示し、オプションでドル記号`$`が続きます。これは、パターンが文字列の最後でのみ一致できることを示します 。 これらの記号は、文字列の最初または最後に一致を固定すると言われています。 これらの2つの文字は、パターンの最初または最後にある場合にのみ特別な意味を持ちます。
+
 Patterns are sequences of pattern items, optionally preceded by a caret, which indicates that the pattern can only match at the beginning of the string, and optionally followed by a dollar sign, which indicates that the pattern can only match at the end of the string. These symbols are said to anchor the match at the beginning or the end of the string. These two characters only have a special meaning when at the beginning or at the end of a pattern.
 
 Sub-patterns can be enclosed inside parentheses inside patterns to indicate captures. When a match succeeds, the substrings of the string that match captures are stored for future use, for example to be returned by `gmatch`. They are always numbered starting from the position of their left parenthesis. Two empty parentheses denote the empty capture, which captures the current string position (which is a number and is not a part of the string).
