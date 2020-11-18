@@ -1324,6 +1324,8 @@ print("The word \"lazy\" was found starting at position " .. start_position .. "
 
 This works because the `index` metamethod of strings is set to the table containing the functions of the string library, making it possible to replace `string.a(b, ...)` by `b:a(...)`.
 
+文字の位置を示すインデックスを受け入れる、またはそのようなインデックスを返す文字列ライブラリ内の関数は、最初の文字が位置1にあると見なします。最後の文字が位置-1で、文字列の末尾から逆方向にインデックスを付けます。
+
 Functions in the string library that accept indices to indicate character position or that return such indices consider the first character as being at position 1. They accept negative numbers and interpret them as indexing backwards, from the end of the string, with the last character being at position -1.
 
 パターンは、文字列が一致するかどうかを示す特定の表記法に従う文字列です。この目的のために、パターンには文字クラス、つまり文字のセットを表す組み合わせが含まれています。
@@ -1334,10 +1336,10 @@ Patterns are strings that follow a certain notation to indicate a pattern that a
 | ---------------- | ------------------------------------ |
 | .                | すべての文字                         |
 | %a               | 文字（大文字と小文字）               |
-| ％c              | 制御文字                             |
-| ％d              | 数字                                 |
-| ％g              | 印刷可能な文字（スペース文字を除く） |
-| ％l              | 小文字                               |
+| %c              | 制御文字                             |
+| %d              | 数字                                 |
+| %g             | 印刷可能な文字（スペース文字を除く） |
+| %l           | 小文字                               |
 | %p               | 句読文字                             |
 | %s               | スペース文字                         |
 | %u               | 大文字                               |
