@@ -189,7 +189,6 @@ print(type(32425)) --> number
 
 Luaの数値の演算子は次のとおりです。
 
-The operators for numbers in Lua are the following:
 
 | 操作         | 構文   | 説明                                         | 例        |
 | ------------ | ------ | -------------------------------------------- | --------- |
@@ -203,7 +202,7 @@ The operators for numbers in Lua are the following:
 
 最後のものを除いて、これらの演算子（基本的な数学演算子と同じ）はすべてすでに知っているでしょう。最後のものはモジュロ演算子と呼ばれ、ある数値を別の数値で除算した余りを単純に計算します。たとえば、5％3は、2が5を3で割った余りであるため、結果として2になります。モジュロ演算子は他の演算子ほど一般的ではありませんが、複数の用途があります。
 
-You probably already know all of these operators (they are the same as basic mathematical operators) except the last. The last is called the modulo operator, and simply calculates the remainder of the division of one number by another. 5 % 3, for example, would give 2 as a result because 2 is the remainder of the division of 5 by 3. The modulo operator is less common than the other operators, but it has multiple uses.
+
 
 #### Integers
 
@@ -628,17 +627,8 @@ Luaでは、[識別子](https://translate.googleusercontent.com/translate_c?dept
 
 - `82_something` ：数字で始まる
 
-- `2hello` : starts with a digit
-
-- `th$i` : contains a character that isn't a letter, a digit or an underscore
-
-- `hel!o` : contains a character that isn't a letter, a digit or an underscore
-
-- `563text` : starts with a digit
-
-- `82_something` : starts with a digit
-
   
+
 
 また、次のキーワードのLUAによって予約されており、名称として使用することはできません：`and`、`end`、`in`、`repeat`、`break`、`false`、`local`、`return`、`do`、`for`、`nil`、`then`、`else`、`function`、`not`、`true`、`elseif`、`if`、`or`、`until`、`while`。
 
@@ -784,7 +774,7 @@ end
 |                 | 等しい | 等しくない | より大きい | 未満 | 以上 | 以下 |
 | --------------- | ------ | ---------- | ---------- | ---- | ---- | ---- |
 | 数学表記        | =      | ≠          | >          | <    | ≥    | ≤    |
-| Luaオペレーター | ==     | 〜=        | >          | <    | >=   | <=   |
+| Luaオペレーター | ==     | ~=         | >          | <    | >=   | <=   |
 
 |                       | equal to | not equal to | greater than | less than | greater than or equal to | less than or equal to |
 | --------------------- | -------- | ------------ | ------------ | --------- | ------------------------ | --------------------- |
@@ -996,17 +986,15 @@ print {4, 5}
 
 前の例のコードの2行目は、テーブルのメモリアドレスを出力します。`print`関数が自動的に値を文字列に変換すると、複合型（関数、テーブル、ユーザーデータ、スレッド）がそれらのメモリアドレスに変更されます。ただし、ブール値、数値、および nil 値は、対応する文字列に変換されます。
 
-The second line of code in the previous example would print the memory address of the table. When converting values to strings, which the `print` function does automatically, complex types (functions, tables, userdata and threads) are changed to their memory addresses. Booleans, numbers and the nil value, however, will be converted to corresponding strings.
-
 *パラメータ*と*引数*という用語は、同じ意味で使われることがよくあります。この本では、適切な意味で、*パラメータ*と*引数*という用語は、それぞれ、パラメータとして割り当てられて関数に渡される値と対応する引数として値が割り当てられるものの名前を意味します。
 
-The terms *parameter* and *argument* are often used interchangeably in practice. In this book, and in their proper meanings, the terms *parameter* and *argument* mean, respectively, a name to which the value of the corresponding argument will be assigned and a value that is passed to a function to be assigned to a parameter.
+
 
 ## Returning values
 
 関数は入力を受け取り、それを操作し、出力を返すことができます。入力（パラメーター）を受け取り、それを操作する方法（関数本体）は既に知っています。また、returnステートメントを使用して、任意のタイプの1つまたは複数の値を返すことによって出力することもできます。これが、関数呼び出しがステートメントと式の両方である理由です。それらは実行できますが、評価することもできます。
 
-Functions can receive input, manipulate it and give back output. You already know how they can receive input (parameters) and manipulate it (function body). They can also give output by returning one or many values of any type, which is done using the return statement. This is why function calls are both statements and expressions: they can be executed, but they can also be evaluated.
+
 
 ```lua
 local function add(first_number, second_number)
@@ -1018,25 +1006,25 @@ print(add(5, 6))
 
 上記の関数のコードは、最初に`add`関数を定義しています。次に、5と6を値として呼び出します。`add`関数はそれらを加算して結果を返し、出力されます。これが、上記のコードが11を出力する理由です。これらの値に評価される式をコンマで区切ることにより、関数が多くの値を返すことも可能です。
 
-The code in the above function will first define the function `add`. Then, it will call it with 5 and 6 as values. The function will add them and return the result, which will then be printed. This is why the code above would print 11. It is also possible for a function to return many values by separating the expressions that evaluate to these values with commas.
+
 
 ## Errors
 
 エラーには、構文エラー、静的セマンティックエラー、セマンティックエラーの3種類があります。構文エラーは、コードが明らかに無効な場合に発生します。たとえば、次のコードはLuaによって無効として検出されます。
 
-There are three types of errors: syntactic errors, static semantic errors and semantic errors. Syntactic errors happen when code is plainly invalid. The following code, for example, would be detected by Lua as invalid:
+
 
 ```lua
 print(5 ++ 4 return)
 ```
 上記のコードは意味がありません。それから意味を引き出すことは不可能です。同様に、英語では、「cat（猫）　dog（犬）　tree（木）」は意味がないため、構文的に有効ではありません。文を作成するための規則に従っていません。
 
-The code above doesn't make sense; it is impossible to get a meaning out of it. Similarly, in English, "cat dog tree" is not syntactically valid because it has no meaning. It doesn't follow the rules for creating a sentence.
+
 
 静的セマンティックエラーが起こるのはコードは意味を持っているが、まだ成立しない場合です。例えば、文字列に対して数字を足そうとすると静的セマンティックエラーになります。
 これは文字列に数字を加算できないためです。
 
-Static semantic errors happen when code has a meaning, but still doesn't make sense. For example, if you try adding a string with a number, you get a static semantic error because it is impossible to add a string with a number:
+
 
 ```lua
 print("hello" + 5)
@@ -1044,21 +1032,21 @@ print("hello" + 5)
 
 上記のコードはLuaの構文規則には従いますが、数値を含む文字列を追加することは不可能であるため、意味が成立しません（文字列が数値を表す場合を除き、その場合は強制的に1つになります）。これは英語で「I are big」という文と比較することができます。英語で文章を作成するための規則に収まっていますが、「I」は単数形で「are」は複数形であるため、それでもやはりおかしいわけです。
 
-The code above follows Lua's syntactic rules, but it still doesn't make sense because it is impossible to add a string with a number (except when the string represents a number, in which case it will be coerced into one). This can be compared in English to the sentence "I are big". It follows the rules for creating sentences in English, but it still doesn't make sense because "I" is singular and "are" is plural.
+
 
 最後に、セマンティックエラーは、コードの一部の意味がその作成者が考えているものではない場合に発生するエラーです。これらは見つけるのが非常に難しいため、最悪のエラーです。 Luaは、構文エラーまたは静的セマンティックエラー（これはエラーのスローと呼ばれます）がある場合は常に通知しますが、セマンティックエラーがある場合は、どのような考えでコードが意味づけされていたかわからないため、通知できません。これらのエラーは、思っているよりも頻繁に発生し、エラーを見つけて修正することに、多くのプログラマーがたくさんの時間を費やしています。
 
-Finally, semantic errors are errors that happen when the meaning of a piece of code is not what its creator thinks it is. Those are the worst errors because they can be very hard to find. Lua will always tell you when there is a syntactic error or a static semantic error (this is called throwing an error), but it cannot tell you when there is a semantic error since it doesn't know what you think the meaning of the code is. These errors happen more often than most people would think they do and finding and correcting them is something many programmers spend a lot of time doing.
+
 
 エラーを見つけて修正するプロセスは、デバッグと呼ばれます。ほとんどの場合、プログラマーは実際にエラーを修正するよりもエラーを見つけることに多くの時間を費やします。これは、すべてのタイプのエラーに当てはまります。問題が何であるかがわかれば、通常は簡単に修正できますが、プログラマーがコードのどこに問題があるのかを見つけられずに、何時間もコードを見直す場合もあります。
 
-The process of finding errors and correcting them is called debugging. Most of the time, programmers will spend more time finding errors than actually correcting them. This is true for all types of errors. Once you know what the problem is, it is usually simple to fix it, but sometimes, a programmer can look at a piece of code for hours without finding what is wrong in it.
+
 
 ### Protected calls
 
 エラーをスローすることは、インタープリター（コードを読み取って実行するプログラム）によって手動で行われたか自動で行われたかにかかわらず、コードに問題があることを示すアクションです。指定されたコードが無効な場合、Luaによって自動的に実行されますが、`error`関数を使用して手動で実行できます。
 
-Throwing an error is the action of indicating, whether it is done manually or automatically by the interpreter (the program that reads the code and executes it), that something is wrong with the code. It is done automatically by Lua when the code given is invalid, but it can be done manually with the `error` function:
+
 
 ```lua
 local variable = 500
@@ -1069,31 +1057,26 @@ end
 
 `error`関数には、エラーがスローされるスタックレベルを示す2番目の引数もありますが、これについては本書では取り上げません。この`assert`関数は`error`関数と同じことを行いますが、最初の引数が nil または false と評価され、エラーをスローするスタックレベルを指定するために使用できる引数がない場合にのみエラーをスローします。` assert`関数は、スクリプトの開始時に役立ちます。たとえば、スクリプトが機能するために必要なライブラリが使用可能かどうかを確認する場合などです
 
-The `error` function also has a second argument, which indicates the stack level at which the error should be thrown, but this will not be covered in this book. The `assert` function does the same thing as the `error` function, but it will only throw an error if its first argument evaluates to nil or false and it doesn't have an argument that can be used to specify the stack level at which the error should be thrown. The assert function is useful at the start of a script, for example, to check if a library that is required for the script to work is available.
+
 
 エラーがスローされるたびにプログラム内のコードの実行が停止するため、なぜ自発的にエラーをスローしたいのか理解するのは難しいかもしれませんが、多くの場合、関数が正しく使用されていないときやプログラムが適切な環境で実行されていないときにエラーをスローし、コードをデバッグしなければならない人が、何が悪いのか気付かずにコードを長時間見つめることなく、速く間違いを見つけるのに役立ちます。
 
-It may be hard to understand why one would desire to voluntarily throw an error, since the code in a program stops running whenever an error is thrown, but, often, throwing errors when functions are used incorrectly or when a program is not running in the right environment can be helpful to help the person who will have to debug the code to find it immediately without having to stare at the code for a long time without realizing what is wrong.
+
 
 エラーがコードを停止するのを防ぎ、代わりにユーザーにエラーメッセージを表示して、開発者にバグを報告できるようにすることが役立つ場合があります。これは例外処理（またはエラー処理）と呼ばれ、エラーをキャッチして伝播を防ぎ、例外ハンドラーを実行して処理することで実行されます。さまざまなプログラミング言語でこの方法は大きく異なります。Luaでは、プロテクトされた呼び出しを使用して行われます[[1\]](https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version#cite_note-2)。プロテクトモードで呼び出された関数は、エラーが発生してもプログラムを停止しないため、これらはプロテクト呼び出しと呼ばれます。プロテクトモードで関数を呼び出すために使用できる関数は2つあります。
 
-Sometimes, it can be useful to prevent an error from stopping the code and instead do something like displaying an error message to the user so he can report the bug to the developer. This is called exception handling (or error handling) and is done by catching the error to prevent its propagation and running an exception handler to handle it. The way it is done in different programming languages varies a lot. In Lua, it is done using protected calls[[1\]](https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version#cite_note-2). They are called protected calls because a function called in protected mode will not stop the program if an error happens. There are two functions that can be used to call a function in protected mode:
+
 
 | 関数                             | 説明                                                         |
 | -------------------------------- | ------------------------------------------------------------ |
 | `pcall(function, ...)`           | プロテクトモードで関数を呼び出し、ステータスコード（エラーがスローされたかどうかによって値が異なるブール値）と関数によって返される値、または関数がエラーによって停止された場合はエラーメッセージを返します。引数は、プロテクトモードで呼び出す必要のある関数である最初の引数の後に`pcall`関数に渡すことで関数に指定できます。 |
 | `xpcall(function, handler, ...)` | pcallと同じことを行いますが、関数エラーが発生すると、pcallが返すのと同じ値を返す代わりに、それらをパラメーターとしてハンドラー関数を呼び出します。次に、ハンドラ関数を使用して、たとえば、エラーメッセージを表示できます。`pcall`関数に関しては、`xpcall`関数に対して引数として与えることで関数に引数を渡すことができます。 |
 
-| Function                         | Description                                                  |
-| -------------------------------- | ------------------------------------------------------------ |
-| `pcall(function, ...)`           | Calls the function in protected mode and returns a status code (a boolean value whose value depends on if an error was thrown or not) and the values returned by the function, or the error message if the function was stopped by an error. Arguments can be given to the function by passing them to the `pcall` function after the first argument, which is the function that should be called in protected mode. |
-| `xpcall(function, handler, ...)` | Does the same thing as pcall, but, when the function errors, instead of returning the same values as those pcall would return, it calls the handler function with them as parameters. The handler function can then be used, for example, to display an error message. As for the `pcall` function, arguments can be passed to the function by being given to the `xpcall` function. |
-
 ## Stack overflow
 
 呼び出しスタック、つまり呼び出された順序で呼び出されたすべての関数を含むスタックについては、前述しました。Luaを含むほとんどの言語でのその呼び出しスタックには、最大サイズがあります。この最大サイズは非常に大きいため、ほとんどの場合心配する必要はありませんが、自分自身を呼び出す関数（これは再帰性と呼ばれ、このような関数は再帰関数と呼ばれます）は、自分自身を呼び出すことを妨げるものがない場合、この制限に達するまで無期限に再帰を続ける可能性があります。これはスタックオーバーフローと呼ばれます。スタックがオーバーフローすると、コードの実行が停止し、エラーがスローされます。
 
-The call stack, the stack that contains all the functions that were called in the order in which they were called, was mentioned earlier. That call stack in most languages, including Lua, has a maximum size. This maximum size is so big that it should not be worried about in most cases, but functions that call themselves (this is called recursivity and such functions are called recursive functions) can reach this limit if there is nothing to prevent them from calling themselves over and over indefinitely. This is called a stack overflow. When the stack overflows, the code stops running and an error is thrown.
+
 
 ## Variadic functions
 
@@ -1103,7 +1086,7 @@ The call stack, the stack that contains all the functions that were called in th
 
 Lua 5.0では、vararg式を介して使用できる代わりに、「arg」という特別なパラメーターで追加の引数を使用できました。次の関数は、受け取ったすべての引数に最初の引数を追加し、次にそれらすべてを合計して結果を出力する関数の例です。
 
-Variadic functions, which are also called vararg functions, are functions that accept a variable number of arguments. A variadic function is indicated by three dots ("...") at the end of its parameter list. Arguments that do not fit in the parameters in the parameter list, instead of being discarded, are then made available to the function through a vararg expression, which is also indicated by three dots. The value of a vararg expression is a list of values (not a table) which can then be put in a table to be manipulated with more ease with the following expression: `{...}`. In Lua 5.0, instead of being available through a vararg expression, the extra arguments were available in a special parameter called "arg". The following function is an example of a function that would add the first argument to all the arguments it receives, then add all of them together and print the result:
+
 
 ```lua
 function add_one(increment, ...)
@@ -1116,11 +1099,11 @@ end
 
 上記のコードは可変個引数関数のデモンストレーションにすぎないため、理解する必要はありません。
 
-It is not necessary to understand the code above as it is only a demonstration of a variadic function.
+
 
 この`select`関数は、テーブルを使用せずに引数リストを操作するのに役立ちます。引数の数が不定であるため、それ自体がvariadic関数です。最初の引数として指定された番号を使用して、引数の後のすべての引数を返します（指定された番号が負の場合、最後からインデックスを付けます。つまり、-1が最後の引数です）。また、最初の引数が文字列 "＃"の場合、最初の引数を除いて、受け取った引数の数も返します。引数リスト内の特定の数より前のすべての引数を破棄すると、より元々は、引数として送信されるnil値と、引数として送信されない値を区別するのに役立ちます。`#`は最初の引数として、値が無いことから nil 値が指定されると`select`は区別します。引数リスト（および戻りリストも）はタプル（tuples:いくつかの部分からなるデータの構造）のインスタンスであり、テーブルに関する章で説明します。この`select`関数はすべてのタプルで機能します。
 
-The `select` function is useful to manipulate argument lists without needing to use tables. It is itself a variadic function, as it accepts an indefinite number of arguments. It returns all arguments after the argument with the number given as its first argument (if the number given is negative, it indexes starting from the end, meaning -1 is the last argument). It will also return the number of arguments it received, excluding the first one, if the first argument is the string "#". It can be useful to discard all arguments in an argument list before a certain number, and, more originally, to distinguish between nil values being sent as arguments and nothing being sent as an argument. Indeed, `select` will distinguish, when `"#"` is given as its first argument, nil values from no value. Argument lists (and return lists as well) are instances of tuples, which will be explored in the chapter about tables; the `select` function works with all tuples.
+
 
 ```lua
 print((function(...) return select('#', ...) == 1 and "nil" or "no value" end)()) --> no value
@@ -1138,37 +1121,37 @@ print((function(...) return select('#', ...) == 1 and "nil" or "no value" end)(v
 
 Luaは「バッテリーが付属していない」と言われている言語です。これは、そのライブラリがいくつかのことを行うために必要な最小限に保たれていることを意味します。Luaはコミュニティに依存して、より具体的なタスクを実行するために使用できるライブラリを作成しています。Luaには10のライブラリがあります。*Luaのリファレンスマニュアルは、*すべてのライブラリのドキュメントを提供しています[[1\]](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version&usg=ALkJrhh-N6LiHOskM-AjeqBm6bGdgeh7sQ#cite_note-3)。ここで簡単に説明されています[[2\]](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version&usg=ALkJrhh-N6LiHOskM-AjeqBm6bGdgeh7sQ#cite_note-4)。基本ライブラリとパッケージライブラリを除くすべてのライブラリは、テーブルのフィールドとして関数と値を提供します。
 
-Lua is a language that is said to "not be provided with batteries". This means that its libraries are kept to the minimum necessary to do some stuff. Lua relies on its community to create libraries that can be used to perform more specific tasks. There are ten libraries available in Lua. The *Lua Reference Manual* provides documentation for all the libraries[[1\]](https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version#cite_note-3), so they will only be briefly described here[[2\]](https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version#cite_note-4). All the libraries except the basic and the package libraries provide their functions and values as fields of a table.
+
 
 ## Basic library
 
 基本ライブラリはLuaにコア機能を提供します。そのすべての関数と値はグローバル環境で直接利用可能であり、デフォルトでグローバル環境で直接利用可能なすべての関数と値は基本ライブラリの一部です。
 
-The basic library provides core functionality to Lua. All its functions and values are directly available in the global environment, and all functions and values available directly in the global environment by default are part of the basic library.
+
 
 ### Assertion
 
 アサーションは、開発者が true であると想定する述語です。これらは、プログラムの実行の特定の瞬間に特定の条件が真であることを保証するためにプログラムで使用されます。アサーションは、プログラムが正しく機能することを確認するための[unit tests](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.m.wikibooks.org/w/index.php%3Ftitle%3DLua_Programming/Unit_testing%26action%3Dedit%26redlink%3D1&usg=ALkJrhgO49Wfq8PkkhqVgyO8fwPyXEAHxA)で使用されますが、プログラムコードでも使用されます。この場合、アサーションが false の場合、プログラムが正しい環境を確認するため、またはプログラムコードでエラーが発生していないことを確認し、適切なエラーメッセージを生成して、予期したとおりに何かが発生しなかったときにコードのバグを見つけやすくします。 Luaでは、条件とメッセージ（デフォルトでは「アサーションに失敗しました！」）をパラメーターとして受け入れる`assert`関数を使用してアサーションが作成されます。条件が false と評価された場合、`assert`はメッセージとともにエラーをスローします。true と評価された場合は、`assert`はすべての引数を返します。
 
-An assertion is a predicate that is assumed by the developer to be true. They are used in programs to ensure that a specific condition is true at a specific moment of the execution of a program. Assertions are used in [unit tests](https://en.m.wikibooks.org/w/index.php?title=Lua_Programming/Unit_testing&action=edit&redlink=1) to verify that a program works correctly, but are also used in program code, in which case the program will fail when an assertion is false, either to verify that the environment in which the program is correct, or to verify that no error was made in program code and to generate appropriate error messages to make it easier to find bugs in the code when something doesn't happen as expected. In Lua, assertions are made with the `assert` function, which accepts a condition and a message (which will default to "assertion failed!") as parameters. When the condition evaluates to false, `assert` throws an error with the message. When it evaluates to true, `assert` returns all its arguments.
+
 
 ### Garbage collection
 
 ガベージコレクションは、Luaや他の多くの言語で実装されている自動メモリ管理の一形態です。プログラムがデータを変数に格納する必要がある場合、プログラムはオペレーティングシステムに、変数の値を格納するためにコンピュータのメモリにスペースを割り当てるように要求します。次に、スペースが不要になると（通常、変数がスコープから外れたため）、別のプログラムがスペースを使用できるように、スペースの割り当てを解除するようにオペレーティングシステムに指示します。 Luaでは、実際のプロセスははるかに複雑ですが、基本的な考え方は同じです。プログラムは、変数の値が不要になったときにオペレーティングシステムに通知する必要があります。低水準言語では、割り当ては言語によって処理されますが、割り当て解除は、プログラマーが値を必要としなくなったときに言語が認識できないためではありません。値を参照する変数がスコープから外れたり削除されたりした場合でも、スクリプト内の別の変数またはフィールドがそれを参照している可能性があり、割り当てを解除すると問題が発生します。高水準言語では、割り当て解除は、Luaが使用するシステムであるガベージコレクションなど、さまざまな自動メモリ管理システムによって処理される場合があります。ガベージコレクターは、Luaによって割り当てられたすべての値を定期的に検索して、どこにも参照されていない値を探します。プログラムがアクセスできなくなった値を収集し（参照がないため）、これらの値を安全に割り当て解除できることがわかっているため、割り当てを解除します。これはすべて透過的かつ自動的に行われるため、プログラマーは通常、それについて何もする必要はありません。しかし、時々、開発者は、ガベージコレクターに指示を与えることができます。
 
-Garbage collection is a form of automatic memory management implemented by Lua and many other languages. When a program needs to store data in a variable, it asks the operating system to allocate space in the computer's memory to store the variable's value. Then, when it doesn't need the space anymore (generally because the variable fell out of scope), it tells the operating system to deallocate the space so that another program may use it. In Lua, the actual process is much more complex, but the basic idea is the same: the program must tell the operating system when it doesn't need a variable's value anymore. In low level languages, allocation is handled by the language, but deallocation is not because the language cannot know when a programmer doesn't need a value anymore: even if a variable that referenced the value fell out of scope or was removed, another variable or a field in a script may still reference it, and deallocating it would cause problems. In higher level languages, deallocation may be handled by various automatic memory management systems, such as garbage collection, which is the system used by Lua. The garbage collector regularly searches through all the values allocated by Lua for values that are not referenced anywhere. It will collect values that the program cannot access anymore (because there is no reference to them) and, since it knows that these values can safely be deallocated, will deallocate them. This is all done transparently and automatically, so the programmer does not generally need to do anything about it. However, sometimes, the developer may want to give instructions to the garbage collector.
+
 
 #### Weak references
 
 弱参照は、[ガベージコレクターによって無視される参照](https://ja.wikipedia.org/wiki/%E5%BC%B1%E3%81%84%E5%8F%82%E7%85%A7)です。これらの参照は、開発者が `mode` メタメソッドを使用してガベージコレクターに示します。テーブルの `mode` メタメソッドは文字列である必要があります。その文字列に文字「k」が含まれている場合、テーブルのフィールドのすべてのキーは弱く、文字「v」が含まれている場合、テーブルのフィールドのすべての値は弱くなります。オブジェクトの配列に弱い値がある場合、ガベージコレクターは、その配列および他の弱い参照でのみ参照されている限り、その配列で参照されている場合でもこれらのオブジェクトを収集します。この動作は便利な場合もありますが、ほとんど使用されません。
 
-Weak references are references that are ignored by the garbage collector. These references are indicated to the garbage collector by the developer, using the `mode` metamethod. A table's `mode` metamethod should be a string. If that string contains the letter "k", all the keys of the table's fields are weak, and if it contains the letter "v", all the values of the table's fields are weak. When an array of objects has weak values, the garbage collector will collect these objects even if they are referenced in that array, as long as they are only referenced in that array and in other weak references. This behavior is sometimes useful, but rarely used.
+
 
 #### Manipulating the garbage collector
 
 ガベージコレクターは、基本ライブラリの一部であり、ガベージコレクターへのインターフェイスとして機能する `collectgarbage` 関数で操作できます。その最初の引数は、実行するアクションをガベージコレクターに示す文字列です。2番目の引数は、一部のアクションで使用されます。この `collectgarbage` 関数を使用して、ガベージコレクターを停止し、手動で収集サイクルを実行し、Luaが使用するメモリをカウントできます。
 
-The garbage collector may be manipulated with the `collectgarbage` function, which is part of the basic library and serves as an interface to the garbage collector. Its first argument is a string that indicates to the garbage collector what action should be performed; a second argument is used by some actions. The `collectgarbage` function can be used to stop the garbage collector, manually perform collection cycles and count the memory used by Lua.
+
 
 ## Coroutines
 
@@ -1182,21 +1165,21 @@ The garbage collector may be manipulated with the `collectgarbage` function, whi
 
 コルーチンは、Luaのコルーチンライブラリを使用して作成および操作できるコンポーネントであり、コルーチンを内部から生成する関数またはコルーチンを外部から再開する関数を呼び出すことにより、特定の場所で関数の実行を生成および再開できるようにします 。例：
 
-Coroutines are components that can be created and manipulated with the coroutine library in Lua and that allow the yielding and resuming of the execution of a function at specific locations by calling functions that yield the coroutine from inside of itself or that resume it from outside of itself. Example:
+
 
 1. メインスレッドの関数は、`coroutine.create`関数からコルーチンを作成し、`coroutine.resume`で再開します。コルーチンには、番号3が渡されます。
+
 2. コルーチンの関数が実行され、引数として `coroutine.resume` に渡された数値を取得します。
+
 3. 関数は、実行の特定の時点に到達し`coroutine.yield`、引数として、受け取った引数の合計（3）と2（したがって、3 + 2 = 5）を呼び出します。
+
 4. `coroutine.resume`への呼び出しは` coroutine.yield`に渡されたため、5を返し、メインスレッドは現在再び実行されており、その数値を変数に格納します。 コードを実行した後、コルーチンを再開し、 `coroutine.resume`の呼び出しから受け取った値の2倍を` coroutine.resume`に渡します（つまり、5×2 = 10を渡します）。
+
 5. コルーチンは、 `coroutine.yield` の呼び出しの結果として、`coroutine.resume` に渡された値を取得し、さらにコードを実行した後に終了します。 これは、 `coroutine.yield` の呼び出しの結果と、最初にパラメーターとして指定された値（つまり、10-3 = 7）との差を返します。
+
 6. メインスレッドは、 `coroutine.resume` の呼び出しの結果としてコルーチンによって返される値を取得し、続行します。
 
-1. A function in the main thread creates a coroutine from a function with `coroutine.create` and resumes it with `coroutine.resume`, to which the number 3 is passed.
-2. The function in the coroutine executes and gets the number passed to `coroutine.resume` as an argument.
-3. The function arrives at a certain point in its execution where it calls `coroutine.yield` with, as an argument, the sum of the argument it received (3) and 2 (hence, 3+2=5).
-4. The call to `coroutine.resume` returns 5, because it was passed to `coroutine.yield`, and the main thread, now running again, stores that number in a variable. It resumes the coroutine again after having executed some code, passing to `coroutine.resume` the double of the value it has received from the call to `coroutine.resume` (i.e. it passes 5×2=10).
-5. The coroutine gets the value passed to `coroutine.resume` as the result of the call to `coroutine.yield` and terminates after running some more code. It returns the difference between the result of the call to `coroutine.yield` and the value it was given as a parameter initially (i.e. 10−3=7).
-6. The main thread gets the value returned by the coroutine as the result of the call to `coroutine.resume` and goes on.
+   
 
 この例をコードに入れると、次のようになります。
 
@@ -1215,39 +1198,32 @@ print(final_result) --> 7
 
 `coroutine.create`関数は、関数からコルーチンを作成します。 コルーチンは「スレッド」タイプの値です。 `coroutine.resume`は、コルーチンの実行を開始または継続します。 コルーチンは、エラーが発生した場合、または実行するものが何も残っていない場合（この場合、実行が終了した場合）にデッドと呼ばれます。 コルーチンがデッドの場合、再開することはできません。 `coroutine.resume`関数は、コルーチンの実行が成功した場合は` true`を返し、コルーチンが終了した場合は返されたすべての値とともに、終了しなかった場合は `coroutine.yield`に渡されます。 実行が成功しなかった場合は、エラーメッセージとともに「false」が返されます。 `coroutine.resume`は実行中のコルーチンを返し、そのコルーチンがメインスレッドの場合は` true`を返し、それ以外の場合は `false`を返します。
 
-The `coroutine.create` function creates a coroutine from a function; coroutines are values of type "thread". `coroutine.resume` starts or continues the execution of a coroutine. A coroutine is said to be dead when it has encountered an error or has nothing left to run (in which case it has terminated its execution). When a coroutine is dead, it cannot be resumed. The `coroutine.resume` function will return `true` if the execution of the coroutine was successful, along with all the values returned, if the coroutine has terminated, or passed to `coroutine.yield` if it has not. If the execution was not successful, it will return `false` along with an error message. `coroutine.resume` returns the running coroutine and `true` when that coroutine is the main thread, or `false` otherwise.
+
 
 この`coroutine.status`関数は、コルーチンのステータスを文字列として返します。
 
-The `coroutine.status` function returns the status of a coroutine as a string:
+* コルーチンが実行中の場合は「running」。つまり、 `coroutine.status`を呼び出したコルーチンである必要があります。
+* コルーチンがyieldの呼び出しで一時停止されている場合、またはコルーチンがまだ実行を開始していない場合は、「suspended」
+* コルーチンがアクティブであるが実行されていない場合は「normal」、つまり別のコルーチンを再開したことを意味します
+* コルーチンの実行が終了した場合、またはエラーが発生した場合は「dead」
 
-* コルーチンが実行中の場合は「実行中」。つまり、 `coroutine.status`を呼び出したコルーチンである必要があります。
-* コルーチンがyieldの呼び出しで一時停止されている場合、またはコルーチンがまだ実行を開始していない場合は、「一時停止」
-* コルーチンがアクティブであるが実行されていない場合は「正常」、つまり別のコルーチンを再開したことを意味します
-* コルーチンの実行が終了した場合、またはエラーが発生した場合は「デッド」
 
-- "running" if the coroutine is running, which means it must be the coroutine which called `coroutine.status`
-- "suspended" if the coroutine is suspended in a call to yield or if it has not started running yet
-- "normal" if the coroutine is active but not running, which means it has resumed another coroutine
-- "dead" if the coroutine has finished running or has encountered an error
 
 `coroutine.wrap`関数は、呼び出されるたびにコルーチンを再開する関数を返します。 この関数に指定された追加の引数は、 `coroutine.resume`への追加の引数として機能し、コルーチンによって返される値、または` coroutine.yield`に渡される値は、関数の呼び出しによって返されます。 `coroutine.wrap`関数は、` coroutine.resume`とは異なり、プロテクトモードでコルーチンを呼び出さず、エラーを伝播します。
 
 コルーチンには多くのユースケースがありますが、それらを説明することはこの本の範囲外です。
 
-The `coroutine.wrap` function returns a function that resumes a coroutine every time it is called. Extra arguments given to this function will act as extra arguments to `coroutine.resume` and values returned by the coroutine or passed to `coroutine.yield` will be returned by a call to the function. The `coroutine.wrap` function, unlike `coroutine.resume`, does not call the coroutine in protected mode and propagates errors.
 
-There are many use cases for coroutines, but describing them are outside the scope of this book.
 
 ## String matching
 
 文字列を操作する場合、特定のパターンに従う部分文字列を文字列で検索できると便利なことがよくあります。 Luaには、これを行うための関数と、関数が文字列で検索できるパターンを表現するための表記法を提供する文字列操作ライブラリがあります。 Luaが提供する表記法は、プログラミングの世界のほとんどの言語やツールで使用されるパターンを表現するための[正規表現](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/regular_expression&usg=ALkJrhj_CdR0B83q433wqmYbGdMv6wD_lg)と非常によく似ています。ただし、それはより制限されており、構文がわずかに異なります。
 
-When manipulating strings, it is frequently useful to be able to search strings for substrings that follow a certain pattern. Lua has a string manipulation library that offers functions for doing this and a notation for expressing patterns that the functions can search for in strings. The notation offered by Lua is very similar to [regular expressions](https://en.wikipedia.org/wiki/regular_expression), a notation for expressing patterns used by most languages and tools in the programming world. However, it is more limited and has slightly different syntax.
+
 
 文字列ライブラリの`find`関数は、文字列内のパターンの最初の一致を探します。文字列内でパターンが見つかった場合、そのパターンが開始および終了する文字列内のインデックス（最初の文字から始まる文字列内の文字の位置を表す整数）を返します。パターンの出現が見つからない場合は、何も返しません。受け入れる最初のパラメーターは文字列で、2番目はパターン、3番目は`find`関数が検索を開始する文字位置を示す整数です。最後に、4番目の引数として`true`値を指定することにより、パターンなしで単純な一致を実行するように`find`関数に指示できます。次に、最初の文字列で指定された2番目の文字列の出現を検索します。単純一致を実行する場合は、3番目の引数を指定する必要があります。このサンプルコードは、文中の「lazy」という単語を検索し、その単語で見つかった出現箇所の開始位置と終了位置を出力します。
 
-The `find` function of the string library looks for the first match of a pattern in a string. If it finds an occurrence of the pattern in the string, it returns the indices in the string (integers representing the position of characters in the string starting from the first character, which is at position 1) where the occurrence starts and ends. If it doesn't find an occurrence of the pattern, it returns nothing. The first parameter it accepts is the string, the second being the pattern and the third being an integer indicating the character position where the `find` function should start searching. Finally, the `find` function can be told to perform a simple match without patterns by being given the value `true` as its fourth argument. It will then simply search for an occurrence of the second string it is given in the first string. The third argument must be given when a simple match is performed. This example code searches for the word "lazy" in a sentence and prints the start and end positions of the occurrence it finds of the word:
+
 
 ```lua
 local start_position, end_position = string.find("The quick brown fox jumps over the lazy dog.", "lazy", 1, true)
@@ -1256,7 +1232,7 @@ print("The word \"lazy\" was found starting at position " .. start_position .. "
 
 このコードでは「lazy」という単語は、位置36で始まり、位置39で終わることがわかりました。これは次と同等です。
 
-This code gives the result The word "lazy" was found starting at position 36 and ending at position 39.. It is equivalent to the following:
+
 
 ```lua
 local sentence = "The quick brown fox jumps over the lazy dog."
@@ -1266,15 +1242,15 @@ print("The word \"lazy\" was found starting at position " .. start_position .. "
 
 これは、文字列の `index`メタメソッドが文字列ライブラリの関数を含むテーブルに設定され、 `string.a(b, ...)`を`b:a(...)`に置き換えることができるために機能します 。
 
-This works because the `index` metamethod of strings is set to the table containing the functions of the string library, making it possible to replace `string.a(b, ...)` by `b:a(...)`.
+
 
 文字の位置を示すインデックスを受け入れる、またはそのようなインデックスを返す文字列ライブラリ内の関数は、最初の文字が位置1にあると見なします。最後の文字が位置-1で、文字列の末尾から逆方向にインデックスを付けます。
 
-Functions in the string library that accept indices to indicate character position or that return such indices consider the first character as being at position 1. They accept negative numbers and interpret them as indexing backwards, from the end of the string, with the last character being at position -1.
+
 
 パターンは、文字列が一致するかどうかを示す特定の表記法に従う文字列です。この目的のために、パターンには文字クラス、つまり文字のセットを表す組み合わせが含まれています。
 
-Patterns are strings that follow a certain notation to indicate a pattern that a string may match or not. For this purpose, patterns contain character classes, combinations that represent sets of characters.
+
 
 | 文字の組み合わせ | 説明                                 |
 | ---------------- | ------------------------------------ |
@@ -1290,35 +1266,21 @@ Patterns are strings that follow a certain notation to indicate a pattern that a
 | %w               | 英数字（数字と文字）                 |
 | %x               | 16進数                               |
 
-| Character combination | Description                                       |
-| --------------------- | ------------------------------------------------- |
-| .                     | All characters                                    |
-| %a                    | Letters (uppercase and lowercase)                 |
-| %c                    | Control characters                                |
-| %d                    | Digits                                            |
-| %g                    | Printable characters (except the space character) |
-| %l                    | Lowercase letters                                 |
-| %p                    | Punctuation characters                            |
-| %s                    | Space characters                                  |
-| %u                    | Uppercase letters                                 |
-| %w                    | Alphanumeric characters (digits and letters)      |
-| %x                    | Hexadecimal digits                                |
-
 特殊ではないすべての文字はそれ自体を表し、特殊文字（英数字ではないすべての文字）は、パーセント記号を接頭辞として付けることでエスケープできます。 キャラクタークラスを組み合わせて、セットに入れることで、より大きなキャラクタークラスを作成できます。 セットは、角括弧で囲まれた文字クラスとして示されます（つまり、 `[％xp]`は、すべての16進文字と文字「p」のセットです）。 文字の範囲は、範囲の終了文字をハイフンで昇順で区切ることで確認できます（つまり、 `[0-9％s]`は0から9までのすべての数字とスペース文字を表します）。キャレット（ "^"）文字がセットの先頭（開始角括弧の直後）に配置されている場合、セットには、キャレットがセットの先頭に配置されていなかった場合に含まれていた文字を除くすべての文字が含まれます。
 
-All characters that are not special represent themselves and special characters (all characters that are not alphanumeric) can be escaped by being prefixed by a percentage sign. Character classes can be combined to create bigger character classes by being put in a set. Sets are noted as character classes noted between square brackets (i.e. `[%xp]` is the set of all hexadecimal characters plus the letter "p"). Ranges of characters can be noted by separating the end characters of the range, in ascending order, with a hyphen (i.e. `[0-9%s]` represents all the digits from 0 to 9 plus space characters). If the caret ("^") character is put at the start of the set (right after the opening square bracket), the set will contain all characters except those it would have contained if that caret had not been put at the start of the set.
+
 
 パーセント記号 `%` の前にある文字で表されるすべてのクラスの補数は、パーセント記号の後に対応する大文字が続くものとして示されます（つまり、 `%S` はスペース文字を除くすべての文字を表します）。
 
-The complement of all classes represented by a letter preceded of a percentage sign can be noted as a percentage sign followed by the corresponding uppercase letter (i.e. `%S` represents all characters except space characters).
+
 
 パターンは、文字列がそれに一致するためにパターン内でどのシーケンスを見つける必要があるかを表すパターンアイテムのシーケンスです。 パターンアイテムは、文字クラスにすることができます。この場合、クラス内の任意の文字に1回一致し、文字クラスの後に「`*`」文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致します（これら 繰り返し項目は常に可能な限り長いシーケンスに一致します）、文字クラスの後に追加（ 「`+`」）文字が続きます。この場合、クラス内の文字の1つ以上の繰り返しに一致します（これらの繰り返し項目も常に可能な限り長いものに一致します） シーケンス）、文字クラスの後にマイナス（ 「`-`」）文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致しますが、最も短いシーケンスまたは文字クラスとそれに続く疑問符に一致します。この場合、クラス内の文字の1つまたは出現なしに一致します。
 
-Patterns are sequences of pattern items that represent what sequences should be found in the pattern for a string to match it. A pattern item can be a character class, in which case it matches any of the characters in the class once, a character class followed by the "*" character, in which case it matches 0 or more repetitions of characters in the class (these repetition items will always match the longest possible sequence), a character class followed by the addition ("+") character, in which case it matches 1 or more repetitions of characters in the class (these repetition items will also always match the longest possible sequence), a character class followed by the minus ("-") character, in which case it matches 0 or more repetitions of characters in the class, but matches the shortest possible sequence or a character class followed by an interrogation mark, in which case it matches one or no occurrence of a character in the class.
+
 
 以前にキャプチャされた部分文字列と同等の部分文字列を一致させることができます。`%1`は最初にキャプチャされた部分文字列と一致し、 `%2`は2番目の部分文字列と一致し、以下同様に`%9`まで続きます。 キャプチャについては、以下で説明します。 リファレンスマニュアルで説明されているように、パターンによって提供される他の2つの機能があります。
 
-It is possible to match substrings equivalent to previously captured substrings: `%1` will match the first captured substring, `%2` the second, and so on until `%9`. Captures are described below. There are two other functionalities offered by patterns, as described by the reference manual:
+
 
 > `%bxy`、ここでxとyは2つの異なる文字です。 このような項目は、xで始まり、yで終わり、xとyのバランスが取れている文字列に一致します。 つまり、文字列を左から右に読み、xの場合は + 1、yの場合は-1を数えると、最後のyは、数が0に達する最初のyになります。たとえば、項目 `%b()`は バランスの取れた括弧で式を照合します。
 >
@@ -1336,23 +1298,15 @@ It is possible to match substrings equivalent to previously captured substrings:
 
 パターンはパターン項目のシーケンスであり、オプションでキャレット`^`が前に付き、パターンが文字列の先頭でのみ一致できることを示し、オプションでドル記号`$`が続きます。これは、パターンが文字列の最後でのみ一致できることを示します 。 これらの記号は、文字列の最初または最後に一致を固定すると言われています。 これらの2つの文字は、パターンの最初または最後にある場合にのみ特別な意味を持ちます。
 
-Patterns are sequences of pattern items, optionally preceded by a caret, which indicates that the pattern can only match at the beginning of the string, and optionally followed by a dollar sign, which indicates that the pattern can only match at the end of the string. These symbols are said to anchor the match at the beginning or the end of the string. These two characters only have a special meaning when at the beginning or at the end of a pattern.
-
 
 
 サブパターンは、キャプチャを示すためにパターン内の括弧で囲むことができます。一致が成功すると、キャプチャに一致する文字列の部分文字列は、将来使用するために保存されます。たとえば、`gmatch`によって返されます。常に左括弧の位置から番号が付けられます。 2つの空の括弧は、現在の文字列位置（数値であり、文字列の一部ではありません）をキャプチャする空のキャプチャを示します。
 
 
 
-Sub-patterns can be enclosed inside parentheses inside patterns to indicate captures. When a match succeeds, the substrings of the string that match captures are stored for future use, for example to be returned by `gmatch`. They are always numbered starting from the position of their left parenthesis. Two empty parentheses denote the empty capture, which captures the current string position (which is a number and is not a part of the string).
-
-
-
 この`gmatch`関数を使用して、文字列内のパターンの出現を反復処理できます。`find`関数とは異なり、検索を開始する初期位置を指定したり、単純なマッチングを実行したりすることはできません。この`gmatch`関数は、呼び出されると、文字列内の指定されたパターンから次のキャプチャを返すイテレータを返します。パターンにキャプチャが指定されていない場合は、代わりに一致全体が示されます。次の例は、文中の単語を反復処理して1つずつプリントする方法を示しています。
 
 
-
-The `gmatch` function can be used to iterate through the occurrences of a pattern in a string; it is not possible, unlike with the `find` function, to specify an initial position to start searching or to perform simple matching. The `gmatch` function returns an iterator that, when called, returns the next captures from the given pattern in the string. The whole match is given instead if there are no captures specified in the pattern. The following example shows how to iterate through the words in a sentence and print them one by one:
 
 ```lua
 local sentence = "The quick brown fox jumps over the lazy dog."
@@ -1365,20 +1319,16 @@ end
 
 `gsub`関数を使用して、文字列内のパターンのすべての出現箇所を別のものに置き換えることができます。 最初の2つの引数は文字列とパターンで、3番目はオカレンスを置き換える文字列で、4番目は置き換える必要のあるオカレンスの最大数です。 3番目の引数は、文字列ではなく、テーブルまたは関数にすることもできます。
 
-In this example, the entire match is given by the only value returned by the iterator, word.
-
-The `gsub` function can be used to replace all occurrences of a pattern in a string by something else. Its first two arguments are the string and the pattern, while the third is the string to replace occurrences by and the fourth is the maximum number of occurrences that should be replaced. The third argument, instead of being a string, can also be a table or a function.
-
 3番目の引数が文字列の場合、それは置換文字列と呼ばれ、文字列内のパターンの出現を置換します。 パターンによって保存されたキャプチャは、置換文字列に埋め込むことができます。 それらは、キャプチャの数を表す数字が続くパーセント記号によって示されます。 一致自体は `%0`で表すことができます。 置換文字列のパーセント記号は、 `%%`としてエスケープする必要があります。
 
-When the third argument is a string, it is called the replacement string and it replaces occurrences of the pattern in the string. Captures stored by the pattern can be embedded in the replacement string; they are noted by a percentage sign followed by a digit representing the number of the capture. The match itself can be represented by `%0`. Percentage signs in replacement strings must be escaped as `%%`.
+
 
 3番目の引数がテーブルの場合、最初のキャプチャはそのテーブルにインデックスを付けるためのキーとして使用され、置換文字列はテーブル内のそのキーに対応する値です。 関数の場合、その関数は一致するたびに呼び出され、すべてのキャプチャが引数として渡されます。 どちらの場合も、キャプチャがない場合は、代わりに一致全体が使用されます。 関数またはテーブルの値が `false`または` nil`の場合、置換は行われません。
 
-When the third argument is a table, the first capture is used as a key to index that table and the replacement string is the value corresponding to that key in the table. When it is a function, that function is called for every match, with all captures passed as arguments. In both cases, if there is no capture, the entire match is used instead. If the function or table gives the value `false` or `nil`, no replacement is done.
+
 
 Lua 5.2リファレンスマニュアルから直接引用したいくつかの例を次に示します。
-Here are some examples taken directly from the Lua 5.2 Reference Manual:
+
 
 > ```lua
 > x = string.gsub("hello world", "(%w+)", "%1 %1")
@@ -1406,8 +1356,6 @@ Here are some examples taken directly from the Lua 5.2 Reference Manual:
 > —Lua authors, [Lua 5.2 Reference Manual](http://www.lua.org/manual/5.2/manual.html#6.4.1)
 
 Luaは、パターンマッチング以外の文字列操作機能を提供します。 これらには、文字の順序を逆にして文字列を返す `reverse`関数、文字列に相当する小文字を返す` lower`関数、文字列に相当する大文字を返す `upper`関数が含まれます。 文字列の長さを返す `len`関数と、引数として指定された2つの文字位置で開始および終了する文字列の部分文字列を返す` sub`関数。 他にもあり、それらのドキュメントはLua 5.2リファレンスマニュアルにあります。
-
-Lua offers other functions for manipulating strings than those for pattern matching. These include the `reverse` function, which returns a string with the order of the characters reversed, the `lower` function, which returns the lowercase equivalent of a string, the `upper` function, which returns the uppercase equivalent of a string, the `len` function, which returns the length of a string and the `sub` function, which returns the substring of a string that starts at and ends at the two character positions given as arguments. There are more, and their documentation can be found in the Lua 5.2 Reference Manual.
 
 1. [↑](https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version#cite_ref-3) [Ierusalimschy, Roberto](https://en.wikipedia.org/wiki/Roberto_Ierusalimschy); Celes, Waldemar; Henrique de Figueiredo, Luiz. [*Lua 5.2 Reference Manual*](http://www.lua.org/manual/5.2). http://www.lua.org/manual/5.2. Retrieved 30 November 2013.
 2. [↑](https://en.m.wikibooks.org/wiki/Lua_Programming/Print_version#cite_ref-4) Functions that were already described elsewhere will not be described in this chapter.
