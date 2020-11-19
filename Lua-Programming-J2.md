@@ -214,15 +214,13 @@ Luaの数値の演算子は次のとおりです。
 
 Nilは値 nilのタイプであり、その主なプロパティは他の値とは異なります。これは通常、有用な値がないことを表します。nilを値に持つものの例：
 
-Nil is the type of the value nil, whose main property is to be different from any other value; it usually represents the absence of a useful value. Some examples of things that have the value nil:
-
 - 値を割り当てる前にアクセスする変数の値
 - スコープ外の変数にアクセスしようとしたときに取得する値
 - 割り当てられていないテーブル内のキーの値
 - `tonumber`によって文字列を数値に変換できない場合に返される値
 
 
-より高度な注意点として、意図的にnil値を割り当てると、変数またはテーブルへの参照が削除され、[ガベージコレクター](https://en.m.wikibooks.org/w/index.php?title=Garbage_collection&action=edit&redlink=1)がそのメモリを再利用できるようになります。
+より高度な注意点として、意図的にnil値を割り当てると、変数またはテーブルへの参照が削除され、[ガベージコレクター]()がそのメモリを再利用できるようになります。
 
 
 
@@ -447,7 +445,7 @@ Luaのビット演算子は常に整数を操作し、必要に応じてオペ�
 
 [![Left shift](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Rotate_left_logically.svg/210px-Rotate_left_logically.svg.png)](https://en.m.wikibooks.org/wiki/File:Rotate_left_logically.svg)[![Right shift](https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Rotate_right_arithmetically.svg/175px-Rotate_right_arithmetically.svg.png)](https://en.m.wikibooks.org/wiki/File:Rotate_right_arithmetically.svg)
 
-これらのビット演算子に加えて、Lua5.3は算術ビットシフトもサポートしています。演算子`<<`を使用して左側に示されている左シフトは、すべてのビットを、第2オペランドに対応するビット数だけ左にシフトすることで構成されます。演算子で示され、右に示されている右シフト`>>`も同じですが、反対方向です。
+これらのビット演算子に加えて、Lua5.3は算術ビットシフトもサポートしています。演算子`<<`を使用して左側に示されている左シフトは、すべてのビットを、第2オペランドに対応するビット数だけ左にシフトすることで構成されます。演算子`>>`で示され、右に示されている右シフトも同じですが、ビットシフトは反対方向です。
 
 
 
@@ -1285,14 +1283,6 @@ print("The word \"lazy\" was found starting at position " .. start_position .. "
 > `%bxy`、ここでxとyは2つの異なる文字です。 このような項目は、xで始まり、yで終わり、xとyのバランスが取れている文字列に一致します。 つまり、文字列を左から右に読み、xの場合は + 1、yの場合は-1を数えると、最後のyは、数が0に達する最初のyになります。たとえば、項目 `%b()`は バランスの取れた括弧で式を照合します。
 >
 > `%f[set]`、フロンティアパターン。 このような項目は、次の文字がセットに属し、前の文字がセットに属さないように、任意の位置で空の文字列と一致します。 セットセットは、前述のように解釈されます。 件名の最初と最後は、文字「 '\0'」であるかのように処理されます。
->
-> —Lua authors, [Lua 5.2 Reference Manual](http://www.lua.org/manual/5.2/manual.html#6.4.1)
-
-
-
-> `%bxy`, where x and y are two distinct characters; such item matches strings that start with x, end with y, and where the x and y are balanced. This means that, if one reads the string from left to right, counting +1 for an x and -1 for a y, the ending y is the first y where the count reaches 0. For instance, the item `%b()` matches expressions with balanced parentheses.
->
-> `%f[set]`, a frontier pattern; such item matches an empty string at any position such that the next character belongs to set and the previous character does not belong to set. The set set is interpreted as previously described. The beginning and the end of the subject are handled as if they were the character '\0'.
 >
 > —Lua authors, [Lua 5.2 Reference Manual](http://www.lua.org/manual/5.2/manual.html#6.4.1)
 
