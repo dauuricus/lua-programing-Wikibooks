@@ -519,7 +519,7 @@ Here, the first bit became 1 in the result because it was 0 in the operand, and 
 
 [![Left shift](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Rotate_left_logically.svg/210px-Rotate_left_logically.svg.png)](https://en.m.wikibooks.org/wiki/File:Rotate_left_logically.svg)[![Right shift](https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Rotate_right_arithmetically.svg/175px-Rotate_right_arithmetically.svg.png)](https://en.m.wikibooks.org/wiki/File:Rotate_right_arithmetically.svg)
 
-これらのビット演算子に加えて、Lua5.3は算術ビットシフトもサポートしています。演算子`<<`を使用して左側に示されている左シフトは、すべてのビットを、第2オペランドに対応するビット数だけ左にシフトすることで構成されます。演算子で示され、右に示されている右シフト`>>`も同じですが、反対方向です。
+これらのビット演算子に加えて、Lua5.3は算術ビットシフトもサポートしています。演算子`<<`を使用して左側に示されている左シフトは、すべてのビットを、第2オペランドに対応するビット数だけ左にシフトすることで構成されます。演算子`>>`で示され、右に示されている右シフトも同じですが、ビットシフトは反対方向です。
 
 In addition to these bitwise operators, Lua 5.3 also supports arithmetic bit shifts. The left shift, with operator `<<` and illustrated on left, consists in shifting all bits to the left, by a number of bits that corresponds to the second operand. The right shift, denoted by operator `>>` and illustrated on right, does the same but in the opposite direction.
 
