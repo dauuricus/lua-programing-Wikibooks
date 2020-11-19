@@ -855,7 +855,7 @@ Operators used to compare two values, some of which are used in the code above, 
 |                 | 等しい | 等しくない | より大きい | 未満 | 以上 | 以下 |
 | --------------- | ------ | ---------- | ---------- | ---- | ---- | ---- |
 | 数学表記        | =      | ≠          | >          | <    | ≥    | ≤    |
-| Luaオペレーター | ==     | 〜=        | >          | <    | >=   | <=   |
+| Luaオペレーター | ==     | ~=         | >          | <    | >=   | <=   |
 
 |                       | equal to | not equal to | greater than | less than | greater than or equal to | less than or equal to |
 | --------------------- | -------- | ------------ | ------------ | --------- | ------------------------ | --------------------- |
