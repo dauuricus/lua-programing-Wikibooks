@@ -1181,8 +1181,6 @@ Luaは「バッテリーが付属していない」と言われている言語�
 
 この例をコードに入れると、次のようになります。
 
-This example, put in code, gives the following:
-
 ```lua
 local co = coroutine.create(function(initial_value)
 	local value_obtained = coroutine.yield(initial_value + 2) -- 3+2=5
@@ -1356,37 +1354,47 @@ Luaは、パターンマッチング以外の文字列操作機能を提供し�
 
 **ソフトウェアテスト**という用語は、コンピュータソフトウェアのバグやプログラミングの間違いを発見するために使用されるいくつかの方法とプロセスを指します。 ソフトウェアテストは静的に実行できます。静的テストと呼ばれ、コンピュータソフトウェアを実行せずに実行されます。動的な場合は、動的テストと呼ばれ、テスト対象のコンピュータプログラムの実行中に実行されます。
 
-The term **software testing** refers to a number of methods and processes that are used to discover bugs and programming mistakes in computer software. Software testing can be done statically, in which case in is called static testing and is done without executing the computer software, or dynamically, in which case it is called dynamic testing and is done while the computer program that is being tested is running.
+
 
 ## Type checking
 
-> In programming languages, a **type system** is a collection of rules that assign a property called a *[type](https://en.wikipedia.org/wiki/type_(computer_science))* to the various constructs—such as [variables](https://en.wikipedia.org/wiki/variable_(computer_science)), [expressions](https://en.wikipedia.org/wiki/expression_(computer_science)), [functions](https://en.wikipedia.org/wiki/function_(computer_science)) or [modules](https://en.wikipedia.org/wiki/modular_programming)—a [computer program](https://en.wikipedia.org/wiki/computer_program) is composed of. The main purpose of a type system is to reduce [bugs](https://en.wikipedia.org/wiki/bug_(computer_programming)) in computer programs by defining interfaces between different parts of a computer program, and then checking that the parts have been connected in a consistent way. This checking can happen statically (at [compile time](https://en.wikipedia.org/wiki/compile_time)), dynamically (at [run time](https://en.wikipedia.org/wiki/run_time_(program_lifecycle_phase))), or it can happen as a combination of static and dynamic checking. Type systems have other purposes as well, such as enabling certain compiler optimizations, allowing for [multiple dispatch](https://en.wikipedia.org/wiki/multiple_dispatch), providing a form of documentation, etc.
+> プログラミング言語では、**type system**は、type と呼ばれるプロパティを、コンピュータープログラムで構成されるさまざまな構成要素（変数、式、関数、モジュールなど）に割り当てるルールの集まりです。 型システムの主な目的は、コンピュータープログラムのさまざまな部分の間のインターフェイスを定義し、それらの部分が一貫した方法で接続されていることを確認することによって、コンピュータープログラムのバグを減らすことです。このチェックは、静的（コンパイル時）、動的（実行時）、または静的チェックと動的チェックの組み合わせとして実行できます。 型システムには、特定のコンパイラの最適化の有効化、複数のディスパッチの許可、ドキュメントの形式の提供など、他の目的もあります。
 >
 > —Wikipedia, [Type system](https://en.wikipedia.org/wiki/Type_system)
 
 ウィキペディアからの抜粋が示すように、型チェックは実行時またはコンパイル時に実行できます。 コンパイル時に実行される場合、コンパイラはソースコードをコンパイルするときに、プログラムの型安全性を検証し、プログラムが特定の型安全性プロパティを満たしていることを保証します。通常、静的型チェッカーは、変数の値が常に 同じ型であり、関数に渡される引数は正しい型になります。
 
-Type-checking can be done, as the extract from Wikipedia brilliantly said, at run time or at compile time. If it is done at compile time, the compiler, when compiling source code, will verify the type safety of the program and guarantee that the program satisfies certain type safety properties—generally, static type-checkers will simply verify that variables always have values of the same type and that arguments passed to functions will have the right type.
+
 
 静的なアプローチにより、開発サイクルの早い段階でバグを発見できます。対照的に、動的アプローチは、プログラムの実行時にプログラムが型制約に従っていることを確認することで構成されます。 これは、動的型チェッカーがより多くの制約を検証できる必要があることを意味しますが、ほとんどの動的型付き言語には多くの型制約がありません。 Luaは動的に型付けされた言語です。Luaでは、値には型がありますが、変数にはありません。 つまり、変数の値は、プログラムの実行のある時点では数値になり、別の時点では文字列になる可能性があります。
 
-The static approach allows bugs to be discovered early in the development cycle. The dynamic approach, in contrast, consists in verifying that the program follows the type constraints when it is running. While this means that dynamic type-checkers should be able to verify more constraints, most dynamically typed languages do not have many type constraints. Lua is a dynamically typed language: in Lua, values have types, but variables do not. This means that the value of a variable can be a number at some point of the program’s execution and be a string at another point.
 
-Lua’s type system is very simple in comparison with most other languages. It performs type checking when operators are used (attempting to add two values of which at least one is not a number and cannot be coerced to one, for example, will raise a type error) and when functions of the standard libraries are called (functions of the standard library reject arguments that do not have the right type and raise an appropriate error).
 
-Since Lua does not have functionality for specifying a type for function parameters, the `type` function can be useful to verify that arguments passed to functions are of the appropriate type. This is most useful for functions that will be passed arguments provided by users while a program is running (for example, in an interactive environment for calling predefined Lua functions), since adding code for type checking to functions makes them more verbose and adds maintenance overhead.
+Luaの型システムは、他のほとんどの言語と比較して非常に単純です。 演算子が使用されている場合（たとえば、少なくとも1つが数値ではなく、1に強制できない2つの値を追加しようとすると、型エラーが発生します）、および標準ライブラリの関数が呼び出された場合（関数 標準ライブラリのは、正しい型を持たない引数を拒否し、適切なエラーを発生させます）。
+
+
+
+Luaには関数パラメーターの型を指定する機能がないため、`type`関数は、関数に渡される引数が適切な型であることを確認するのに役立ちます。これは、プログラムの実行中にユーザーから提供された引数が渡される関数（たとえば、事前定義されたLua関数を呼び出すための対話型環境）で最も役立ちます。関数に型チェックのコードを追加すると、関数がより冗長になり、メンテナンスのオーバーヘッドが増えるためです。 
+
+
 
 ## White-box testing
 
-The term white-box testing refers to the practice of using knowledge of the internal workings of software to create test cases to verify its functionality. It is relevant at three levels of software testing, but the one most interesting for Lua programs is the unit level, since Lua programs are usually part of a bigger application where the integration and system testing would take place.
+ホワイトボックステストという用語は、ソフトウェアの内部動作に関する知識を使用して、その機能を検証するためのテストケースを作成する方法を指します。これはソフトウェアテストの3つのレベルに関連していますが、Luaプログラムは通常、統合とシステムテストが行われるより大きなアプリケーションの一部であるため、Luaプログラムにとって最も興味深いのはユニットレベルです。
 
-There are multiple frameworks available for unit testing in Lua. Testing at the unit level is most appropriate for libraries, since it generally consists in writing test cases that pass specific arguments to functions and provide a warning when a function returns an unexpected value. This requires writing test cases for new functionality, but has the benefit of making errors introduced in code easier to notice when they modify the behavior of functions in a way that makes the tests not pass anymore.
 
-There are multiple unit testing frameworks for Lua. One of them, busted, supports the standard Lua virtual machine as well as LuaJIT, and can also be used with MoonScript and Terra, the former a language that compiles to Lua and the latter a low-level language that is interoperable with Lua. Another unit testing framework for Lua, Luaunit, is written entirely in Lua and has no dependencies. Shake is a simpler test framework, initially part of the Kepler Project, that uses the `assert` and `print` functions but is no longer actively developed.
+
+Luaでのユニットテストに利用できるフレームワークは複数あります。ユニットレベルでのテストは、通常、関数に特定の引数を渡し、関数が予期しない値を返したときに警告を提供するテストケースを作成することで構成されるため、ライブラリに最も適しています。これには、新しい機能のテストケースを作成する必要がありますが、テストに合格しなくなるような方法で関数の動作を変更したときに、コードに導入されたエラーに気づきやすくなるという利点があります。
+
+
+
+Luaには複数のユニットテストフレームワークがあります。 そのうちの1つは、バストされ、標準のLua仮想マシンと LuaJIT をサポートし、MoonScript と Terra でも使用できます。前者はLuaにコンパイルされる言語で、後者は Lua と相互運用可能な低レベル言語です。 Lua の別のユニットテストフレームワークである Luaunit は、完全にLuaで記述されており、依存関係はありません。 Shake は、当初は Kepler Project の一部であった、より単純なテストフレームワークであり、`assert` および `print` 関数を使用しますが、現在は積極的に開発されていません。
+
+
 
 ## Further reading
 
-The lua-users wiki, an excellent resource to find information about Lua, provides the following material that is related to software testing. Some of these pages consist in links to other pages or to projects that can be useful for various tasks.
+Lua に関する情報を見つけるための優れたリソースである lua-users wiki は、ソフトウェアテストに関連する資料を提供します。これらのページの一部は、他のページやまたはさまざまなタスクに役立つプロジェクトへのリンクで構成されています。
 
 - [Lua Type Checking](http://lua-users.org/wiki/LuaTypeChecking)
 - [Unit Testing](http://lua-users.org/wiki/UnitTesting)
