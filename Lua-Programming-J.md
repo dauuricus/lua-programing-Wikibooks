@@ -1476,7 +1476,7 @@ Here are some examples taken directly from the Lua 5.2 Reference Manual:
 >
 > —Lua authors, [Lua 5.2 Reference Manual](http://www.lua.org/manual/5.2/manual.html#6.4.1)
 
-Luaは、パターンマッチング以外の文字列操作機能を提供します。 これらには、文字の順序を逆にして文字列を返す `reverse`関数、文字列に相当する小文字を返す` lower`関数、文字列に相当する大文字を返す `upper`関数が含まれます。 文字列の長さを返す `len`関数と、引数として指定された2つの文字位置で開始および終了する文字列の部分文字列を返す` sub`関数。 他にもあり、それらのドキュメントはLua 5.2リファレンスマニュアルにあります。
+Luaは、パターンマッチング以外の文字列操作機能を提供します。これらには、文字の順序を逆にして文字列を返す `reverse`関数、文字列に相当する小文字を返す` lower`関数、文字列に相当する大文字を返す `upper`関数が含まれます。文字列の長さを返す `len`関数と、引数として指定された2つの文字位置で開始および終了する文字列の部分文字列を返す` sub`関数。その他についてはLua 5.2リファレンスマニュアルに記載があります。
 
 Lua offers other functions for manipulating strings than those for pattern matching. These include the `reverse` function, which returns a string with the order of the characters reversed, the `lower` function, which returns the lowercase equivalent of a string, the `upper` function, which returns the uppercase equivalent of a string, the `len` function, which returns the length of a string and the `sub` function, which returns the substring of a string that starts at and ends at the two character positions given as arguments. There are more, and their documentation can be found in the Lua 5.2 Reference Manual.
 
@@ -1487,6 +1487,8 @@ Lua offers other functions for manipulating strings than those for pattern match
 
 # Appendix:Software testing
 
+**ソフトウェアテスト**という用語は、コンピュータソフトウェアのバグやプログラミングの間違いを発見するために使用されるいくつかの方法とプロセスを指します。 ソフトウェアテストは静的に実行できます。静的テストと呼ばれ、コンピュータソフトウェアを実行せずに実行されます。動的な場合は、動的テストと呼ばれ、テスト対象のコンピュータプログラムの実行中に実行されます。
+
 The term **software testing** refers to a number of methods and processes that are used to discover bugs and programming mistakes in computer software. Software testing can be done statically, in which case in is called static testing and is done without executing the computer software, or dynamically, in which case it is called dynamic testing and is done while the computer program that is being tested is running.
 
 ## Type checking
@@ -1495,7 +1497,11 @@ The term **software testing** refers to a number of methods and processes that a
 >
 > —Wikipedia, [Type system](https://en.wikipedia.org/wiki/Type_system)
 
+ウィキペディアからの抜粋が示すように、型チェックは実行時またはコンパイル時に実行できます。コンパイル時に実行される場合、コンパイラはソースコードをコンパイルするときに、プログラムの型安全性を検証し、プログラムが特定の型安全性プロパティを満たしていることを保証します。通常、静的型チェッカーは、変数の値が常に 同じ型であり、関数に渡される引数は正しい型になります。
+
 Type-checking can be done, as the extract from Wikipedia brilliantly said, at run time or at compile time. If it is done at compile time, the compiler, when compiling source code, will verify the type safety of the program and guarantee that the program satisfies certain type safety properties—generally, static type-checkers will simply verify that variables always have values of the same type and that arguments passed to functions will have the right type.
+
+静的なアプローチにより、開発サイクルの早い段階でバグを発見できます。対照的に、動的アプローチは、プログラムの実行時にプログラムが型制約に従っていることを確認することで構成されます。 これは、動的型チェッカーがより多くの制約を検証できる必要があることを意味しますが、ほとんどの動的型付き言語には多くの型制約がありません。 Luaは動的に型付けされた言語です。Luaでは、値には型がありますが、変数にはありません。 つまり、変数の値は、プログラムの実行のある時点では数値になり、別の時点では文字列になる可能性があります。
 
 The static approach allows bugs to be discovered early in the development cycle. The dynamic approach, in contrast, consists in verifying that the program follows the type constraints when it is running. While this means that dynamic type-checkers should be able to verify more constraints, most dynamically typed languages do not have many type constraints. Lua is a dynamically typed language: in Lua, values have types, but variables do not. This means that the value of a variable can be a number at some point of the program’s execution and be a string at another point.
 
