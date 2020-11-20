@@ -1408,13 +1408,15 @@ Lua に関する情報を見つけるための優れたリソースである lua
 
 # Glossary
 
-This is a glossary that contains terms related to programming in the context of Lua. Its use is recommended to find the meaning of words that are not understood.
+これは、Lua のコンテキストでのプログラミングに関連する用語を含む用語集です。理解できない単語の意味を見つけるために、その使用をお勧めします。
 
 - abstract class
 
-  An [abstract class](https://en.wikipedia.org/wiki/concrete_class#Abstract_and_concrete) is a class of which instances cannot be created directly. Abstract classes are [abstract types](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#abstract_type).
+  [抽象クラス](https://en.wikipedia.org/wiki/concrete_class#Abstract_and_concrete)は、インスタンスを直接作成できないクラスです。抽象クラスは[abstract types](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#abstract_type)です。
 
 - abstract data type
+
+  [抽象データ型](https://en.wikipedia.org/wiki/abstract_data_type)は、[データ構造]()の 同様の動作をするクラスを表すモデルです。 抽象データ型は、実装やコンピューターのメモリへのデータの格納方法ではなく、それらに対して実行できる操作と、これらの操作の数学的制約によって定義されます。
 
   An [abstract data type](https://en.wikipedia.org/wiki/abstract_data_type) is a model to represent a class of [data structures](https://en.m.wikibooks.org/wiki/Lua_Programming/Glossary#data_structure) that have similar behavior. Abstract data types are defined by the operations that can be performed on them and by mathematical constraints of these operations rather than by the implementation and the way the data is stored in the memory of the computer.
 
