@@ -1251,7 +1251,9 @@ The garbage collector may be manipulated with the `collectgarbage` function, whi
 >
 > —Wikipedia, [Coroutine](https://en.wikipedia.org/wiki/Coroutine)
 
-コルーチンは、Luaのコルーチンライブラリを使用して作成および操作できるコンポーネントであり、コルーチンを内部から生成する関数またはコルーチンを外部から再開する関数を呼び出すことにより、特定の場所で関数の実行を生成および再開できるようにします 。例：
+コルーチンは、Lua のコルーチンライブラリを使用して作成および操作できるコンポーネントであり、コルーチンを内部から生成する関数またはコルーチンを外部から再開する関数を呼び出すことにより、特定の場所で関数の実行を生成および再開できるようにします 。
+
+例：
 
 Coroutines are components that can be created and manipulated with the coroutine library in Lua and that allow the yielding and resuming of the execution of a function at specific locations by calling functions that yield the coroutine from inside of itself or that resume it from outside of itself. Example:
 
@@ -1292,10 +1294,10 @@ The `coroutine.create` function creates a coroutine from a function; coroutines 
 
 The `coroutine.status` function returns the status of a coroutine as a string:
 
-* コルーチンが実行中の場合は「実行中」。つまり、 `coroutine.status`を呼び出したコルーチンである必要があります。
-* コルーチンがyieldの呼び出しで一時停止されている場合、またはコルーチンがまだ実行を開始していない場合は、「一時停止」
-* コルーチンがアクティブであるが実行されていない場合は「正常」、つまり別のコルーチンを再開したことを意味します
-* コルーチンの実行が終了した場合、またはエラーが発生した場合は「デッド」
+* コルーチンが実行中の場合は「running」。つまり、 `coroutine.status`を呼び出したコルーチンである必要があります。
+* コルーチンがyieldの呼び出しで一時停止されている場合、またはコルーチンがまだ実行を開始していない場合は、「suspended」
+* コルーチンがアクティブであるが実行されていない場合は「normal」、つまり別のコルーチンを再開したことを意味します
+* コルーチンの実行が終了した場合、またはエラーが発生した場合は「dead」
 
 - "running" if the coroutine is running, which means it must be the coroutine which called `coroutine.status`
 - "suspended" if the coroutine is suspended in a call to yield or if it has not started running yet
@@ -1312,7 +1314,7 @@ There are many use cases for coroutines, but describing them are outside the sco
 
 ## String matching
 
-文字列を操作する場合、特定のパターンに従う部分文字列を文字列で検索できると便利なことがよくあります。 Luaには、これを行うための関数と、関数が文字列で検索できるパターンを表現するための表記法を提供する文字列操作ライブラリがあります。 Luaが提供する表記法は、プログラミングの世界のほとんどの言語やツールで使用されるパターンを表現するための[正規表現](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/regular_expression&usg=ALkJrhj_CdR0B83q433wqmYbGdMv6wD_lg)と非常によく似ています。ただし、それはより制限されており、構文がわずかに異なります。
+文字列を操作する場合、特定のパターンに従う部分文字列を文字列で検索できると便利なことがよくあります。 Lua には、これを行うための関数と、関数が文字列で検索できるパターンを表現するための表記法を提供する文字列操作ライブラリがあります。 Lua が提供する表記法は、プログラミングの世界のほとんどの言語やツールで使用されるパターンを表現するための[正規表現](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/regular_expression&usg=ALkJrhj_CdR0B83q433wqmYbGdMv6wD_lg)と非常によく似ています。ただし、それはより制限されており、構文がわずかに異なります。
 
 When manipulating strings, it is frequently useful to be able to search strings for substrings that follow a certain pattern. Lua has a string manipulation library that offers functions for doing this and a notation for expressing patterns that the functions can search for in strings. The notation offered by Lua is very similar to [regular expressions](https://en.wikipedia.org/wiki/regular_expression), a notation for expressing patterns used by most languages and tools in the programming world. However, it is more limited and has slightly different syntax.
 
@@ -1375,7 +1377,7 @@ Patterns are strings that follow a certain notation to indicate a pattern that a
 | %w                    | Alphanumeric characters (digits and letters)      |
 | %x                    | Hexadecimal digits                                |
 
-特殊ではないすべての文字はそれ自体を表し、特殊文字（英数字ではないすべての文字）は、パーセント記号を接頭辞として付けることでエスケープできます。 キャラクタークラスを組み合わせて、セットに入れることで、より大きなキャラクタークラスを作成できます。 セットは、角括弧で囲まれた文字クラスとして示されます（つまり、 `[％xp]`は、すべての16進文字と文字「p」のセットです）。 文字の範囲は、範囲の終了文字をハイフンで昇順で区切ることで確認できます（つまり、 `[0-9％s]`は0から9までのすべての数字とスペース文字を表します）。キャレット（ "^"）文字がセットの先頭（開始角括弧の直後）に配置されている場合、セットには、キャレットがセットの先頭に配置されていなかった場合に含まれていた文字を除くすべての文字が含まれます。
+特殊ではないすべての文字はそれ自体を表し、特殊文字（英数字ではないすべての文字）は、パーセント記号を接頭辞として付けることでエスケープできます。 キャラクタークラスを組み合わせて、セットに入れることで、より大きなキャラクタークラスを作成できます。 セットは、角括弧で囲まれた文字クラスとして示されます（つまり、 `[％xp]`は、すべての16進文字と文字「p」のセットです）。 文字の範囲は、範囲の終了文字をハイフンで昇順で区切ることで確認できます（つまり、 `[0-9％s]`は0から9までのすべての数字とスペース文字を表します）。キャレット（ `^`）文字がセットの先頭（開始角括弧の直後）に配置されている場合、セットには、キャレットがセットの先頭に配置されていなかった場合に含まれていた文字を除くすべての文字が含まれます。
 
 All characters that are not special represent themselves and special characters (all characters that are not alphanumeric) can be escaped by being prefixed by a percentage sign. Character classes can be combined to create bigger character classes by being put in a set. Sets are noted as character classes noted between square brackets (i.e. `[%xp]` is the set of all hexadecimal characters plus the letter "p"). Ranges of characters can be noted by separating the end characters of the range, in ascending order, with a hyphen (i.e. `[0-9%s]` represents all the digits from 0 to 9 plus space characters). If the caret ("^") character is put at the start of the set (right after the opening square bracket), the set will contain all characters except those it would have contained if that caret had not been put at the start of the set.
 
@@ -1383,7 +1385,7 @@ All characters that are not special represent themselves and special characters 
 
 The complement of all classes represented by a letter preceded of a percentage sign can be noted as a percentage sign followed by the corresponding uppercase letter (i.e. `%S` represents all characters except space characters).
 
-パターンは、文字列がそれに一致するためにパターン内でどのシーケンスを見つける必要があるかを表すパターンアイテムのシーケンスです。 パターンアイテムは、文字クラスにすることができます。この場合、クラス内の任意の文字に1回一致し、文字クラスの後に「`*`」文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致します（これら 繰り返し項目は常に可能な限り長いシーケンスに一致します）、文字クラスの後に追加（ 「`+`」）文字が続きます。この場合、クラス内の文字の1つ以上の繰り返しに一致します（これらの繰り返し項目も常に可能な限り長いものに一致します） シーケンス）、文字クラスの後にマイナス（ 「`-`」）文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致しますが、最も短いシーケンスまたは文字クラスとそれに続く疑問符に一致します。この場合、クラス内の文字の1つまたは出現なしに一致します。
+パターンは、文字列がそれに一致するためにパターン内でどのシーケンスを見つける必要があるかを表すパターンアイテムのシーケンスです。 パターンアイテムは、文字クラスにすることができます。この場合、クラス内の任意の文字に1回一致し、文字クラスの後に「`*`」文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致します（これら 繰り返し項目は常に可能な限り長いシーケンスに一致します）、文字クラスの後に追加（ 「`+`」）文字が続きます。この場合、クラス内の文字の1つ以上の繰り返しに一致します（これらの繰り返し項目も常に可能な限り長いシーケンスに一致します）、文字クラスの後にマイナス（ 「`-`」）文字が続きます。この場合、クラス内の文字の0回以上の繰り返しに一致しますが、最も短いシーケンスまたは文字クラスとそれに続く疑問符に一致します。この場合、クラス内の文字の1つまたは出現なしに一致します。
 
 Patterns are sequences of pattern items that represent what sequences should be found in the pattern for a string to match it. A pattern item can be a character class, in which case it matches any of the characters in the class once, a character class followed by the "*" character, in which case it matches 0 or more repetitions of characters in the class (these repetition items will always match the longest possible sequence), a character class followed by the addition ("+") character, in which case it matches 1 or more repetitions of characters in the class (these repetition items will also always match the longest possible sequence), a character class followed by the minus ("-") character, in which case it matches 0 or more repetitions of characters in the class, but matches the shortest possible sequence or a character class followed by an interrogation mark, in which case it matches one or no occurrence of a character in the class.
 
@@ -1434,7 +1436,7 @@ end
 
 この例では、一致全体は、イテレータであるwordによって返される唯一の値によって与えられます。
 
-`gsub`関数を使用して、文字列内のパターンのすべての出現箇所を別のものに置き換えることができます。 最初の2つの引数は文字列とパターンで、3番目はオカレンスを置き換える文字列で、4番目は置き換える必要のあるオカレンスの最大数です。 3番目の引数は、文字列ではなく、テーブルまたは関数にすることもできます。
+`gsub`関数を使用して、文字列内のパターンのすべての出現箇所を別のものに置き換えることができます。 最初の2つの引数は文字列とパターンで、3番目はオカレンスを置き換える文字列で、4番目は置き換える必要のあるオカレンスの最大数です。3番目の引数は、文字列ではなく、テーブルまたは関数にすることもできます。
 
 In this example, the entire match is given by the only value returned by the iterator, word.
 
