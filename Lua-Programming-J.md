@@ -11,11 +11,11 @@ GNU GENERAL PUBLIC LICENSE
 
 # Introduction
 
-Lua（「LUA」という表記は正しくありません）は、強力で、高速で、軽量で、埋め込み可能なプログラミング言語です。多くのフレームワーク、ゲーム、その他のアプリケーションで使用されています。単独で使用することもできますが、他のアプリケーションに簡単に組み込むことができるように設計されています。これは、非常に移植性の高いCプログラミング言語のサブセットであるANSI Cで実装されています。つまり、他のほとんどのスクリプト言語では実行できない多くのシステムやデバイスで実行できます。この本の目的は、以前のプログラミング経験に関係なく、誰にでもLuaプログラミングを教えることです。この本は、プログラミングの紹介として、これまでプログラミングしたことがない人のために、またはLuaの紹介として、他の言語でのプログラミング経験のある人のために使用できます。Luaを使用する開発プラットフォームやゲームはたくさんあるので、この本はLuaの使い方を学び、その開発プラットフォームでそれを使用するためにも使用できます。
+Lua（「LUA」という表記は正しくありません）は、強力で、高速で、軽量で、埋め込み可能なプログラミング言語です。多くのフレームワーク、ゲーム、その他のアプリケーションで使用されています。単独で使用することもできますが、他のアプリケーションに簡単に組み込むことができるように設計されています。これは、非常に移植性の高いCプログラミング言語のサブセットであるANSI Cで実装されています。つまり、他のほとんどのスクリプト言語では実行できない多くのシステムやデバイスで実行できます。この本の目的は、以前のプログラミング経験に関係なく、誰にでも Lua プログラミングを教えることです。この本は、プログラミングの紹介として、これまでプログラミングしたことがない人のために、または Lua の紹介として、他の言語でのプログラミング経験のある人のために使用できます。Lua を使用する開発プラットフォームやゲームはたくさんあるので、この本は Lua の使い方を学び、その開発プラットフォームでそれを使用するためにも使用できます。
 
-この本は、Luaの最新バージョンの使用法を教えることを目的としています。これは、Luaの新しいバージョンがリリースされると、定期的に更新が試みられることを意味します（Luaのリリースはそれほど頻繁ではないため、それほど難しくはありません）。現在、この本は以前のバージョンであるLua5.2の最新版です。5.xブランチ（Lua5.0およびLua5.1）で古いバージョンのLuaを使用する組み込み環境でLuaを使用している場合でも、資料は十分に関連しているはずです。
+この本は、Lua の最新バージョンの使用法を教えることを目的としています。これは、Lua の新しいバージョンがリリースされると、定期的に更新が試みられることを意味します（ Lua のリリースはそれほど頻繁ではないため、それほど難しくはありません）。現在、この本は以前のバージョンである Lua5.2 の最新版です。5.xブランチ（Lua5.0 および Lua5.1）で古いバージョンの Lua を使用する組み込み環境で Lua を使用している場合でも、資料は十分に関連しているはずです。
 
-Luaは、リオデジャネイロのポンティフィカルカトリック大学の研究所で設計および保守されています。作成者は、 Roberto Ierusalimschy、Waldemar Celes 、Luiz Henrique de Figueiredoです。
+Lua は、リオデジャネイロのポンティフィカルカトリック大学の研究所で設計および保守されています。作成者は、 Roberto Ierusalimschy、Waldemar Celes 、Luiz Henrique de Figueiredoです。
 
 Lua (not "LUA", which is incorrect although common) is a powerful, fast, lightweight and embeddable programming language. It is used by many frameworks, games and other applications. While it can be used by itself, it has been designed to be easy to embed in another application. It is implemented in ANSI C, a subset of the C programming language that is very portable, which means it can run on many systems and many devices where most other scripting languages would not be able to run. The purpose of this book is to teach Lua programming to anyone regardless of previous programming experience. The book can be used as an introduction to programming, for someone who has never programmed before, or as an introduction to Lua, for people who have programmed before but not in Lua. Since there are many development platforms and games that use Lua, this book can also be used to learn to use Lua and then to use it in that development platform.
 
@@ -31,9 +31,9 @@ Lua was designed and is being maintained at the Pontifical Catholic University o
 >
 > —Lua authors, [About Lua](http://www.lua.org/about.html)
 
-Luaは、TeCGraf（リオデジャネイロのポンティフィカルカトリック大学の研究所）によって設計された2つの言語、DELとSolに由来します。 DELは「データ入力言語」を意味し、Solは「単純なオブジェクト言語」を意味し、ポルトガル語で太陽も意味します。そのため、ポルトガル語で「月」を意味するため、Luaという名前が選ばれました。ブラジルの石油会社であるPetrobrasのために作成されましたが、TeCGrafの他の多くのプロジェクトでも使用され、現在では世界中の多数のプロジェクトで使用されています。 Luaは、組み込みゲーム開発の分野における主要な言語の1つです。
+Lua は、TeCGraf（リオデジャネイロのポンティフィカルカトリック大学の研究所）によって設計された2つの言語、DEL と Sol に由来します。 DEL は「データ入力言語」を意味し、Sol は「単純なオブジェクト言語」を意味し、ポルトガル語で太陽も意味します。そのため、ポルトガル語で「月」を意味するため、Luaという名前が選ばれました。ブラジルの石油会社であるPetrobrasのために作成されましたが、TeCGrafの他の多くのプロジェクトでも使用され、現在では世界中の多数のプロジェクトで使用されています。 Lua は、組み込みゲーム開発の分野における主要な言語の1つです。
 
-Luaの主な利点の1つは、そのシンプルさです。一部の企業は、その利点のためだけにそれを使用しています。プログラミング言語を使用して特定のタスクを実行できれば、従業員はよりよく働くことができると考えていますが、複雑なプログラミング言語のフルコースを従業員に提供する余裕はありません。ここでのBashやBatchのようないくつかの非常に単純な言語は、これらのタスクを実行するのに十分強力ではありませんが、Luaは強力で単純です。 Luaのもう1つの重要な利点は、組み込み機能です。これは、開発全体を通じて最も重要な特性の1つでした。 World of WarcraftやROBLOXのようなゲームは、ユーザーが使用できるように、アプリケーションにLuaを埋め込むことができる必要があります。
+Lua の主な利点の1つは、そのシンプルさです。一部の企業は、その利点のためだけにそれを使用しています。プログラミング言語を使用して特定のタスクを実行できれば、従業員はよりよく働くことができると考えていますが、複雑なプログラミング言語のフルコースを従業員に提供する余裕はありません。ここでの Bash や Batch のようないくつかの非常に単純な言語は、これらのタスクを実行するのに十分強力ではありませんが、Lua は強力で単純です。 Lua のもう1つの重要な利点は、組み込み機能です。これは、開発全体を通じて最も重要な特性の1つでした。 World of WarcraftやROBLOXのようなゲームは、ユーザーが使用できるように、アプリケーションにLuaを埋め込むことができる必要があります。
 
 プログラミングは、組み込みアプリケーション内で実行されるプログラムの場合はスクリプトとも呼ばれ、コンピュータープログラムを作成するプロセスです。プログラミング言語は、コンピュータープログラムに含まれているコンピューターコードを介してコンピューターに指示を与えるために使用される言語です。プログラミング言語は、英語の文法に似た構文と、言語で提供される基本関数であるライブラリの2つで構成されています。これらのライブラリは、英語の語彙と比較できます。
 
@@ -45,7 +45,7 @@ Programming, which is also sometimes called scripting in the case of programs th
 
 ## Hello, world
 
-Luaは、アプリケーションに埋め込まれて使用することも、単独で使用することもできます。この本では、Luaをコンピューターにインストールするプロセスについては説明していませんが、[codepad](http://codepad.org/)または[the Lua demo](http://www.lua.org/demo.html)を使用してコードを実行できます。この本のLuaコードの最初の例は、基本的で伝統的な「hello world」プログラムです。
+Lua は、アプリケーションに埋め込まれて使用することも、単独で使用することもできます。この本では、Luaをコンピューターにインストールするプロセスについては説明していませんが、[codepad](http://codepad.org/)または[the Lua demo](http://www.lua.org/demo.html)を使用してコードを実行できます。この本の Lua コードの最初の例は、基本的で伝統的な「hello world」プログラムです。
 
 > **「Hello World」のプログラムは、**表示装置に「Hello world」出力するコンピュータプログラムです。これは通常、ほとんどのプログラミング言語で可能な最も単純なプログラムの1つであるため、プログラミング言語の最も基本的な構文を初心者に説明したり、言語またはシステムが正しく動作していることを確認したりするためによく使用されます。
 >
@@ -63,7 +63,7 @@ print("Hello, world!")
 
 上記のコードは、Hello, world! というテキストを出力します。紙に何かを印刷するのではなく、出力にテキストを表示することを参照してプリントします。これは、`print`という関数を呼び出すことによって引数として文字列"Hello, world!"を使用して行われます。これについては、関数に関する章で説明します。
 
-Luaはほとんどの場合、低レベルのアプリケーションに[埋め込まれ](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Embedded_system&usg=ALkJrhjO7IDN0JceQxPpd_cx_j0Qs56Ktg)ていることに注意してください。つまり、`print`関数は、ユーザーに表示される領域にテキストを常に表示するとは限りません。これらのアプリケーションのプログラミングインターフェイスのドキュメントでは、一般に、テキストをユーザーに表示する方法について説明します。
+Lua はほとんどの場合、低レベルのアプリケーションに[埋め込まれ](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Embedded_system&usg=ALkJrhjO7IDN0JceQxPpd_cx_j0Qs56Ktg)ていることに注意してください。つまり、`print`関数は、ユーザーに表示される領域にテキストを常に表示するとは限りません。これらのアプリケーションのプログラミングインターフェイスのドキュメントでは、一般に、テキストをユーザーに表示する方法について説明します。
 
 The code above prints the text Hello, world! to the output, printing referring to displaying text in the output, not to printing something on paper. It does so by calling the `print` function with the string "Hello, world!" as an argument. This will be explained in the chapter about functions.
 
@@ -71,7 +71,7 @@ Note that Lua is most of the time [embedded](https://en.wikipedia.org/wiki/Embed
 
 ## Comments
 
-コメントとは、プログラミング言語によって無視されるコード注釈です。コメントは、1行または複数行のコードの説明、プログラムの文書化、コードの一時的な無効化、またはその他の理由で使用できます。Luaがコメントだと認識できるようにするには、接頭辞として2つのハイフン`--`を付ける必要があり、独自の行または別の行の末尾に配置できます。
+コメントとは、プログラミング言語によって無視されるコード注釈です。コメントは、1行または複数行のコードの説明、プログラムの文書化、コードの一時的な無効化、またはその他の理由で使用できます。Lua がコメントだと認識できるようにするには、接頭辞として2つのハイフン`--`を付ける必要があり、独自の行または別の行の末尾に配置できます。
 
 A comment is a code annotation that is ignored by the programming language. Comments can be used to describe one or many lines of code, to document a program, to temporarily disable code, or for any other reason. They need to be prefixed by two hyphens to be recognized by Lua and they can be put either on their own line or at the end of another line:
 
@@ -112,7 +112,7 @@ In the example above, the closing long bracket of level 0 (`]]`) does not close 
 
 The syntax of a programming language defines how statements and expressions must be written in that programming language, just like grammar defines how sentences and words must be written. Statements and expressions can be respectively compared to sentences and words. Expressions are pieces of code that have a value and that can be evaluated, while statements are pieces of code that can be executed and that contain an instruction and one or many expressions to use that instruction with. For example, `3 + 5` is an expression and `variable = 3 + 5` is a statement that sets the value of variable to that expression.
 
-Luaの構文全体は、[Lua Webサイト](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=http://www.lua.org/manual/5.1/manual.html&usg=ALkJrhj_HxYENqimSypV-FZTjPomzfmbbA#8)の拡張バッカスナウア記法で見つけることができますが、それを読んでも何も理解できません。[拡張バッカスナウア記法](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form&usg=ALkJrhhZ5MEl-WEm6LiP6u5gH88OH4qsCg)はメタ言語であり、メタウェブサイトがウェブサイトに関するウェブサイトであるように、別の言語を説明するために使用される言語であり、Luaではメタテーブルが他のテーブルの動作を定義するテーブルです（この本の後半のメタテーブルとテーブルについてで学習します）。ただし、この本では、拡張バッカスナウア記法を学ぶ必要はありません。Luaのような言語はメタ言語を使用して説明できますが、単語や文を使用して英語で説明することもできます。これはまさに、この本がしていることです。
+Lua の構文全体は、[Lua Webサイト](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=http://www.lua.org/manual/5.1/manual.html&usg=ALkJrhj_HxYENqimSypV-FZTjPomzfmbbA#8)の拡張バッカスナウア記法で見つけることができますが、それを読んでも何も理解できません。[拡張バッカスナウア記法](https://translate.googleusercontent.com/translate_c?depth=1&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&tl=ja&u=https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form&usg=ALkJrhhZ5MEl-WEm6LiP6u5gH88OH4qsCg)はメタ言語であり、メタウェブサイトがウェブサイトに関するウェブサイトであるように、別の言語を説明するために使用される言語であり、Lua ではメタテーブルが他のテーブルの動作を定義するテーブルです（この本の後半のメタテーブルとテーブルについてで学習します）。ただし、この本では、拡張バッカスナウア記法を学ぶ必要はありません。Lua のような言語はメタ言語を使用して説明できますが、単語や文を使用して英語で説明することもできます。これはまさに、この本がしていることです。
 
 The entire syntax of Lua can be found in extended Backus–Naur form [on the Lua website](http://www.lua.org/manual/5.1/manual.html#8), but you wouldn't understand anything if you read it. [Extended Backus–Naur Form](https://en.wikipedia.org/wiki/Extended_Backus–Naur_Form) is a metalanguage, a language used to describe another language, just like a metawebsite is a website about a website, and just like metatables, in Lua, are tables that define the behavior of other tables (you'll learn about metatables and tables later in this book). But you're not going to have to learn extended Backus–Naur form in this book, because, while a language like Lua can be described using a metalanguage, it can also be described using words and sentences, in English, and this is exactly what this book is going to do.
 
@@ -126,7 +126,7 @@ English is capable of doing everything: describing languages, giving instruction
 
 ## Obtaining Lua
 
-Luaは、Luaの公式Webサイトの[ダウンロードページ](http://www.lua.org/download.html)から入手できます。手順もそこにあります。ダウンロードボタンはソースコード用ですが、おそらくあなたが望むものではありません。おそらくバイナリを探しているので、ページを見てそれらに関する情報を見つける必要があります（使用しているプラットフォームによって異なります）。この本の目的は、Lua言語を教えることだけであり、Luaツールの使用法を教えることではありません。この本では読者は組み込み環境でLuaを使用すると想定れていますが、必ずしもそのとおりであるわけではありません。それは、この本の中では、Luaの使用法をスタンドアロン言語として説明していないことを意味するだけです。 
+Lua は、Lua の公式Webサイトの[ダウンロードページ](http://www.lua.org/download.html)から入手できます。手順もそこにあります。ダウンロードボタンはソースコード用ですが、おそらくあなたが望むものではありません。おそらくバイナリを探しているので、ページを見てそれらに関する情報を見つける必要があります（使用しているプラットフォームによって異なります）。この本の目的は、Lua 言語を教えることだけであり、Lua ツールの使用法を教えることではありません。この本では読者は組み込み環境で Lua を使用すると想定れていますが、必ずしもそのとおりであるわけではありません。それは、この本の中では、Lua の使用法をスタンドアロン言語として説明していないことを意味するだけです。 
 
 Lua can be obtained on the official Lua website, [on the download page](http://www.lua.org/download.html). Instructions are also available there: the download button is for the source code, which is probably not what you want. You are probably looking for binaries, so you should look around the page to find information about those (what exactly you are looking for depends on the platform you are using). The purpose of this book is only to teach the Lua language, not to teach usage of the Lua tools. It is generally assumed that the reader will be using Lua in an embedded environment, but this does not need to be the case for the book to be useful, only does it mean that the book will not describe the usage of Lua as a standalone language.
 
@@ -187,7 +187,7 @@ Some code examples in this chapter do not constitute valid code, because they co
 
 式を評価することは、式を計算してその値を見つけることです。特定の式が評価する値は、環境とスタックレベルに依存する可能性があるため、コンテキストごとに異なる場合があります。この値は、数値、テキスト、その他の多くのデータ型のいずれかになる場合があります。そのため、型があると言われます。
 
-Luaおよび一般的なプログラミングでは、式は通常、0個以上の演算子を持つ1つ以上の値で構成されます。一部の演算子は、一部のタイプでのみ使用できます（たとえば、テキストを分割しようとするのは非論理的ですが、数値を分割することは理にかなっています）。演算子には、単項演算子と二項演算子の2種類があります。単項演算子は、1つの値のみを取る演算子です。たとえば、単項演算子は、パラメータとして-5、-3、-6などの1つの数値のみを取ります。パラメータとして1つの数値を取り、その数値を無効にします。ただし、同じ演算子ではない2項演算子は、2つの値を取り、最初の値から2番目の値を減算します：5-3、8-6、4-9など。
+Lua および一般的なプログラミングでは、式は通常、0個以上の演算子を持つ1つ以上の値で構成されます。一部の演算子は、一部のタイプでのみ使用できます（たとえば、テキストを分割しようとするのは非論理的ですが、数値を分割することは理にかなっています）。演算子には、単項演算子と二項演算子の2種類があります。単項演算子は、1つの値のみを取る演算子です。たとえば、単項演算子は、パラメータとして -5、-3、-6 などの1つの数値のみを取ります。パラメータとして1つの数値を取り、その数値を無効にします。ただし、同じ演算子ではない2項演算子は、2つの値を取り、最初の値から2番目の値を減算します：5-3、8-6、4-9 など。
 
 To evaluate an expression is to compute it to find its value. The value a given expression evaluates to might be different from one context to another, since it can depend on the environment and stack level. This value will sometimes be a number, sometimes text and the other times any of many other data types, which is why it is said to have a type.
 
@@ -203,17 +203,25 @@ print(type(32425)) --> number
 
 ### Numbers
 
-数字は一般的に数量を表しますが、他の多くのことに使用できます。Luaの数値型は、実数とほとんど同じように機能します。数値は、整数、10進数、10進数の指数、または[16進数](https://en.wikipedia.org/wiki/hexadecimal)で構成できます。有効な番号は次のとおりです。
+数字は一般的に数量を表しますが、他の多くのことに使用できます。Lua の数値型は、実数とほとんど同じように機能します。数値は、整数、10進数、10進数の指数、または[16進数](https://en.wikipedia.org/wiki/hexadecimal)で構成できます。有効な番号は次のとおりです。
 
 Numbers generally represent quantities, but they can be used for many other things. The number type in Lua works mostly in the same way as real numbers. Numbers can be constructed as integers, decimal numbers, decimal exponents or even in [hexadecimal](https://en.wikipedia.org/wiki/hexadecimal). Here are some valid numbers:
 
 - 3
+
 - 3.0
+
 - 3.1416
+
 - 314.16e-2
+
 - 0.31416E1
+
 - 0xff
+
 - 0x56
+
+  
 
 #### Arithmetic operations
 
@@ -241,7 +249,7 @@ The operators for numbers in Lua are the following:
 | Division            | a / b  | Divides a by b and returns the result                     | 6.4 / 2   |
 | Modulo operation    | a % b  | Returns the remainder of the division of a by b           | 5 % 3     |
 
-最後のものを除いて、これらの演算子（基本的な数学演算子と同じ）はすべてすでに知っているでしょう。最後のものはモジュロ演算子と呼ばれ、ある数値を別の数値で除算した余りを単純に計算します。たとえば、5％3は、2が5を3で割った余りであるため、結果として2になります。モジュロ演算子は他の演算子ほど一般的ではありませんが、複数の用途があります。
+最後のものを除いて、これらの演算子（基本的な数学演算子と同じ）はすべてすでに知っているでしょう。最後のものはモジュロ演算子と呼ばれ、ある数値を別の数値で除算した余りを単純に計算します。たとえば、5 % 3 は、式の意味するところは 5 を 3 で割った余りであるため、結果として 2 ということになります。モジュロ演算子は他の演算子ほど一般的ではありませんが、複数の用途があります。
 
 You probably already know all of these operators (they are the same as basic mathematical operators) except the last. The last is called the modulo operator, and simply calculates the remainder of the division of one number by another. 5 % 3, for example, would give 2 as a result because 2 is the remainder of the division of 5 by 3. The modulo operator is less common than the other operators, but it has multiple uses.
 
