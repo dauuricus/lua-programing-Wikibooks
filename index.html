@@ -153,6 +153,8 @@ Error message and password prompt
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/close-all</li>
 
+<li>$:/config/Plugins/Disabled/$:/themes/tiddlywiki/readonly</li>
+
 <li>$:/config/Plugins/Disabled/$:/themes/tiddlywiki/starlight</li>
 
 <li>$:/config/RelinkOnRename</li>
@@ -627,6 +629,9 @@ Error message and password prompt
 </div>
 <div created="20201210132815616" modified="20201210132815616" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/close-all">
 <pre>show</pre>
+</div>
+<div created="20201211124626927" modified="20201211124626927" title="$:/config/Plugins/Disabled/$:/themes/tiddlywiki/readonly">
+<pre>yes</pre>
 </div>
 <div created="20201211114121288" modified="20201211114121288" title="$:/config/Plugins/Disabled/$:/themes/tiddlywiki/starlight">
 <pre>yes</pre>
@@ -10744,8 +10749,8 @@ Error message and password prompt
 <div created="20201210124208201" modified="20201211120523608" title="$:/state/tab--697582678">
 <pre>$:/core/ui/ControlPanel/Settings/TiddlyWiki</pre>
 </div>
-<div created="20201211113404281" modified="20201211120842548" title="$:/state/tab--86143343">
-<pre>$:/core/ui/ControlPanel/Plugins/Installed/Plugins</pre>
+<div created="20201211113404281" modified="20201211124554976" title="$:/state/tab--86143343">
+<pre>$:/core/ui/ControlPanel/Plugins/Installed/Themes</pre>
 </div>
 <div created="20201210123430260" modified="20201211120837695" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Plugins</pre>
@@ -10762,8 +10767,8 @@ Error message and password prompt
 <div created="20201211054538674" modified="20201211113339488" title="$:/state/toc/TableOfContents-Blocks--118161433">
 <pre>close</pre>
 </div>
-<div created="20201211033813073" modified="20201211113334337" title="$:/state/toc/TableOfContents-Expressions--118161433">
-<pre>close</pre>
+<div created="20201211033813073" modified="20201211124545212" title="$:/state/toc/TableOfContents-Expressions--118161433">
+<pre>open</pre>
 </div>
 <div created="20201211055113019" modified="20201211113340284" title="$:/state/toc/TableOfContents-Functions--118161433">
 <pre>close</pre>
@@ -10825,7 +10830,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201211114048381" list="Introduction [[Lua Programming]]" modified="20201211120809681" title="$:/StoryList">
+<div created="20201211124700904" list="[[Arithmetic operations]]" modified="20201211124700904" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -10841,7 +10846,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///C:/Users/sa0ss/Documents/GitHub/lua-programing-Wikibooks/empty.html&quot;
+            &quot;text&quot;: &quot;file:///C:/Users/sa0ss/Documents/GitHub/lua-programing-Wikibooks/index.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -10861,7 +10866,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/C:/Users/sa0ss/Documents/GitHub/lua-programing-Wikibooks/empty.html&quot;
+            &quot;text&quot;: &quot;/C:/Users/sa0ss/Documents/GitHub/lua-programing-Wikibooks/index.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -11982,7 +11987,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 
 **ソフトウェアテスト**という用語は、コンピュータソフトウェアのバグやプログラミングの間違いを発見するために使用されるいくつかの方法とプロセスを指します。 ソフトウェアテストは静的に実行できます。静的テストと呼ばれ、コンピュータソフトウェアを実行せずに実行されます。動的な場合は、動的テストと呼ばれ、テスト対象のコンピュータプログラムの実行中に実行されます。</pre>
 </div>
-<div created="20201210130837901" index="0010" modified="20201211064057855" tags="Numbers" title="Arithmetic operations" type="text/x-markdown">
+<div created="20201210130837901" index="0010" modified="20201211124742844" tags="Numbers" title="Arithmetic operations" type="text/x-markdown">
 <pre>#### Arithmetic operations
 
  Lua の数値の演算子は次のとおりです。
@@ -11996,7 +12001,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 | 乗算         | a * b  | a と b の積を返します                           | 3.2 * 1.5 |
 | べき乗       | a ^ b  | a を b の累乗、または a の b によるべき乗に返します | 5 ^ 2     |
 | 分割         | a / b  | a を b で除算し、結果を返します                 | 6.4 / 2   |
-| モジュロ演算 | a ％ b | a を b で割った余りを返します                   | 5 % 3     |
+| モジュロ演算 | a % b | a を b で割った余りを返します                   | 5 % 3     |
 
 最後のものを除いて、これらの演算子（基本的な数学演算子と同じ）はすべてすでに知っているでしょう。最後のものはモジュロ演算子と呼ばれ、ある数値を別の数値で除算した余りを単純に計算します。たとえば、5 % 3 は、式の意味するところは 5 を 3 で割った余りであるため、結果として 2 ということになります。モジュロ演算子は他の演算子ほど一般的ではありませんが、複数の用途があります。</pre>
 </div>
