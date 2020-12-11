@@ -344,7 +344,7 @@ In addition,
 
 ### Strings
 
-文字列は、テキストを表すために使用できる文字のシーケンスです。これらは、[コメントに関するセクションで]()前に説明した二重引用符、一重引用符、または長い角かっこで囲むことにより、Luaで記述でき[ます。コメントと文字列には、コメントの場合は2つのハイフンを前に付けて、両方を長い角かっこで区切ることができるという事実以外に共通点がないことに注意してください）。長い括弧に含まれていない文字列は、1行だけ続きます。このため、長い角かっこを使用せずに多くの行を含む文字列を作成する唯一の方法は、エスケープシーケンスを使用することです。これは、特定の場合に一重引用符または二重引用符を挿入する唯一の方法でもあります。エスケープシーケンスは、Luaでは常にエスケープ文字であるバックスラッシュ（ ' \ ' ）と、エスケープする文字を識別する識別子の2つで構成されます。
+文字列は、テキストを表すために使用できる文字のシーケンスです。これらは、[コメントに関するセクションで]()前に説明した二重引用符、一重引用符、または長い角かっこで囲むことにより、Luaで記述できます。コメントと文字列には、コメントの場合は2つのハイフンを前に付けて、両方を長い角かっこで区切ることができるという事実以外に共通点がないことに注意してください）。長い括弧に含まれていない文字列は、1行だけ続きます。このため、長い角かっこを使用せずに多くの行を含む文字列を作成する唯一の方法は、エスケープシーケンスを使用することです。これは、特定の場合に一重引用符または二重引用符を挿入する唯一の方法でもあります。エスケープシーケンスは、Luaでは常にエスケープ文字であるバックスラッシュ（ ' \ ' ）と、エスケープする文字を識別する識別子の2つで構成されます。
 
 Strings are sequences of characters that can be used to represent text. They can be written in Lua by being contained in double quotes, single quotes or long brackets, which were covered before in [the section about comments](https://en.m.wikibooks.org/wiki/Lua_Programming/Introduction#Comments) (it should be noted that comments and strings have nothing in common other than the fact they can both be delimited by long brackets, preceded by two hyphens in the case of comments). Strings that aren't contained in long brackets will only continue for one line. Because of this, the only way to make a string that contains many lines without using long brackets is to use escape sequences. This is also the only way to insert single or double quotes in certain cases. Escape sequences consist of two things: an escape character, which will always be a backslash ('\') in Lua, and an identifier that identifies the character to be escaped.
 
