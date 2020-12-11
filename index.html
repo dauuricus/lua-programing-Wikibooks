@@ -517,6 +517,8 @@ Error message and password prompt
 
 <li>Draft of 'Forms of assignment'</li>
 
+<li>Draft of 'Introduction'</li>
+
 <li>Errors</li>
 
 <li>Expressions</li>
@@ -10757,8 +10759,8 @@ Error message and password prompt
 <div created="20201210123430260" modified="20201211132120280" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Appearance</pre>
 </div>
-<div created="20201210123100438" modified="20201211132305730" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Tools</pre>
+<div created="20201210123100438" modified="20201211133201376" title="$:/state/tab/sidebar--595412856">
+<pre>TableOfContents</pre>
 </div>
 <div created="20201211110534109" modified="20201211113343906" title="$:/state/toc/TableOfContents-Appendix:Software testing--118161433">
 <pre>close</pre>
@@ -10832,7 +10834,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201211124700904" list="" modified="20201211132631278" title="$:/StoryList">
+<div created="20201211124700904" list="[[Draft of 'Introduction']] [[Lua Programming]]" modified="20201211133529425" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -12540,6 +12542,27 @@ end
 </div>
 <div modified="20201211024729858" title="Draft of 'Forms of assignment'">
 <pre></pre>
+</div>
+<div created="20201210123226361" draft.of="Introduction" draft.title="Introduction" index="0001" modified="20201211133612109" tags="TableOfContents" title="Draft of 'Introduction'" type="text/x-markdown">
+<pre># Introduction
+
+Lua （「 LUA 」という表記は正しくありません）は、強力で、高速で、軽量で、埋め込み可能なプログラミング言語です。多くのフレームワーク、ゲーム、その他のアプリケーションで使用されています。単独で使用することもできますが、他のアプリケーションに簡単に組み込むことができるように設計されています。これは、非常に移植性の高いCプログラミング言語のサブセットである ANSI C で実装されています。つまり、他のほとんどのスクリプト言語では実行できない多くのシステムやデバイスで実行できます。この本の目的は、以前のプログラミング経験に関係なく、誰にでも Lua プログラミングを教えることです。この本は、プログラミングの紹介として、これまでプログラミングしたことがない人のために、または Lua の紹介として、他の言語でのプログラミング経験のある人のために使用できます。 Lua を使用する開発プラットフォームやゲームはたくさんあるので、この本は Lua の使い方を学び、その開発プラットフォームでそれを使用するためにも使用できます。
+
+この本は、 Lua の最新バージョンの使用法を教えることを目的としています。これは、 Lua の新しいバージョンがリリースされると、定期的に更新が試みられることを意味します（ Lua のリリースはそれほど頻繁ではないため、それほど難しくはありません）。現在、この本は以前のバージョンである  Lua5.2 の最新版です。 5.x ブランチ（ Lua 5.0 および Lua5.1 ）で古いバージョンの Lua を使用する組み込み環境で Lua を使用している場合でも、資料は十分に関連しているはずです。
+
+Lua は、リオデジャネイロのポンティフィカルカトリック大学の研究所で設計および保守されています。作成者は、 Roberto Ierusalimschy、Waldemar Celes 、Luiz Henrique de Figueiredo です。
+
+
+
+&gt; 「ルア」（ LOO-ah と発音）はポルトガル語で「月」を意味します。そのため、頭字語でも略語でもありませんが、名詞です。より具体的には、「ルア」は名前、地球の月の名前、そして言語の名前です。ほとんどの名前と同様に、小文字で最初の大文字、つまり「 Lua 」を使用して記述する必要があります。ひどくて紛らわしい「 LUA 」とは書かないでください。人によって意味が異なる略語になります。だから、ぜひ「 Lua 」と書くようにしてくださいね！
+&gt;
+&gt; — Lua の作者、[ Lua について](http://www.lua.org/about.html)
+
+Lua は、 TeCGraf （リオデジャネイロのポンティフィカルカトリック大学の研究所）によって設計された 2 つの言語、DELと Sol に由来します。  DEL は「データ入力言語」を意味し、 Sol は「単純なオブジェクト言語」を意味し、ポルトガル語で太陽も意味します。そのため、ポルトガル語で「月」を意味するため、 Lua という名前が選ばれました。ブラジルの石油会社である Petrobras のために作成されましたが、 TeCGraf の他の多くのプロジェクトでも使用され、現在では世界中の多数のプロジェクトで使用されています。 Lua は、組み込みゲーム開発の分野における主要な言語の1つです。
+
+Lua の主な利点の 1 つは、そのシンプルさです。一部の企業は、その利点のためだけにそれを使用しています。プログラミング言語を使用して特定のタスクを実行できれば、従業員はよりよく働くことができると考えていますが、複雑なプログラミング言語のフルコースを従業員に提供する余裕はありません。ここでの Bash や Batch のようないくつかの非常に単純な言語は、これらのタスクを実行するのに十分強力ではありませんが、 Lua は強力で単純です。 Lua のもう 1 つの重要な利点は、組み込み機能です。これは、開発全体を通じて最も重要な特性の 1 つでした。 World of Warcraft や ROBLOX のようなゲームは、ユーザーが使用できるように、アプリケーションに Lua を埋め込むことができる必要があります。
+
+プログラミングは、組み込みアプリケーション内で実行されるプログラムの場合はスクリプトとも呼ばれ、コンピュータープログラムを作成するプロセスです。プログラミング言語は、コンピュータープログラムに含まれているコンピューターコードを介してコンピューターに指示を与えるために使用される言語です。プログラミング言語は、英語の文法に似た構文と、言語で提供される基本関数であるライブラリの 2 つで構成されています。これらのライブラリは、英語の語彙と比較できます。</pre>
 </div>
 <div created="20201211055207129" index="0043" modified="20201211062830101" tags="Functions" title="Errors" type="text/x-markdown">
 <pre>## Errors
